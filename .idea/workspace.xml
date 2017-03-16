@@ -2,35 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6b16c613-eb39-4a32-8971-9cb52740dd8f" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/frontend/command/commands/AchievementCommand.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/backend/session/AchievementManager.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/frontend/gui/custom/friends/FriendListGUI.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/frontend/command/commands/FriendsCommand.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/config.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/me/borawski/hcf/frontend/util/ChatUtils.class" afterPath="$PROJECT_DIR$/target/classes/me/borawski/hcf/frontend/util/ChatUtils.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/me/borawski/hcf/Core.class" afterPath="$PROJECT_DIR$/target/classes/me/borawski/hcf/Core.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/me/borawski/hcf/backend/util/FriendUtils.class" afterPath="$PROJECT_DIR$/target/classes/me/borawski/hcf/backend/util/FriendUtils.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/HCF-0.1.jar" afterPath="$PROJECT_DIR$/target/HCF-0.1.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/me/borawski/hcf/backend/connection/Mongo.class" afterPath="$PROJECT_DIR$/target/classes/me/borawski/hcf/backend/connection/Mongo.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/me/borawski/hcf/frontend/gui/custom/PlayerInfoGUI.class" afterPath="$PROJECT_DIR$/target/classes/me/borawski/hcf/frontend/gui/custom/PlayerInfoGUI.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/me/borawski/hcf/backend/session/Rank.class" afterPath="$PROJECT_DIR$/target/classes/me/borawski/hcf/backend/session/Rank.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/me/borawski/hcf/backend/session/Session.class" afterPath="$PROJECT_DIR$/target/classes/me/borawski/hcf/backend/session/Session.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/me/borawski/hcf/frontend/scoreboard/TabScoreboard$1.class" afterPath="$PROJECT_DIR$/target/classes/me/borawski/hcf/frontend/scoreboard/TabScoreboard$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/me/borawski/hcf/frontend/scoreboard/TabScoreboard.class" afterPath="$PROJECT_DIR$/target/classes/me/borawski/hcf/frontend/scoreboard/TabScoreboard.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/original-HCF-0.1.jar" afterPath="$PROJECT_DIR$/target/original-HCF-0.1.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/frontend/util/ChatUtils.java" afterPath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/frontend/util/ChatUtils.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/Core.java" afterPath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/Core.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/backend/util/FriendUtils.java" afterPath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/backend/util/FriendUtils.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/backend/connection/Mongo.java" afterPath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/backend/connection/Mongo.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/frontend/gui/custom/PlayerInfoGUI.java" afterPath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/frontend/gui/custom/PlayerInfoGUI.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/backend/session/Rank.java" afterPath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/backend/session/Rank.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/backend/session/Session.java" afterPath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/backend/session/Session.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/frontend/scoreboard/TabScoreboard.java" afterPath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/frontend/scoreboard/TabScoreboard.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/plugin.yml" afterPath="$PROJECT_DIR$/src/main/resources/plugin.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/plugin.yml" afterPath="$PROJECT_DIR$/target/classes/plugin.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="HCF.iws" />
@@ -55,11 +26,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="FriendsCommand.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="FriendsCommand.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/me/borawski/hcf/frontend/command/commands/FriendsCommand.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.66630316">
-              <caret line="212" column="0" selection-start-line="212" selection-start-column="0" selection-end-line="212" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="197" column="17" selection-start-line="197" selection-start-column="17" selection-end-line="197" selection-end-column="17" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -79,12 +50,15 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Core.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Core.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/me/borawski/hcf/Core.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="50" column="55" selection-start-line="50" selection-start-column="55" selection-end-line="50" selection-end-column="55" />
-              <folding />
+            <state vertical-scroll-proportion="0.6673937">
+              <caret line="45" column="27" selection-start-line="45" selection-start-column="27" selection-end-line="45" selection-end-column="27" />
+              <folding>
+                <element signature="e#2132#2133#0" expanded="true" />
+                <element signature="e#2160#2161#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -159,10 +133,10 @@
         <option value="$PROJECT_DIR$/src/main/java/me/borawski/hcf/backend/session/Session.java" />
         <option value="$PROJECT_DIR$/src/main/java/me/borawski/hcf/backend/util/FriendUtils.java" />
         <option value="$PROJECT_DIR$/src/main/java/me/borawski/hcf/backend/session/AchievementManager.java" />
-        <option value="$PROJECT_DIR$/src/main/java/me/borawski/hcf/Core.java" />
         <option value="$PROJECT_DIR$/src/main/resources/plugin.yml" />
         <option value="$PROJECT_DIR$/src/main/java/me/borawski/hcf/frontend/command/commands/AchievementCommand.java" />
         <option value="$PROJECT_DIR$/src/main/java/me/borawski/hcf/frontend/command/commands/FriendsCommand.java" />
+        <option value="$PROJECT_DIR$/src/main/java/me/borawski/hcf/Core.java" />
       </list>
     </option>
   </component>
@@ -182,8 +156,8 @@
     <order />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="709" />
-    <option name="y" value="74" />
+    <option name="x" value="67" />
+    <option name="y" value="8" />
     <option name="width" value="1924" />
     <option name="height" value="1054" />
   </component>
@@ -525,6 +499,40 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="session" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="HCF" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="HCF" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hcf" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="backend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="punishment" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -890,19 +898,27 @@
       <workItem from="1489622206636" duration="1650000" />
       <workItem from="1489624184091" duration="1972000" />
       <workItem from="1489626168568" duration="1422000" />
-      <workItem from="1489692082921" duration="24000" />
+      <workItem from="1489692082921" duration="550000" />
     </task>
+    <task id="LOCAL-00001" summary="stuff">
+      <created>1489692324646</created>
+      <option name="number" value="00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1489692324646</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="61594000" />
+    <option name="totallyTimeSpent" value="62120000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="709" y="74" width="1924" height="1054" extended-state="0" />
-    <editor active="false" />
+    <frame x="67" y="8" width="1924" height="1054" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.18901795" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -910,14 +926,13 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18343815" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18343815" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.18901795" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -937,6 +952,10 @@
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="stuff" />
+    <option name="LAST_COMMIT_MESSAGE" value="stuff" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -967,6 +986,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="62" column="75" selection-start-line="62" selection-start-column="75" selection-end-line="62" selection-end-column="75" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -974,6 +994,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="19" column="25" selection-start-line="19" selection-start-column="25" selection-end-line="19" selection-end-column="25" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -988,7 +1009,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="77" column="29" selection-start-line="77" selection-start-column="29" selection-end-line="77" selection-end-column="29" />
-          <folding />
+          <folding>
+            <element signature="e#2132#2133#0" expanded="true" />
+            <element signature="e#2160#2161#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1157,6 +1181,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="37" column="64" selection-start-line="37" selection-start-column="64" selection-end-line="37" selection-end-column="64" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1188,17 +1213,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/me/borawski/hcf/backend/punishment/PunishmentManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.31447226">
-          <caret line="17" column="43" selection-start-line="17" selection-start-column="43" selection-end-line="17" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/me/borawski/hcf/frontend/gui/custom/edit/PlayerPunishmentsGUI.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="78" column="48" selection-start-line="78" selection-start-column="48" selection-end-line="78" selection-end-column="48" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1242,6 +1261,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1256,13 +1276,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/me/borawski/hcf/backend/session/Rank.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7954298">
-          <caret line="53" column="31" selection-start-line="53" selection-start-column="31" selection-end-line="53" selection-end-column="31" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#901#902#0" expanded="true" />
+            <element signature="e#936#937#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1291,14 +1309,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/me/borawski/hcf/Core.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="50" column="55" selection-start-line="50" selection-start-column="55" selection-end-line="50" selection-end-column="55" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/me/borawski/hcf/backend/session/Session.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1307,12 +1317,44 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/me/borawski/hcf/backend/session/Rank.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="53" column="31" selection-start-line="53" selection-start-column="31" selection-end-line="53" selection-end-column="31" />
+          <folding>
+            <element signature="e#1554#1555#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/me/borawski/hcf/backend/punishment/PunishmentManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.20392585">
+          <caret line="17" column="43" selection-start-line="17" selection-start-column="43" selection-end-line="17" selection-end-column="43" />
+          <folding>
+            <element signature="e#389#390#0" expanded="true" />
+            <element signature="e#429#430#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/me/borawski/hcf/frontend/command/commands/FriendsCommand.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.66630316">
-          <caret line="212" column="0" selection-start-line="212" selection-start-column="0" selection-end-line="212" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="197" column="17" selection-start-line="197" selection-start-column="17" selection-end-line="197" selection-end-column="17" />
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/me/borawski/hcf/Core.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6673937">
+          <caret line="45" column="27" selection-start-line="45" selection-start-column="27" selection-end-line="45" selection-end-column="27" />
+          <folding>
+            <element signature="e#2132#2133#0" expanded="true" />
+            <element signature="e#2160#2161#0" expanded="true" />
           </folding>
         </state>
       </provider>
