@@ -44,12 +44,7 @@ public class Core extends JavaPlugin {
         listenerManager.addListener(new PlayerListener(this));
         listenerManager.registerAll();
         this.commandManager = new CommandManager(this);
-        commandManager.add(new InfoCommand(this));
-        commandManager.add(new BanCommand(this));
-        commandManager.add(new RankCommand(this));
-        commandManager.add(new FriendsCommand(this));
-        commandManager.add(new AchievementCommand(this));
-        commandManager.registerAll();
+        registerCommands();
         this.punishmentManager = new PunishmentManager(this);
         this.achievementManager = new AchievementManager(this);
 
@@ -62,6 +57,15 @@ public class Core extends JavaPlugin {
 
     public static Core getInstance() {
         return instance;
+    }
+
+    public void registerCommands() {
+        commandManager.add(new InfoCommand(this));
+        commandManager.add(new BanCommand(this));
+        commandManager.add(new RankCommand(this));
+        commandManager.add(new FriendsCommand(this));
+        commandManager.add(new AchievementCommand(this));
+        commandManager.registerAll();
     }
 
     /**
