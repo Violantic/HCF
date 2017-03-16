@@ -1,0 +1,17 @@
+name: HCFCore
+version: 0.1
+main: me.borawski.hcf.Core
+description: Core system
+
+commands:
+     info:
+          description: Admin tool to look at player data
+     ban:
+          description: Self explanatory
+     rank:
+          description: For admins to check/change ranks
+     friend:
+          description: Add friends!
+     achievements:
+          description: Check your achievements
+          aliases: [ac, a]
