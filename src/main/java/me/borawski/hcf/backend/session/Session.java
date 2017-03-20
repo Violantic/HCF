@@ -10,9 +10,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 /**
  * Created by Ethan on 3/12/2017.
@@ -33,10 +31,10 @@ public class Session {
     private List<String> achievements;
     private List<UUID> friends;
     private List<List<UUID>> friendRequests;
+    private Map<String, Object> settings;
 
     public Session(UUID uuid, Document playerDocument, String name) {
         this.uuid = uuid;
-
         if (playerDocument == null && name != null) {
             playerDocument = new Document("uuid", uuid.toString());
             playerDocument.append("name", name);
@@ -54,21 +52,21 @@ public class Session {
                 {
                     // Outgoing Requests //
                     add(new ArrayList<UUID>());
-
                     // Incoming Requests //
                     add(new ArrayList<UUID>());
+                }
+            });
+            playerDocument.append("settings", new HashMap<String, Object>(){
+                {
+                    put("friend_requests", true);
+                    put("private_messaging", true);
+
                 }
             });
             Mongo.getCollection("players").insertOne(playerDocument);
             this.name = name;
             getSession(uuid);
-            return;
         } else if (playerDocument != null) {
-
-            if(uuid == null) {
-                System.out.println("UUID IS NULL");
-            }
-
             this.playerDocument = playerDocument;
             this.name = playerDocument.getString("name");
             this.rank = Rank.valueOf(playerDocument.getString("rank"));
@@ -78,6 +76,7 @@ public class Session {
             this.achievements = playerDocument.get("achievements", ArrayList.class);
             this.friends = playerDocument.get("friends", ArrayList.class);
             this.friendRequests = playerDocument.get("friend_requests", ArrayList.class);
+            this.settings = playerDocument.get("settings", HashMap.class);
 
             Document document = Mongo.getCollection("punishments").find(new Document("uuid", uuid.toString())).first();
             if (document != null) {
@@ -89,8 +88,6 @@ public class Session {
             }
 
             updateDocument("players", "last_login", System.currentTimeMillis());
-            //updateDocument("players", "ip", Core.getInstance().getServer().getPlayer(getUUID()).getAddress().toString());
-
             cache.add(this);
         }
     }
@@ -267,6 +264,7 @@ public class Session {
         this.achievements = playerDocument.get("achievements", ArrayList.class);
         this.friends = playerDocument.get("friends", ArrayList.class);
         this.friendRequests = playerDocument.get("friend_requests", ArrayList.class);
+        this.settings = playerDocument.get("settings", HashMap.class);
     }
 
 }

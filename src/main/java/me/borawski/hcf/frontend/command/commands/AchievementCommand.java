@@ -59,7 +59,7 @@ public class AchievementCommand implements Command {
         return new ItemGUI(getInstance(), null, Bukkit.getPlayer(uuid), 54) {
             @Override
             public String getName() {
-                return "Achivements";
+                return "Achievements";
             }
 
             @Override
