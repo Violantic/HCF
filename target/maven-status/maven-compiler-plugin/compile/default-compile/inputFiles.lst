@@ -1,6 +1,7 @@
 C:\Users\Ethan\Desktop\HCF\src\main\java\me\borawski\hcf\backend\util\PunishmentUtil.java
 C:\Users\Ethan\Desktop\HCF\src\main\java\me\borawski\hcf\frontend\util\DefaultFontInfo.java
 C:\Users\Ethan\Desktop\HCF\src\main\java\me\borawski\hcf\frontend\gui\CustomIS.java
+C:\Users\Ethan\Desktop\HCF\src\main\java\me\borawski\hcf\frontend\command\commands\SettingsCommand.java
 C:\Users\Ethan\Desktop\HCF\src\main\java\me\borawski\hcf\backend\util\UUIDUtil.java
 C:\Users\Ethan\Desktop\HCF\src\main\java\me\borawski\hcf\frontend\command\commands\AchievementCommand.java
 C:\Users\Ethan\Desktop\HCF\src\main\java\me\borawski\hcf\frontend\listener\PlayerListener.java
@@ -11,6 +12,7 @@ C:\Users\Ethan\Desktop\HCF\src\main\java\me\borawski\hcf\frontend\gui\custom\edi
 C:\Users\Ethan\Desktop\HCF\src\main\java\me\borawski\hcf\backend\session\Achievement.java
 C:\Users\Ethan\Desktop\HCF\src\main\java\me\borawski\hcf\frontend\gui\MenuItem.java
 C:\Users\Ethan\Desktop\HCF\src\main\java\me\borawski\hcf\frontend\scoreboard\TabScoreboard.java
+C:\Users\Ethan\Desktop\HCF\src\main\java\me\borawski\hcf\frontend\gui\custom\settings\PlayerSettingsGUI.java
 C:\Users\Ethan\Desktop\HCF\src\main\java\me\borawski\hcf\package-info.java
 C:\Users\Ethan\Desktop\HCF\src\main\java\me\borawski\hcf\backend\session\Rank.java
 C:\Users\Ethan\Desktop\HCF\src\main\java\me\borawski\hcf\backend\util\MojangUtil.java
@@ -22,14 +24,17 @@ C:\Users\Ethan\Desktop\HCF\src\main\java\me\borawski\hcf\backend\util\PlayerUtil
 C:\Users\Ethan\Desktop\HCF\src\main\java\me\borawski\hcf\frontend\command\commands\InfoCommand.java
 C:\Users\Ethan\Desktop\HCF\src\main\java\me\borawski\hcf\backend\Connection.java
 C:\Users\Ethan\Desktop\HCF\src\main\java\me\borawski\hcf\frontend\gui\ItemMenu.java
+C:\Users\Ethan\Desktop\HCF\src\main\java\me\borawski\hcf\backend\api\EconomyAPI.java
 C:\Users\Ethan\Desktop\HCF\src\main\java\me\borawski\hcf\backend\punishment\PunishmentManager.java
 C:\Users\Ethan\Desktop\HCF\src\main\java\me\borawski\hcf\backend\session\Session.java
 C:\Users\Ethan\Desktop\HCF\src\main\java\me\borawski\hcf\frontend\command\Command.java
 C:\Users\Ethan\Desktop\HCF\src\main\java\me\borawski\hcf\backend\connection\Mongo.java
 C:\Users\Ethan\Desktop\HCF\src\main\java\me\borawski\hcf\frontend\gui\ItemGUI.java
+C:\Users\Ethan\Desktop\HCF\src\main\java\me\borawski\hcf\backend\connection\MySQL.java
 C:\Users\Ethan\Desktop\HCF\src\main\java\me\borawski\hcf\frontend\command\commands\BanCommand.java
 C:\Users\Ethan\Desktop\HCF\src\main\java\me\borawski\hcf\frontend\gui\custom\PlayerInfoGUI.java
 C:\Users\Ethan\Desktop\HCF\src\main\java\me\borawski\hcf\frontend\command\CommandManager.java
+C:\Users\Ethan\Desktop\HCF\src\main\java\me\borawski\hcf\backend\util\SettingsUtil.java
 C:\Users\Ethan\Desktop\HCF\src\main\java\me\borawski\hcf\frontend\gui\custom\friends\FriendListGUI.java
 C:\Users\Ethan\Desktop\HCF\src\main\java\me\borawski\hcf\frontend\util\KickUtil.java
 C:\Users\Ethan\Desktop\HCF\src\main\java\me\borawski\hcf\frontend\util\ChatUtils.java

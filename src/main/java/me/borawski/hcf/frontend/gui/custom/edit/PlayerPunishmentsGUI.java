@@ -7,12 +7,17 @@ import me.borawski.hcf.backend.session.Session;
 import me.borawski.hcf.frontend.gui.CustomIS;
 import me.borawski.hcf.frontend.gui.ItemGUI;
 import me.borawski.hcf.frontend.gui.MenuItem;
+import me.borawski.hcf.frontend.gui.custom.PlayerInfoGUI;
 import org.bson.Document;
 import org.bukkit.ChatColor;
 import org.bukkit.DyeColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.ocpsoft.prettytime.PrettyTime;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
 
 
 /**
@@ -24,7 +29,7 @@ public class PlayerPunishmentsGUI extends ItemGUI {
     private PrettyTime timeFormat;
     public PlayerPunishmentsGUI(Core instance, Player p, Session target) {
         super(instance, null, p, 9);
-        this.target = target;
+        this.target = PlayerInfoGUI.crossTarget.get(p.getUniqueId());
         this.timeFormat = new PrettyTime();
     }
 
@@ -107,14 +112,16 @@ public class PlayerPunishmentsGUI extends ItemGUI {
 
     @Override
     public void registerItems() {
-        set(0, new MenuItem(new CustomIS().setMaterial(Material.BOOK).setName("BANNED: " + ChatColor.GREEN + " False").addLore(ChatColor.GRAY + "(Click to see Ban history)"), new Runnable() {
+        set(0, new MenuItem(new CustomIS().setMaterial(Material.BOOK).setName("BANNED: " + ((!PlayerInfoGUI.crossTarget.get(getPlayer().getUniqueId()).isBanned())?ChatColor.RED + "False":ChatColor.GREEN + "True")).addLore(ChatColor.GRAY + "(Click to see Ban history)"), new Runnable() {
             @Override
             public void run() {
+                PlayerInfoGUI.crossTarget.remove(getPlayer().getUniqueId());
             }
         }));
-        set(1, new MenuItem(new CustomIS().setMaterial(Material.BOOK).setName("MUTED: " + ChatColor.GREEN + " False").addLore(ChatColor.GRAY + "(Click to see Mute history)"), new Runnable() {
+        set(1, new MenuItem(new CustomIS().setMaterial(Material.BOOK).setName("MUTED: " + ((!PlayerInfoGUI.crossTarget.get(getPlayer().getUniqueId()).isMuted())?ChatColor.RED + "False":ChatColor.GREEN + "True")).addLore(ChatColor.GRAY + "(Click to see Mute history)"), new Runnable() {
             @Override
             public void run() {
+                PlayerInfoGUI.crossTarget.remove(getPlayer().getUniqueId());
             }
         }));
         set(4, new MenuItem(new CustomIS().setMaterial(Material.BOOK_AND_QUILL).setName("ISSUE PUNISHMENT").addLore(ChatColor.GRAY + "(Click to issue a punishment)"), new Runnable() {

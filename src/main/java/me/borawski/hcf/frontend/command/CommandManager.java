@@ -6,6 +6,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,15 +18,15 @@ import java.util.function.Consumer;
  */
 public class CommandManager {
 
-    private Core instance;
+    private JavaPlugin instance;
     private List<Command> commands;
 
-    public CommandManager(Core instance) {
+    public CommandManager(JavaPlugin instance) {
         this.instance = instance;
         this.commands = new ArrayList<Command>();
     }
 
-    public Core getInstance() {
+    public JavaPlugin getInstance() {
         return instance;
     }
 

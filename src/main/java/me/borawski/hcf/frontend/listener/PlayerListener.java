@@ -4,7 +4,10 @@ import me.borawski.hcf.Core;
 import me.borawski.hcf.backend.connection.Mongo;
 import me.borawski.hcf.backend.punishment.Punishment;
 import me.borawski.hcf.backend.session.Session;
+import me.borawski.hcf.frontend.util.BarUtil;
+import me.borawski.hcf.frontend.util.ChatUtils;
 import org.bson.Document;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -51,6 +54,17 @@ public class PlayerListener implements Listener {
     @EventHandler
     public void chat(AsyncPlayerChatEvent event) {
         Session s = Session.getSession(event.getPlayer());
+        if(s.isMuted()) {
+            event.setCancelled(true);
+            s.sendMessage(ChatColor.DARK_GRAY + "-----------------------------------------------------");
+            s.sendMessage("");
+            ChatUtils.sendCenteredMessage(event.getPlayer(), getInstance().getPrefix().replace(" ", ""));
+            String sword = "&c&l&m--&7&l&m[&7&l&m======-".replace("&", ChatColor.COLOR_CHAR + "");
+            ChatUtils.sendCenteredMessage(event.getPlayer(), sword);
+            ChatUtils.sendCenteredMessage(event.getPlayer(), ChatColor.GRAY + "You are muted and " + ChatColor.RED + "CANNOT " + ChatColor.GRAY + "speak!");
+            ChatUtils.sendCenteredMessage(event.getPlayer(), ChatColor.GRAY + "Visit our rules @ " + ChatColor.YELLOW + "https://desirehcf.net/rules");
+            s.sendMessage(ChatColor.DARK_GRAY + "-----------------------------------------------------");
+        }
         event.setFormat(s.getRank().getPrefix() + " " + event.getPlayer().getName() + ": " + s.getRank().getColor() + event.getMessage());
     }
 }

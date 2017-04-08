@@ -31,7 +31,7 @@ public class Session {
     private List<String> achievements;
     private List<UUID> friends;
     private List<List<UUID>> friendRequests;
-    private Map<String, Object> settings;
+    private Map<String, String> settings;
 
     public Session(UUID uuid, Document playerDocument, String name) {
         this.uuid = uuid;
@@ -58,8 +58,8 @@ public class Session {
             });
             playerDocument.append("settings", new HashMap<String, Object>(){
                 {
-                    put("friend_requests", true);
-                    put("private_messaging", true);
+                    put("friend_requests", "true");
+                    put("private_messaging", "false");
 
                 }
             });
@@ -76,15 +76,19 @@ public class Session {
             this.achievements = playerDocument.get("achievements", ArrayList.class);
             this.friends = playerDocument.get("friends", ArrayList.class);
             this.friendRequests = playerDocument.get("friend_requests", ArrayList.class);
-            this.settings = playerDocument.get("settings", HashMap.class);
+            this.settings = playerDocument.get("settings", Map.class);
 
             Document document = Mongo.getCollection("punishments").find(new Document("uuid", uuid.toString())).first();
             if (document != null) {
-                if (document.getString("type").equalsIgnoreCase("mute")) {
+                System.out.println("[DesireHCF] Found punishment document for: " + uuid.toString());
+                System.out.println("[DesireHCF] Punishment Type: " + document.getString("type"));
+                if (document.getString("type").equalsIgnoreCase("MUTE")) {
                     this.muted = true;
-                } else {
+                } else if(document.getString("type").equalsIgnoreCase("BAN")){
                     this.banned = true;
                 }
+            } else {
+                System.out.println("[DesireHCF] Punishment document was not found for: " + uuid.toString());
             }
 
             updateDocument("players", "last_login", System.currentTimeMillis());
@@ -97,7 +101,8 @@ public class Session {
      */
 
     public static Session getSession(Player player) {
-        for (Session session : cache) {
+        for (int i = 0, cacheSize = cache.size(); i < cacheSize; i++) {
+            Session session = cache.get(i);
             System.out.println(session.getUUID());
             if (session.getUUID().equals(player.getUniqueId())) {
                 return session;
@@ -108,13 +113,13 @@ public class Session {
     }
 
     public static Session getSession(UUID player) {
-        for (Session session : cache) {
+        for (int i = 0, cacheSize = cache.size(); i < cacheSize; i++) {
+            Session session = cache.get(i);
             if (session.getUUID().equals(player)) {
                 return session;
             }
         }
 
-        //System.out.println(Mongo.getCollection("players").find(new Document("uuid", player.toString())).first().toJson());
         return new Session(player, Mongo.getCollection("players").find(new Document("uuid", player.toString())).first(), null);
     }
 
@@ -172,6 +177,10 @@ public class Session {
 
     public List<UUID> getIncomingRequests() {
         return this.friendRequests.get(1);
+    }
+
+    public Map<String, String> getSettings() {
+        return settings;
     }
 
     /*
@@ -264,7 +273,7 @@ public class Session {
         this.achievements = playerDocument.get("achievements", ArrayList.class);
         this.friends = playerDocument.get("friends", ArrayList.class);
         this.friendRequests = playerDocument.get("friend_requests", ArrayList.class);
-        this.settings = playerDocument.get("settings", HashMap.class);
+        this.settings = playerDocument.get("settings", Map.class);
     }
 
 }

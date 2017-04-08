@@ -65,6 +65,7 @@ public class Core extends JavaPlugin {
         commandManager.add(new RankCommand(this));
         commandManager.add(new FriendsCommand(this));
         commandManager.add(new AchievementCommand(this));
+        commandManager.add(new SettingsCommand(this));
         commandManager.registerAll();
     }
 

@@ -66,9 +66,8 @@ public class PlayerInfoGUI extends ItemGUI {
         set(5, new MenuItem(new CustomIS().setMaterial(Material.ANVIL).setName(ChatColor.GRAY + "PUNISHMENTS").addLore(ChatColor.GRAY + "(Click to manage their punishments)").addLore(ChatColor.GRAY + "(Coming Soon)"), new Runnable() {
             @Override
             public void run() {
-                new PlayerPunishmentsGUI(getInstance(), getPlayer(), s1);
+                new PlayerPunishmentsGUI(getInstance(), getPlayer(), s1).show();
             }
         }));
-        crossTarget.remove(getPlayer().getUniqueId());
     }
 }
