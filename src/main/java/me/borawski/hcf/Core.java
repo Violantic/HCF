@@ -7,8 +7,10 @@ import me.borawski.hcf.frontend.command.CommandManager;
 import me.borawski.hcf.frontend.command.commands.*;
 import me.borawski.hcf.frontend.listener.ListenerManager;
 import me.borawski.hcf.frontend.listener.PlayerListener;
-import me.borawski.hcf.frontend.scoreboard.TabScoreboard;
-import net.md_5.bungee.api.ChatColor;
+import me.borawski.koth.Koth;
+import me.borawski.koth.Plugin;
+import me.finestdev.components.Components;
+import org.bukkit.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;
 
 /**
@@ -30,7 +32,15 @@ public class Core extends JavaPlugin {
     private PunishmentManager punishmentManager;
     private AchievementManager achievementManager;
 
-    private TabScoreboard scoreboard;
+    /**
+     * Components
+     */
+    private Components components;
+
+    /**
+     * Koth
+     */
+    private Plugin koth;
 
     @Override
     public void onEnable() {
@@ -48,7 +58,11 @@ public class Core extends JavaPlugin {
         this.punishmentManager = new PunishmentManager(this);
         this.achievementManager = new AchievementManager(this);
 
-        this.scoreboard = new TabScoreboard(this);
+        this.components = new Components(this);
+        components.onEnable();
+
+        this.koth = new Plugin(this);
+        koth.onEnable();
     }
 
     /**
@@ -91,10 +105,6 @@ public class Core extends JavaPlugin {
 
     public AchievementManager getAchievementManager() {
         return achievementManager;
-    }
-
-    public TabScoreboard getScoreboard() {
-        return scoreboard;
     }
 
     public String getPrefix() {

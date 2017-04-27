@@ -1,6 +1,7 @@
 package me.borawski.hcf.backend.util;
 
 import me.borawski.hcf.backend.connection.Mongo;
+import me.borawski.hcf.backend.session.Session;
 import org.bson.Document;
 
 import java.util.UUID;
@@ -21,6 +22,10 @@ public class PlayerUtils {
 
         Document document = Mongo.getCollection("players").find(new Document("name", name)).first();
         return UUID.fromString(document.getString("uuid"));
+    }
+
+    public static String getName(UUID uuid) {
+        return Session.getSession(uuid).getName();
     }
 
 }

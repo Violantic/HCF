@@ -48,7 +48,6 @@ public class RankChangeGUI extends ItemGUI {
                 @Override
                 public void run() {
                     RankChangeGUI.this.getTarget().updateDocument("players", "rank", rank.name());
-                    getInstance().getScoreboard().apply(Bukkit.getPlayer(getTarget().getUUID()));
                 }
             }));
             i++;

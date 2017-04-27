@@ -2,10 +2,12 @@ name: HCFCore
 version: 0.1
 main: me.borawski.hcf.Core
 description: Core system
+dependencies: [Factions, WorldEdit, WorldGuard]
 
 commands:
      info:
           description: Admin tool to look at player data
+          aliases: [pi, i, pinfo]
      ban:
           description: Self explanatory
      rank:
@@ -18,3 +20,10 @@ commands:
      settings:
           description: Change your settings!
           aliases: [s, set]
+     crowbar:
+     enderchest:
+     lives:
+     setendspawn:
+     setendexit:
+     pvptimer:
+     koth:

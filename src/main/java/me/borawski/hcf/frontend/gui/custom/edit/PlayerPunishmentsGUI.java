@@ -165,7 +165,7 @@ public class PlayerPunishmentsGUI extends ItemGUI {
                 }
                 Mongo.getCollection("punishments").deleteOne(new Document("uuid", target.getUUID().toString()));
                 getPlayer().sendMessage(Core.getInstance().getPrefix() + ChatColor.GRAY + "You unbanned " + ChatColor.YELLOW + target.getName() + ChatColor.GRAY + "!");
-
+                target.dump();
             }
         }));
         set(8, new MenuItem(new CustomIS().setMaterial(Material.BARRIER).setName("REVOKE MUTE").addLore(ChatColor.GRAY + "(Click to remove current mute)"), new Runnable() {
@@ -177,6 +177,7 @@ public class PlayerPunishmentsGUI extends ItemGUI {
                 }
                 Mongo.getCollection("punishments").deleteOne(new Document("uuid", target.getUUID().toString()));
                 getPlayer().sendMessage(Core.getInstance().getPrefix() + ChatColor.GRAY + "You un-muted " + ChatColor.YELLOW + target.getName() + ChatColor.GRAY + "!");
+                target.dump();
             }
         }));
     }

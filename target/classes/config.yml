@@ -1,2 +1,165 @@
 dbhost: localhost
 dbport: 27017
+
+stack-color: 'RED'
+stacking-radius: 5
+stacking-entity:
+   - 'ZOMBIE'
+   - 'SKELETON'
+   - 'SPIDER'
+   - 'CAVE_SPIDER'
+
+glass-protected-regions:
+   - 'test1'
+   - 'test2'
+   - 'test3'
+   - 'test4'
+
+unrepairable-lore-line: "&cUnrepairable"
+
+pvptimer_time: '40s'
+pvptimer_attacker_message: '&4&lPVP&r&7 &e<player> &7is currently invincible due to pvp timer'
+pvptimer_message: '&4&lPVP&r &7/pvptimer disable'
+pvptimer_disabled: '&4&lPVP&r &7Your pvptimer has been disabled'
+
+crowbar-spawners-string: '&cSpawners: '
+crowbar-spawners-uses-string: ' &7'
+crowbar-portals-string: '&cPortals:'
+crowbar-portals-uses-string: ' &7'
+crowbar-name: '&4&lCrowbar'
+crowbar-lore:
+   - '<spawner-string>'
+   - '<portal-string>'
+crowbar-uses-spawners: 1
+crowbar-uses-portals: 6
+crowbar-spawner-name-color: '&4&l'
+
+combattag_time: '30s'
+combattag_victim_message: '&4&lPVP&r&7 <attacker> has attacked you!'
+combattag_removed_message: '&4&lPVP&r&7 Combat tag removed!'
+
+deathban_player_message: '&4&lPVP&r&7 You died'
+deathban_broadcast: 'Has died'
+deathban_message: 'ban message'
+
+spawn-mobs: false
+enderchest-disabled: false
+
+looting-buffer: 2
+
+furnace:
+   speed: 5
+brewing:
+   speed: 5
+
+gapple_time: '30s'
+gapple_ended: '&4&lGAPPLES&r&7 You may now use your &6Gapple'
+gapple_message: '&4&lGAPPLES&r&7 You can not use a &6Gapple&7 for &e<seconds>'
+
+enderpearl_time: '1m:10s'
+enderpearl_ended: '&4&lEPEARLS&r&7 You may now use your &5EnderPearl'
+enderpearl_message: '&4&lEPEARLS&r&7 You can not use an &5EnderPearl&7 for &e<seconds>'
+
+#  Use -1 for no change
+#  Use 0 to disable enchantment
+#  Use other values to limit enchantment level
+enchantment-limiter:
+  ARROW_DAMAGE: 4
+  ARROW_FIRE: 0
+  ARROW_INFINITE: -1
+  ARROW_KNOCKBACK: 1
+  DAMAGE_ALL: 1
+  DAMAGE_ARTHROPODS: -1
+  DAMAGE_UNDEAD: -1
+  DIG_SPEED: -1
+  DURABILITY: -1
+  FIRE_ASPECT: 0
+  KNOCKBACK: 1
+  LOOT_BONUS_BLOCKS: -1
+  LOOT_BONUS_MOBS: -1
+  LUCK: -1
+  LURE: -1
+  OXYGEN: -1
+  PROTECTION_ENVIRONMENTAL: 2
+  PROTECTION_EXPLOSIONS: -1
+  PROTECTION_FALL: -1
+  PROTECTION_FIRE: -1
+  PROTECTION_PROJECTILE: -1
+  SILK_TOUCH: -1
+  THORNS: 0
+  WATER_WORKER: -1
+
+#  Use -1 for no change
+#  Use 0 to disable potion
+#  Use other values to limit potion level
+#  Change extended to false to disable extended potions
+potion-limiter:
+  SPEED:
+    level: -1
+    extended: true
+  SLOW:
+    level: 1
+    extended: false
+  FAST_DIGGING:
+    level: -1
+    extended: true
+  SLOW_DIGGING:
+    level: -1
+    extended: true
+  INCREASE_DAMAGE:
+    level: 0
+    extended: true
+  HEAL:
+    level: -1
+    extended: true
+  HARM:
+    level: 0
+    extended: true
+  JUMP:
+    level: -1
+    extended: true
+  CONFUSION:
+    level: -1
+    extended: true
+  REGENERATION:
+    level: 0
+    extended: true
+  DAMAGE_RESISTANCE:
+    level: -1
+    extended: true
+  FIRE_RESISTANCE:
+    level: -1
+    extended: true
+  WATER_BREATHING:
+    level: -1
+    extended: true
+  INVISIBILITY:
+    level: 0
+    extended: true
+  BLINDNESS:
+    level: -1
+    extended: true
+  NIGHT_VISION:
+    level: -1
+    extended: true
+  HUNGER:
+    level: 0
+    extended: true
+  WEAKNESS:
+    level: 0
+    extended: true
+  POISON:
+    level: 1
+    extended: false
+  WITHER:
+    level: -1
+    extended: true
+  HEALTH_BOOST:
+    level: -1
+    extended: true
+  ABSORPTION:
+    level: -1
+    extended: true
+  SATURATION:
+    level: -1
+    extended: true
