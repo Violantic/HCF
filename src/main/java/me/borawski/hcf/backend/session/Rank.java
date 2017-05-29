@@ -7,13 +7,16 @@ import org.bukkit.ChatColor;
  */
 public enum Rank {
 
-    GUEST(1, "Guest", "&7", "", ChatColor.WHITE, ChatColor.GRAY),
-    VIP(2, "VIP", "&b[VIP]&7", "", ChatColor.WHITE, ChatColor.AQUA),
-    YOUTUBER(6, "YouTuber", "&e[YT]&7", "", ChatColor.WHITE, ChatColor.YELLOW),
+    GUEST(1, "Guest", "&7⧫&7", "", ChatColor.GRAY, ChatColor.GRAY),
+    BRIGADIER(2, "Brigadier", "&a⧫&7", "", ChatColor.WHITE, ChatColor.GREEN),
+    COMMODORE(2, "Commodore", "&b⧫&7", "", ChatColor.WHITE, ChatColor.AQUA),
+    GRANDMASTER(2, "Grandmaster", "&d⧫&7", "", ChatColor.WHITE, ChatColor.LIGHT_PURPLE),
+    VIP(3, "VIP", "&3[VIP]&7", "", ChatColor.WHITE, ChatColor.AQUA),
+    YOUTUBER(6, "YouTuber", "&6[YT]&7", "", ChatColor.WHITE, ChatColor.GOLD),
     MODERATOR(7, "Moderator", "&9[MOD]&7", "", ChatColor.WHITE, ChatColor.BLUE),
     ADMIN(8, "Admin", "&c[ADMIN]&7", "", ChatColor.WHITE, ChatColor.RED),
     DEVELOPER(10, "Developer", "&c[DEV]&7", "", ChatColor.WHITE, ChatColor.RED),
-    OWNER(11, "Owner", "&6[OWNER]&7", "", ChatColor.WHITE, ChatColor.GOLD);
+    OWNER(11, "Owner", "&c[OWNER]&7", "", ChatColor.WHITE, ChatColor.RED);
 
     private final int id;
     private final String displayName;

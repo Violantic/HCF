@@ -1,114 +1,1 @@
-package me.borawski.hcf;
-
-import me.borawski.hcf.backend.connection.Mongo;
-import me.borawski.hcf.backend.punishment.PunishmentManager;
-import me.borawski.hcf.backend.session.AchievementManager;
-import me.borawski.hcf.frontend.command.CommandManager;
-import me.borawski.hcf.frontend.command.commands.*;
-import me.borawski.hcf.frontend.listener.ListenerManager;
-import me.borawski.hcf.frontend.listener.PlayerListener;
-import me.borawski.koth.Koth;
-import me.borawski.koth.Plugin;
-import me.finestdev.components.Components;
-import org.bukkit.ChatColor;
-import org.bukkit.plugin.java.JavaPlugin;
-
-/**
- * Created by Ethan on 3/8/2017.
- */
-public class Core extends JavaPlugin {
-
-    /**
-     * Instance
-     */
-    private static Core instance;
-
-    /**
-     * Variables
-     */
-    private Mongo mongo;
-    private ListenerManager listenerManager;
-    private CommandManager commandManager;
-    private PunishmentManager punishmentManager;
-    private AchievementManager achievementManager;
-
-    /**
-     * Components
-     */
-    private Components components;
-
-    /**
-     * Koth
-     */
-    private Plugin koth;
-
-    @Override
-    public void onEnable() {
-        instance = this;
-
-        getConfig().options().copyDefaults(getConfig().contains("dbhost"));
-        saveConfig();
-
-        this.mongo = new Mongo();
-        this.listenerManager = new ListenerManager(this);
-        listenerManager.addListener(new PlayerListener(this));
-        listenerManager.registerAll();
-        this.commandManager = new CommandManager(this);
-        registerCommands();
-        this.punishmentManager = new PunishmentManager(this);
-        this.achievementManager = new AchievementManager(this);
-
-        this.components = new Components(this);
-        components.onEnable();
-
-        this.koth = new Plugin(this);
-        koth.onEnable();
-    }
-
-    /**
-     * Instance
-     */
-
-    public static Core getInstance() {
-        return instance;
-    }
-
-    public void registerCommands() {
-        commandManager.add(new InfoCommand(this));
-        commandManager.add(new BanCommand(this));
-        commandManager.add(new RankCommand(this));
-        commandManager.add(new FriendsCommand(this));
-        commandManager.add(new AchievementCommand(this));
-        commandManager.add(new SettingsCommand(this));
-        commandManager.registerAll();
-    }
-
-    /**
-     * Getters
-     */
-
-    public Mongo getMongo() {
-        return mongo;
-    }
-
-    public ListenerManager getListenerManager() {
-        return listenerManager;
-    }
-
-    public CommandManager getCommandManager() {
-        return commandManager;
-    }
-
-    public PunishmentManager getPunishmentManager() {
-        return punishmentManager;
-    }
-
-    public AchievementManager getAchievementManager() {
-        return achievementManager;
-    }
-
-    public String getPrefix() {
-        return ChatColor.DARK_RED + "" + ChatColor.BOLD + "DesireHCF" + ChatColor.RESET + "" + ChatColor.GRAY + " ";
-    }
-}
-
+package me.borawski.hcf;import com.massivecraft.factions.Conf;import com.massivecraft.factions.P;import com.massivecraft.factions.zcore.MCommand;import com.massivecraft.factions.zcore.util.TextUtil;import me.borawski.hcf.backend.connection.Mongo;import me.borawski.hcf.backend.punishment.PunishmentManager;import me.borawski.hcf.backend.session.AchievementManager;import me.borawski.hcf.frontend.command.CommandManager;import me.borawski.hcf.frontend.command.commands.*;import me.borawski.hcf.frontend.listener.ListenerManager;import me.borawski.hcf.frontend.listener.PlayerListener;import me.borawski.hcf.frontend.manuel.ManualManager;import me.borawski.hcf.frontend.util.ManualUtil;import me.borawski.koth.Koth;import me.borawski.koth.Plugin;import me.finestdev.components.Components;import org.bukkit.ChatColor;import org.bukkit.command.Command;import org.bukkit.command.CommandExecutor;import org.bukkit.command.CommandSender;import org.bukkit.plugin.java.JavaPlugin;import java.util.Arrays;import java.util.function.Consumer;/** * Created by Ethan on 3/8/2017. */public class Core extends JavaPlugin implements CommandExecutor {    /**     * Instance     */    private static Core instance;    /**     * Variables     */    private Mongo mongo;    private ListenerManager listenerManager;    private CommandManager commandManager;    private PunishmentManager punishmentManager;    private AchievementManager achievementManager;    private ManualManager manualManager;    /**     * Components     */    private Components components;    /**     * Koth     */    private Plugin koth;    /**     * Factions     */    private P factions;    @Override    public void onEnable() {        instance = this;        saveDefaultConfig();        this.factions = new P(this);        factions.onEnable();        this.mongo = new Mongo();        this.listenerManager = new ListenerManager(this);        listenerManager.addListener(new PlayerListener(this));        listenerManager.registerAll();        this.commandManager = new CommandManager(this);        registerCommands();        this.punishmentManager = new PunishmentManager(this);        this.achievementManager = new AchievementManager(this);        this.manualManager = new ManualManager(this);        regiserManuals();        this.components = new Components(this);        components.onEnable();        this.koth = new Plugin(this);        koth.onEnable();    }    /**     * Instance     */    public static Core getInstance() {        return instance;    }    public void registerCommands() {        getCommand("factions").setExecutor(this);        commandManager.add(new InfoCommand(this));        commandManager.add(new BanCommand(this));        commandManager.add(new RankCommand(this));        commandManager.add(new FriendsCommand(this));        commandManager.add(new AchievementCommand(this));        commandManager.add(new SettingsCommand(this));        commandManager.add(new KothCommand());        commandManager.add(new SeasonCommand());        commandManager.add(new FStatCommand());        commandManager.add(new FactionsVerboseCommand());        commandManager.add(new ManualCommand());        commandManager.registerAll();    }    public void regiserManuals() {        ManualUtil.initializeManuals(manualManager.getManualMap());    }    /**     * Getters     */    public Mongo getMongo() {        return mongo;    }    public ListenerManager getListenerManager() {        return listenerManager;    }    public CommandManager getCommandManager() {        return commandManager;    }    public PunishmentManager getPunishmentManager() {        return punishmentManager;    }    public AchievementManager getAchievementManager() {        return achievementManager;    }    public ManualManager getManualManager() {        return manualManager;    }    public String getPrefix() {        return ChatColor.DARK_RED + "" + ChatColor.BOLD + "DesireHCF" + ChatColor.RESET + "" + ChatColor.GRAY + " ";    }    /**     * Factions command     */    @Override    public boolean onCommand(CommandSender sender, Command command, String label, String[] split) {        if (split.length == 0) {            return factions.handleCommand(sender, "/f help", false);        }        // otherwise, needs to be handled; presumably another plugin directly ran the command        String cmd = Conf.baseCommandAliases.isEmpty() ? "/f" : "/" + Conf.baseCommandAliases.get(0);        return factions.handleCommand(sender, cmd + " " + TextUtil.implode(Arrays.asList(split), " "), false);    }}

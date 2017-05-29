@@ -9,8 +9,8 @@ import me.borawski.hcf.frontend.gui.CustomIS;
 import me.borawski.hcf.frontend.gui.ItemGUI;
 import me.borawski.hcf.frontend.gui.MenuItem;
 import me.borawski.hcf.frontend.util.ChatUtils;
-import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.DyeColor;
 import org.bukkit.Material;
 import org.bukkit.command.CommandSender;
@@ -47,11 +47,11 @@ public class AchievementCommand implements Command {
     public void execute(CommandSender sender, String[] args) {
         if(sender instanceof Player) {
             Player player = (Player) sender;
-            try {
+            //try {
                 getAchievements(player.getUniqueId()).show();
-            } catch (Exception e) {
-                player.sendMessage(Core.getInstance().getPrefix() + "Error retrieving achievements!");
-            }
+            //} catch (Exception e) {
+                //player.sendMessage(Core.getInstance().getPrefix() + "Error retrieving achievements!");
+            //}
         }
     }
 

@@ -1,12 +1,17 @@
 package me.borawski.koth;
 
+import com.massivecraft.factions.Factions;
 import me.borawski.hcf.Core;
 import me.borawski.hcf.backend.connection.Mongo;
 import me.borawski.hcf.backend.session.FactionSession;
-import net.md_5.bungee.api.ChatColor;
 import org.bson.Document;
+import org.bukkit.ChatColor;
 import org.bukkit.scheduler.BukkitTask;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+import java.util.UUID;
 import java.util.concurrent.atomic.AtomicReference;
 
 /**
@@ -16,13 +21,14 @@ public class Plugin {
 
     public static final String PREFIX = ChatColor.DARK_RED + "" + ChatColor.BOLD + "KOTH " + ChatColor.GRAY;
     public static final String SEASON = "SEASON_BETA";
-    public static final int KOTH_INTERVAL = getInstance().getConfig().getInt("koth_schedule_interval");
-    public static int KOTH_ID = 0;
+    public static final int KOTH_INTERVAL = 1200;
     public static int KOTH_TASKID = 0;
     public static AtomicReference<Integer> second = new AtomicReference<>();
-    public static boolean enabled = getInstance().getConfig().getBoolean("koth_enabled");
+    public static boolean enabled = true;
+    private Koth currentKoth;
     private static Core instance;
     private KothManager kothManager;
+    private List<UUID> playersAttending;
     private FactionSession factionSession;
 
     private static Plugin internal;
@@ -30,6 +36,7 @@ public class Plugin {
     public Plugin(Core instance) {
         this.instance = instance;
         internal = this;
+        //setFactionSession(new FactionSession(Mongo.getCollection("seasons").find(new Document("season", SEASON)).first()));
     }
 
     public static Core getInstance() {
@@ -41,50 +48,72 @@ public class Plugin {
     }
 
     public void onEnable() {
-        try {
-            kothManager = new KothManager(this);
-            kothManager.registerKoth();
-
-            if(kothManager.getScheduledKoth().size() == 0) {
-                System.out.println(PREFIX + "No KOTH's registered... KOTH is disfunctional");
-                return;
-            }
-
-            if(KOTH_ID > kothManager.getScheduledKoth().size()) {
-                KOTH_ID = 0;
-            }
-            second.set(0);
-            //setFactionSession(new FactionSession(Mongo.getCollection("seasons").find(new Document("season", SEASON)).first()));
-            getInstance().getServer().getScheduler().runTaskTimer(getInstance(), new Runnable() {
-                @Override
-                public void run() {
-                    if (!enabled) return;
-                    if (second.get() == 0) {
-                        try {
-                            getInstance().getServer().getScheduler().cancelTask(KOTH_TASKID);
-                        } catch (Exception e) {
-                            // Ignored. //
-                        }
-
-                        setFactionSession(new FactionSession(Mongo.getCollection("seasons").find(new Document("season", SEASON)).first()));
-                        BukkitTask task = getInstance().getServer().getScheduler().runTaskTimer(getInstance(), kothManager.getScheduledKoth().get(KOTH_ID).getHandler(), 0L, 20L);
-                        KOTH_TASKID = task.getTaskId();
-                    }
-                    int newInt = second.get();
-                    second.set(++newInt);
-                }
-            }, 0L, 20L);
-        } catch (Exception e) {
-            System.out.println(PREFIX + "Could not fetch faction leader board for KOTH!");
+        Factions factions = Factions.getInstance();
+        if (factions == null) {
+            //Factions is not on this server/isn't a supported version
+            System.out.println("FACTIONS NOT FOUND");
+        } else {
+            System.out.println("Total Factions: " + factions.getAllFactions().size());
         }
+
+        currentKoth = null;
+
+        kothManager = new KothManager(this);
+        kothManager.registerKoth();
+        playersAttending = new ArrayList<>();
+
+        if (kothManager.getScheduledKoth().size() == 0) {
+            System.out.println(PREFIX + "No KOTH's registered... KOTH is disfunctional");
+            return;
+        }
+
+        getInstance().getServer().getPluginManager().registerEvents(new KothListener(this), getInstance());
+
+        second.set(1200);
+        setFactionSession(new FactionSession(Mongo.getCollection("factions").find(new Document("season", SEASON)).first()));
+        //setFactionSession(new FactionSession(Mongo.getCollection("seasons").find(new Document("season", SEASON)).first()));
+        getInstance().getServer().getScheduler().runTaskTimer(getInstance(), new Runnable() {
+            @Override
+            public void run() {
+                if (!enabled) return;
+                if (second.get() == 1200) {
+                    try {
+                        getInstance().getServer().getScheduler().cancelTask(KOTH_TASKID);
+                    } catch (Exception e) {
+                        // Ignored. //
+                    }
+
+                    if(currentKoth == null) {
+                        Random random = new Random();
+                        int index = random.nextInt(getKothManager().getScheduledKoth().size());
+                        currentKoth = getKothManager().getScheduledKoth().get(index);
+                    }
+                    second.set(0);
+                    kothManager.updateScoreboard();
+                    BukkitTask task = getInstance().getServer().getScheduler().runTaskTimerAsynchronously(getInstance(), currentKoth.getHandler(), 0L, 20L);
+                    KOTH_TASKID = task.getTaskId();
+                    return;
+                }
+                int newInt = second.get();
+                second.set(++newInt);
+            }
+        }, 0L, 20L);
     }
 
     public Koth getCurrentKoth() {
-        return getKothManager().getScheduledKoth().get(KOTH_ID);
+        return currentKoth;
+    }
+
+    public void setCurrentKoth(Koth koth) {
+        this.currentKoth = koth;
     }
 
     public KothManager getKothManager() {
         return kothManager;
+    }
+
+    public List<UUID> getPlayersAttending() {
+        return playersAttending;
     }
 
     public FactionSession getFactionSession() {

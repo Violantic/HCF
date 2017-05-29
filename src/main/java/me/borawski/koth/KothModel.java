@@ -32,7 +32,7 @@ public class KothModel {
             getKothDocument().append("length", length);
             getKothDocument().append("players", players);
             getKothDocument().append("combat_log", combatLog);
-            Mongo.getCollection("seasons").insertOne(getKothDocument());
+            Mongo.getCollection("seasons").insertOne(this.kothDocument);
         } else if(kothDocument != null) {
             this.kothDocument = kothDocument;
             this.name = name;

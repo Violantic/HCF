@@ -13,19 +13,11 @@ public interface Koth {
 
     String getName();
 
-    Location getFirstPoint();
-
-    Location getSecondPoint();
-
     Location getCenter();
 
     int radius();
 
     List<String> getLog();
-
-    List<UUID> getPlayers();
-
-    Map<String, Integer> getScore();
 
     Runnable getHandler();
 

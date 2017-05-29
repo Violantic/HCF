@@ -6,7 +6,7 @@ import me.borawski.hcf.backend.util.SettingsUtil;
 import me.borawski.hcf.frontend.gui.CustomIS;
 import me.borawski.hcf.frontend.gui.ItemGUI;
 import me.borawski.hcf.frontend.gui.MenuItem;
-import net.md_5.bungee.api.ChatColor;
+import org.bukkit.ChatColor;
 import org.bukkit.DyeColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;

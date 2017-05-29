@@ -2,9 +2,11 @@ name: HCFCore
 version: 0.1
 main: me.borawski.hcf.Core
 description: Core system
-dependencies: [Factions, WorldEdit, WorldGuard]
+dependencies: [WorldEdit, WorldGuard]
 
 commands:
+     factions:
+          aliases: [f]
      info:
           description: Admin tool to look at player data
           aliases: [pi, i, pinfo]
@@ -20,9 +22,15 @@ commands:
      settings:
           description: Change your settings!
           aliases: [s, set]
+     manual:
+     fverbose:
+     fstat:
      crowbar:
      enderchest:
      lives:
      setendspawn:
      setendexit:
      pvptimer:
+     koth:
+     season:
+         aliases: [si, sinfo, pvpinfo, leaderboard, score, scoreboard]

@@ -17,7 +17,7 @@ public class Mongo {
 
     public Mongo() {
         this.mongoClient = new MongoClient(new ServerAddress(Core.getInstance().getConfig().getString("dbhost"), Core.getInstance().getConfig().getInt("dbport")));
-        this.mongoDatabase = this.mongoClient.getDatabase("core");
+        mongoDatabase = this.mongoClient.getDatabase("core");
     }
 
     /*

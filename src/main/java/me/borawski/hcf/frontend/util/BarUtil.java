@@ -12,14 +12,11 @@ import java.lang.reflect.Field;
  */
 public class BarUtil {
 
-    public static void sendActionBar(Player player, String message) {
-        CraftPlayer craftplayer = (CraftPlayer) player;
-        PlayerConnection connection = craftplayer.getHandle().playerConnection;
-        IChatBaseComponent cbc = IChatBaseComponent.ChatSerializer.a("{\'text\': \'" + message + "\'}");
+    public static void sendActionBar(Player p, String msg) {
+        IChatBaseComponent cbc = IChatBaseComponent.ChatSerializer.a("{\"text\": \"" + msg + "\"}");
         PacketPlayOutChat ppoc = new PacketPlayOutChat(cbc, (byte) 2);
-        connection.sendPacket(ppoc);
+        ((CraftPlayer) p).getHandle().playerConnection.sendPacket(ppoc);
     }
-
 
     public static void sendTitle(Player player, Integer fadeIn, Integer stay, Integer fadeOut, String title, String subtitle) {
         PlayerConnection connection = ((CraftPlayer) player).getHandle().playerConnection;

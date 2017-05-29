@@ -41,7 +41,6 @@ public class Components {
 
 	public void onEnable() {
 		instance = this;
-		getPlugin().saveDefaultConfig();
 		cooldowns.clear();
 		checkDependencies();
 		registerCooldowns();

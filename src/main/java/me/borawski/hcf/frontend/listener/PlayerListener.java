@@ -1,11 +1,20 @@
 package me.borawski.hcf.frontend.listener;
 
+import com.massivecraft.factions.FPlayers;
+import com.massivecraft.factions.Faction;
+import com.massivecraft.factions.Factions;
+import com.massivecraft.factions.P;
+import com.massivecraft.factions.listeners.FactionsPlayerListener;
 import me.borawski.hcf.Core;
 import me.borawski.hcf.backend.connection.Mongo;
+import me.borawski.hcf.backend.session.FSession;
 import me.borawski.hcf.backend.session.Session;
+import me.borawski.hcf.backend.util.FactionUtil;
 import me.borawski.hcf.backend.util.PlayerUtils;
 import me.borawski.hcf.backend.util.TimeUtil;
 import me.borawski.hcf.frontend.util.ChatUtils;
+import me.borawski.hcf.frontend.util.MsgUtil;
+import me.borawski.koth.Plugin;
 import org.bson.Document;
 import org.bukkit.ChatColor;
 import org.bukkit.event.EventHandler;
@@ -16,7 +25,9 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.ocpsoft.prettytime.PrettyTime;
 
+import java.util.Map;
 import java.util.UUID;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Created by Ethan on 3/8/2017.
@@ -58,12 +69,15 @@ public class PlayerListener implements Listener {
                             .replace("&", ChatColor.COLOR_CHAR + ""));
             return;
         }
-
         new BukkitRunnable() {
             public void run() {
-                event.getPlayer().setPlayerListName(session.getRank().getPrefix() + " " + ChatColor.GRAY + event.getPlayer().getName());
+                boolean noColor = session.getRank().getId() == 1;
+                boolean justColor = session.getRank().getId() == 2;
+                event.getPlayer().setPlayerListName(noColor?ChatColor.GRAY + event.getPlayer().getName():justColor?session.getRank().getMain() + event.getPlayer().getName():session.getRank().getPrefix() + " " + ChatColor.GRAY + event.getPlayer().getName());
+                //Plugin.getInternal().getFactionSession().registerFaction(FactionsPlayerListener.factions.get(event.getPlayer().getUniqueId()));
+                FSession fsession = FSession.getSession(FactionsPlayerListener.factions.get(event.getPlayer().getUniqueId()));
             }
-        }.runTaskLaterAsynchronously(getInstance(), 5L);
+        }.runTaskLaterAsynchronously(getInstance(), 20L);
     }
 
     @EventHandler
@@ -73,9 +87,9 @@ public class PlayerListener implements Listener {
 
     @EventHandler
     public void chat(AsyncPlayerChatEvent event) {
+        event.setCancelled(true);
         Session s = Session.getSession(event.getPlayer());
         if (s.isMuted()) {
-            event.setCancelled(true);
             s.sendMessage(ChatColor.DARK_GRAY + "-----------------------------------------------------");
             s.sendMessage("");
             ChatUtils.sendCenteredMessage(event.getPlayer(), getInstance().getPrefix().replace(" ", ""));
@@ -84,7 +98,8 @@ public class PlayerListener implements Listener {
             ChatUtils.sendCenteredMessage(event.getPlayer(), ChatColor.GRAY + "Visit our rules @ " + ChatColor.YELLOW + "https://desirehcf.net/rules");
             s.sendMessage("");
             s.sendMessage(ChatColor.DARK_GRAY + "-----------------------------------------------------");
+            return;
         }
-        event.setFormat(s.getRank().getPrefix() + " " + event.getPlayer().getName() + ": " + s.getRank().getColor() + event.getMessage());
+        MsgUtil.handleChat(event.getMessage(), event.getPlayer());
     }
 }

@@ -16,7 +16,7 @@ public class TimeUtil {
         if(time == -1) {
             return "Permanent";
         }
-        return new SimpleDateFormat("MM./dd./yyyy HH:mm").format(new Date(time)).replace(".", " ");
+        return new SimpleDateFormat("MM.dd HH:mm").format(new Date(time)).replace(".", " ");
     }
 
 }
