@@ -2,9 +2,6 @@ package me.borawski.koth;
 
 import com.massivecraft.factions.Factions;
 import me.borawski.hcf.Core;
-import me.borawski.hcf.backend.connection.Mongo;
-import me.borawski.hcf.backend.session.FactionSession;
-import org.bson.Document;
 import org.bukkit.ChatColor;
 import org.bukkit.scheduler.BukkitTask;
 
@@ -29,7 +26,6 @@ public class Plugin {
     private static Core instance;
     private KothManager kothManager;
     private List<UUID> playersAttending;
-    private FactionSession factionSession;
 
     private static Plugin internal;
 
@@ -70,8 +66,6 @@ public class Plugin {
         getInstance().getServer().getPluginManager().registerEvents(new KothListener(this), getInstance());
 
         second.set(1200);
-        setFactionSession(new FactionSession(Mongo.getCollection("factions").find(new Document("season", SEASON)).first()));
-        //setFactionSession(new FactionSession(Mongo.getCollection("seasons").find(new Document("season", SEASON)).first()));
         getInstance().getServer().getScheduler().runTaskTimer(getInstance(), new Runnable() {
             @Override
             public void run() {
@@ -116,11 +110,4 @@ public class Plugin {
         return playersAttending;
     }
 
-    public FactionSession getFactionSession() {
-        return factionSession;
-    }
-
-    public void setFactionSession(FactionSession s) {
-        this.factionSession = s;
-    }
 }

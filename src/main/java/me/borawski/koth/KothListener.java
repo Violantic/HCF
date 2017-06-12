@@ -1,8 +1,7 @@
 package me.borawski.koth;
 
-import com.massivecraft.factions.P;
 import com.massivecraft.factions.listeners.FactionsPlayerListener;
-import me.borawski.hcf.frontend.util.BarUtil;
+import me.borawski.hcf.util.BarUtil;
 import me.borawski.koth.util.LangUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -12,7 +11,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
-import org.bukkit.scoreboard.Score;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -83,8 +81,10 @@ public class KothListener implements Listener {
                 // Next Faction in line. //
                 if(getInstance().getPlayersAttending().size() == 0) {
                     getInstance().getKothManager().setHoldingFaction(null);
+                    KothManager.holdingScore.set(0);
                     Bukkit.broadcastMessage(Plugin.PREFIX + ChatColor.GRAY + "Nobody is capturing " + ChatColor.BOLD + "" + ChatColor.YELLOW + getInstance().getCurrentKoth().getName());
                 } else {
+                    KothManager.holdingScore.set(0);
                     getInstance().getKothManager().setHoldingFaction(FactionsPlayerListener.factions.get(getInstance().getPlayersAttending().get(0)));
                     Bukkit.broadcastMessage(Plugin.PREFIX + ChatColor.YELLOW + FactionsPlayerListener.factions.get(getInstance().getPlayersAttending().get(0)) + ChatColor.GRAY + " is now capturing " + ChatColor.YELLOW + getInstance().getCurrentKoth().getName());
                 }
