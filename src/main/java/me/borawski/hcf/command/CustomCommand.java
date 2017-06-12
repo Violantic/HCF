@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.bukkit.command.CommandSender;
 
+import me.borawski.hcf.session.Rank;
+
 /**
  * @author Michael Ziluck
  *
@@ -17,7 +19,7 @@ public abstract class CustomCommand {
 
     protected String description;
 
-    protected String permission;
+    protected Rank requiredRank;
 
     protected String[] aliases;
 
@@ -27,10 +29,10 @@ public abstract class CustomCommand {
      * @param permission
      * @param aliases
      */
-    public CustomCommand(String name, String description, String permission, String... aliases) {
+    public CustomCommand(String name, String description, Rank requiredRank, String... aliases) {
         this.name = name;
         this.description = description;
-        this.permission = permission;
+        this.requiredRank = requiredRank;
         this.aliases = aliases;
         this.subCommands = new ArrayList<>();
     }
@@ -61,8 +63,8 @@ public abstract class CustomCommand {
     /**
      * @return the permission required to use the command.
      */
-    protected String getPermission() {
-        return permission;
+    protected Rank getRequiredRank() {
+        return requiredRank;
     }
 
     /**

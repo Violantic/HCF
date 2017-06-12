@@ -3,8 +3,11 @@ package me.borawski.hcf.command;
 import java.util.Arrays;
 
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 
 import me.borawski.hcf.Core;
+import me.borawski.hcf.session.Rank;
+import me.borawski.hcf.session.Session;
 
 /**
  * @author Michael Ziluck
@@ -18,8 +21,8 @@ public abstract class CustomBaseCommand extends CustomCommand {
      * @param permission
      * @param aliases
      */
-    public CustomBaseCommand(String name, String description, String permission, String... aliases) {
-        super(name, description, permission, aliases);
+    public CustomBaseCommand(String name, String description, Rank requiredRank, String... aliases) {
+        super(name, description, requiredRank, aliases);
     }
 
     @Override
@@ -27,10 +30,13 @@ public abstract class CustomBaseCommand extends CustomCommand {
         CustomCommand sub;
         if (args.length == 0 || (sub = getSubCommand(args[0])) == null) {
             help(sender, label);
-        } else if (sender.hasPermission(sub.getPermission())) {
-            sub.run(sender, args[0], Arrays.copyOfRange(args, 1, args.length));
         } else {
-            sender.sendMessage(Core.getLangHandler().getString("no-permissions"));
+            Session s = sender instanceof Player ? Session.getSession(((Player) sender).getUniqueId()) : null;
+            if (s == null || s.getRank().getId() >= requiredRank.getId()) {
+                sub.run(sender, args[0], Arrays.copyOfRange(args, 1, args.length));
+            } else {
+                sender.sendMessage(Core.getLangHandler().getString("no-permissions"));
+            }
         }
     }
 
@@ -43,7 +49,7 @@ public abstract class CustomBaseCommand extends CustomCommand {
     public void help(CommandSender sender, String label) {
         sender.sendMessage(Core.getLangHandler().getString("command-list-header"));
         for (CustomCommand command : subCommands) {
-            sender.sendMessage(" b/" + label + " " + command.getName() + ": 7" + command.getDescription());
+            sender.sendMessage(" §b/" + label + " " + command.getName() + ": §7" + command.getDescription());
         }
     }
 
