@@ -1,14 +1,7 @@
 package me.borawski.hcf.listener;
 
-import com.massivecraft.factions.listeners.FactionsPlayerListener;
-import me.borawski.hcf.Core;
-import me.borawski.hcf.connection.Mongo;
-import me.borawski.hcf.session.FSession;
-import me.borawski.hcf.session.Session;
-import me.borawski.hcf.util.ChatUtils;
-import me.borawski.hcf.util.MsgUtil;
-import me.borawski.hcf.util.PlayerUtils;
-import me.borawski.hcf.util.TimeUtil;
+import java.util.UUID;
+
 import org.bson.Document;
 import org.bukkit.ChatColor;
 import org.bukkit.event.EventHandler;
@@ -17,11 +10,14 @@ import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerLoginEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.scheduler.BukkitRunnable;
-import org.ocpsoft.prettytime.PrettyTime;
 
-import java.util.Map;
-import java.util.UUID;
-import java.util.concurrent.ConcurrentHashMap;
+import me.borawski.hcf.Core;
+import me.borawski.hcf.connection.Mongo;
+import me.borawski.hcf.session.Session;
+import me.borawski.hcf.util.ChatUtils;
+import me.borawski.hcf.util.MsgUtil;
+import me.borawski.hcf.util.PlayerUtils;
+import me.borawski.hcf.util.TimeUtil;
 
 /**
  * Created by Ethan on 3/8/2017.
@@ -29,11 +25,9 @@ import java.util.concurrent.ConcurrentHashMap;
 public class PlayerListener implements Listener {
 
     private Core instance;
-    private PrettyTime timeFormatter;
 
     public PlayerListener(Core instance) {
         this.instance = instance;
-        this.timeFormatter = new PrettyTime();
     }
 
     public Core getInstance() {
@@ -47,29 +41,15 @@ public class PlayerListener implements Listener {
             Document document = Mongo.getCollection("punishments").find(new Document("uuid", event.getPlayer().getUniqueId().toString())).first();
             assert document != null;
 
-            event.disallow(PlayerLoginEvent.Result.KICK_BANNED
-                    , (getInstance().getPrefix() + "\n" +
-                    "\n" +
-                    "&c&lYou are banned from the network!\n" +
-                    "\n" +
-                    "&cReason: &7{reason}\n" +
-                    "&cUntil: &7{until}\n" +
-                    "&cBanned By: &7{issuer}\n" +
-                    "\n" +
-                    "&7Visit &ehttps://desirehcf.net/rules&7 for our terms and rules")
-                            .replace("{reason}", document.getString("reason"))
-                            .replace("{until}", TimeUtil.getTime(document.getLong("end")))
-                            .replace("{issuer}", PlayerUtils.getName(UUID.fromString(document.getString("issuer"))))
-                            .replace("&", ChatColor.COLOR_CHAR + ""));
+            event.disallow(PlayerLoginEvent.Result.KICK_BANNED, (getInstance().getPrefix() + "\n" + "\n" + "&c&lYou are banned from the network!\n" + "\n" + "&cReason: &7{reason}\n" + "&cUntil: &7{until}\n" + "&cBanned By: &7{issuer}\n" + "\n" + "&7Visit &ehttps://desirehcf.net/rules&7 for our terms and rules")
+                    .replace("{reason}", document.getString("reason")).replace("{until}", TimeUtil.getTime(document.getLong("end"))).replace("{issuer}", PlayerUtils.getName(UUID.fromString(document.getString("issuer")))).replace("&", ChatColor.COLOR_CHAR + ""));
             return;
         }
         new BukkitRunnable() {
             public void run() {
                 boolean noColor = session.getRank().getId() == 1;
                 boolean justColor = session.getRank().getId() == 2;
-                event.getPlayer().setPlayerListName(noColor?ChatColor.GRAY + event.getPlayer().getName():justColor?session.getRank().getMain() + event.getPlayer().getName():session.getRank().getPrefix() + " " + ChatColor.GRAY + event.getPlayer().getName());
-                //Plugin.getInternal().getFactionSession().registerFaction(FactionsPlayerListener.factions.get(event.getPlayer().getUniqueId()));
-                FSession fsession = FSession.getSession(FactionsPlayerListener.factions.get(event.getPlayer().getUniqueId()));
+                event.getPlayer().setPlayerListName(noColor ? ChatColor.GRAY + event.getPlayer().getName() : justColor ? session.getRank().getMain() + event.getPlayer().getName() : session.getRank().getPrefix() + " " + ChatColor.GRAY + event.getPlayer().getName());
             }
         }.runTaskLaterAsynchronously(getInstance(), 20L);
     }
