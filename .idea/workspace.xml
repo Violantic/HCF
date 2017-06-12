@@ -4,160 +4,14 @@
     <bookmark url="file://$PROJECT_DIR$/src/main/java/com/massivecraft/factions/P.java" line="114" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6b16c613-eb39-4a32-8971-9cb52740dd8f" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/backend/session/FactionSession.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/frontend/command/commands/FactionsVerboseCommand.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/HCF-0.1.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/me/borawski/hcf/Core.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/me/borawski/hcf/backend/Connection.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/me/borawski/hcf/backend/api/PlayerAPI.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/me/borawski/hcf/backend/connection/Mongo.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/me/borawski/hcf/backend/punishment/Punishment$Type.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/me/borawski/hcf/backend/punishment/Punishment.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/me/borawski/hcf/backend/punishment/PunishmentManager.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/me/borawski/hcf/backend/session/Achievement.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/me/borawski/hcf/backend/session/AchievementManager$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/me/borawski/hcf/backend/session/AchievementManager$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/me/borawski/hcf/backend/session/AchievementManager.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/me/borawski/hcf/backend/session/Rank.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/me/borawski/hcf/backend/session/Session$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/me/borawski/hcf/backend/session/Session$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/me/borawski/hcf/backend/session/Session.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/me/borawski/hcf/backend/util/FriendUtils$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/me/borawski/hcf/backend/util/FriendUtils.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/me/borawski/hcf/backend/util/MojangUtil.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/me/borawski/hcf/backend/util/PlayerUtils.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/me/borawski/hcf/backend/util/PunishmentUtil.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/me/borawski/hcf/backend/util/UUIDUtil.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/me/borawski/hcf/frontend/command/Command.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/me/borawski/hcf/frontend/command/CommandManager$1$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/me/borawski/hcf/frontend/command/CommandManager$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/me/borawski/hcf/frontend/command/CommandManager.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/me/borawski/hcf/frontend/command/commands/AchievementCommand$1$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/me/borawski/hcf/frontend/command/commands/AchievementCommand$1$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/me/borawski/hcf/frontend/command/commands/AchievementCommand$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/me/borawski/hcf/frontend/command/commands/AchievementCommand.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/me/borawski/hcf/frontend/command/commands/BanCommand.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/me/borawski/hcf/frontend/command/commands/FriendsCommand.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/me/borawski/hcf/frontend/command/commands/InfoCommand.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/me/borawski/hcf/frontend/command/commands/RankCommand.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/me/borawski/hcf/frontend/gui/CustomIS$1$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/me/borawski/hcf/frontend/gui/CustomIS$1$2$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/me/borawski/hcf/frontend/gui/CustomIS$1$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/me/borawski/hcf/frontend/gui/CustomIS$1$3$1$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/me/borawski/hcf/frontend/gui/CustomIS$1$3$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/me/borawski/hcf/frontend/gui/CustomIS$1$3.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/me/borawski/hcf/frontend/gui/CustomIS$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/me/borawski/hcf/frontend/gui/CustomIS$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/me/borawski/hcf/frontend/gui/CustomIS.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/me/borawski/hcf/frontend/gui/ItemGUI.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/me/borawski/hcf/frontend/gui/ItemMenu$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/me/borawski/hcf/frontend/gui/ItemMenu.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/me/borawski/hcf/frontend/gui/MenuItem$BackMenuItem$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/me/borawski/hcf/frontend/gui/MenuItem$BackMenuItem.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/me/borawski/hcf/frontend/gui/MenuItem$SubMenuItem$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/me/borawski/hcf/frontend/gui/MenuItem$SubMenuItem.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/me/borawski/hcf/frontend/gui/MenuItem.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/me/borawski/hcf/frontend/gui/custom/PlayerInfoGUI$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/me/borawski/hcf/frontend/gui/custom/PlayerInfoGUI$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/me/borawski/hcf/frontend/gui/custom/PlayerInfoGUI$3.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/me/borawski/hcf/frontend/gui/custom/PlayerInfoGUI$4.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/me/borawski/hcf/frontend/gui/custom/PlayerInfoGUI$5.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/me/borawski/hcf/frontend/gui/custom/PlayerInfoGUI.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/me/borawski/hcf/frontend/gui/custom/edit/PlayerPunishmentsGUI$1$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/me/borawski/hcf/frontend/gui/custom/edit/PlayerPunishmentsGUI$1$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/me/borawski/hcf/frontend/gui/custom/edit/PlayerPunishmentsGUI$1$3.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/me/borawski/hcf/frontend/gui/custom/edit/PlayerPunishmentsGUI$1$4.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/me/borawski/hcf/frontend/gui/custom/edit/PlayerPunishmentsGUI$1$5.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/me/borawski/hcf/frontend/gui/custom/edit/PlayerPunishmentsGUI$1$6.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/me/borawski/hcf/frontend/gui/custom/edit/PlayerPunishmentsGUI$1$7.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/me/borawski/hcf/frontend/gui/custom/edit/PlayerPunishmentsGUI$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/me/borawski/hcf/frontend/gui/custom/edit/PlayerPunishmentsGUI$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/me/borawski/hcf/frontend/gui/custom/edit/PlayerPunishmentsGUI$3.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/me/borawski/hcf/frontend/gui/custom/edit/PlayerPunishmentsGUI$4$1$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/me/borawski/hcf/frontend/gui/custom/edit/PlayerPunishmentsGUI$4$1$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/me/borawski/hcf/frontend/gui/custom/edit/PlayerPunishmentsGUI$4$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/me/borawski/hcf/frontend/gui/custom/edit/PlayerPunishmentsGUI$4.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/me/borawski/hcf/frontend/gui/custom/edit/PlayerPunishmentsGUI$5.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/me/borawski/hcf/frontend/gui/custom/edit/PlayerPunishmentsGUI$6.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/me/borawski/hcf/frontend/gui/custom/edit/PlayerPunishmentsGUI.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/me/borawski/hcf/frontend/gui/custom/edit/RankChangeGUI$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/me/borawski/hcf/frontend/gui/custom/edit/RankChangeGUI.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/me/borawski/hcf/frontend/gui/custom/friends/FriendListGUI$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/me/borawski/hcf/frontend/gui/custom/friends/FriendListGUI.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/me/borawski/hcf/frontend/listener/ListenerManager$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/me/borawski/hcf/frontend/listener/ListenerManager.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/me/borawski/hcf/frontend/listener/PlayerListener$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/me/borawski/hcf/frontend/listener/PlayerListener.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/me/borawski/hcf/frontend/util/BarUtil.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/me/borawski/hcf/frontend/util/ChatUtils.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/me/borawski/hcf/frontend/util/DefaultFontInfo.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/me/borawski/hcf/frontend/util/KickUtil$Reason.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/me/borawski/hcf/frontend/util/KickUtil.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/original-HCF-0.1.jar" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/backend/Connection.java" afterPath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/Connection.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/backend/api/EconomyAPI.java" afterPath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/api/EconomyAPI.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/backend/api/PlayerAPI.java" afterPath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/api/PlayerAPI.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/backend/connection/Mongo.java" afterPath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/connection/Mongo.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/backend/connection/MySQL.java" afterPath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/connection/MySQL.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/backend/punishment/Punishment.java" afterPath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/punishment/Punishment.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/backend/punishment/PunishmentManager.java" afterPath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/punishment/PunishmentManager.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/backend/session/Achievement.java" afterPath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/session/Achievement.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/backend/session/AchievementManager.java" afterPath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/session/AchievementManager.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/backend/session/FSession.java" afterPath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/session/FSession.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/backend/session/Rank.java" afterPath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/session/Rank.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/backend/session/Session.java" afterPath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/session/Session.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/backend/util/FactionUtil.java" afterPath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/util/FactionUtil.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/backend/util/FriendUtils.java" afterPath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/util/FriendUtils.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/backend/util/MojangUtil.java" afterPath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/util/MojangUtil.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/backend/util/PlayerUtils.java" afterPath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/util/PlayerUtils.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/backend/util/PunishmentUtil.java" afterPath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/util/PunishmentUtil.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/backend/util/SettingsUtil.java" afterPath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/util/SettingsUtil.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/backend/util/TimeUtil.java" afterPath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/util/TimeUtil.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/backend/util/UUIDUtil.java" afterPath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/util/UUIDUtil.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/frontend/command/Command.java" afterPath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/command/Command.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/frontend/command/CommandManager.java" afterPath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/command/CommandManager.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/frontend/command/commands/AchievementCommand.java" afterPath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/command/commands/AchievementCommand.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/frontend/command/commands/BanCommand.java" afterPath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/command/commands/BanCommand.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/frontend/command/commands/FStatCommand.java" afterPath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/command/commands/FStatCommand.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/frontend/command/commands/FriendsCommand.java" afterPath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/command/commands/FriendsCommand.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/frontend/command/commands/InfoCommand.java" afterPath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/command/commands/InfoCommand.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/frontend/command/commands/KothCommand.java" afterPath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/command/commands/KothCommand.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/frontend/command/commands/ManualCommand.java" afterPath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/command/commands/ManualCommand.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/frontend/command/commands/RankCommand.java" afterPath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/command/commands/RankCommand.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/frontend/command/commands/SeasonCommand.java" afterPath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/command/commands/SeasonCommand.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/frontend/command/commands/SettingsCommand.java" afterPath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/command/commands/SettingsCommand.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/frontend/gui/CustomIS.java" afterPath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/gui/CustomIS.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/frontend/gui/ItemGUI.java" afterPath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/gui/ItemGUI.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/frontend/gui/ItemMenu.java" afterPath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/gui/ItemMenu.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/frontend/gui/MenuItem.java" afterPath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/gui/MenuItem.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/frontend/gui/custom/PlayerInfoGUI.java" afterPath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/gui/custom/PlayerInfoGUI.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/frontend/gui/custom/edit/PlayerPunishmentsGUI.java" afterPath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/gui/custom/edit/PlayerPunishmentsGUI.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/frontend/gui/custom/edit/RankChangeGUI.java" afterPath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/gui/custom/edit/RankChangeGUI.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/frontend/gui/custom/friends/FriendListGUI.java" afterPath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/gui/custom/friends/FriendListGUI.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/frontend/gui/custom/season/FactionsLeadGUI.java" afterPath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/gui/custom/season/FactionsLeadGUI.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/frontend/gui/custom/settings/PlayerSettingsGUI.java" afterPath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/gui/custom/settings/PlayerSettingsGUI.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/frontend/listener/ListenerManager.java" afterPath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/listener/ListenerManager.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/frontend/listener/PlayerListener.java" afterPath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/listener/PlayerListener.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/frontend/manuel/Manual.java" afterPath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/manuel/Manual.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/frontend/manuel/ManualButton.java" afterPath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/manuel/ManualButton.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/frontend/manuel/ManualManager.java" afterPath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/manuel/ManualManager.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/frontend/manuel/ManualPage.java" afterPath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/manuel/ManualPage.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/frontend/manuel/servermanuals/YouTuberManual.java" afterPath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/manuel/servermanuals/YouTuberManual.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/frontend/util/BarUtil.java" afterPath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/util/BarUtil.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/frontend/util/ChatUtils.java" afterPath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/util/ChatUtils.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/frontend/util/DefaultFontInfo.java" afterPath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/util/DefaultFontInfo.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/frontend/util/KickUtil.java" afterPath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/util/KickUtil.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/frontend/util/ManualUtil.java" afterPath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/util/ManualUtil.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/frontend/util/MsgUtil.java" afterPath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/util/MsgUtil.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" />
+    <list default="true" id="6b16c613-eb39-4a32-8971-9cb52740dd8f" name="Default" comment="Fixed libs with maven, no need for local libs.">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/Factions.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/worldguard-6.2.jar" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/worldedit-bukkit-6.1.5.jar" afterPath="$PROJECT_DIR$/lib/worldedit-bukkit-6.1.5.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/HCF-0.1.jar" afterPath="$PROJECT_DIR$/target/HCF-0.1.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/original-HCF-0.1.jar" afterPath="$PROJECT_DIR$/target/original-HCF-0.1.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/Core.java" afterPath="$PROJECT_DIR$/src/main/java/me/borawski/hcf/Core.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/me/borawski/koth/KothListener.java" afterPath="$PROJECT_DIR$/src/main/java/me/borawski/koth/KothListener.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/me/borawski/koth/KothManager.java" afterPath="$PROJECT_DIR$/src/main/java/me/borawski/koth/KothManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/me/borawski/koth/Plugin.java" afterPath="$PROJECT_DIR$/src/main/java/me/borawski/koth/Plugin.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" />
     </list>
     <ignored path="HCF.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -183,7 +37,7 @@
       <file leaf-file-name="Core.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/me/borawski/hcf/Core.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1365">
+            <state relative-caret-position="1683">
               <caret line="101" column="0" lean-forward="false" selection-start-line="101" selection-start-column="0" selection-end-line="101" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -517,6 +371,20 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="hcf" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="HCF" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="HCF" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="lib" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1132,7 +1000,7 @@
       <workItem from="1496681864006" duration="74000" />
       <workItem from="1496974360997" duration="2478000" />
       <workItem from="1497050786678" duration="956000" />
-      <workItem from="1497291210422" duration="2250000" />
+      <workItem from="1497291210422" duration="2363000" />
     </task>
     <task id="LOCAL-00001" summary="stuff">
       <created>1489692324646</created>
@@ -1183,11 +1051,18 @@
       <option name="project" value="LOCAL" />
       <updated>1496089197671</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="major refactor and a few updates">
+      <created>1497293491607</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1497293491607</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="238220000" />
+    <option name="totallyTimeSpent" value="238333000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1200,7 +1075,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1255,7 +1129,8 @@
     <MESSAGE value="Tweaked punishments" />
     <MESSAGE value="Added KOTH, Components, and PVP Season system." />
     <MESSAGE value="Fixes, etc, etc" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixes, etc, etc" />
+    <MESSAGE value="major refactor and a few updates" />
+    <option name="LAST_COMMIT_MESSAGE" value="major refactor and a few updates" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1733,7 +1608,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/me/borawski/hcf/Core.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1365">
+        <state relative-caret-position="1683">
           <caret line="101" column="0" lean-forward="false" selection-start-line="101" selection-start-column="0" selection-end-line="101" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
