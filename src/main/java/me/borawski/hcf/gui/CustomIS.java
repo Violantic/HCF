@@ -4,15 +4,6 @@
 
 package me.borawski.hcf.gui;
 
-import org.bukkit.ChatColor;
-import org.bukkit.Material;
-import org.bukkit.enchantments.Enchantment;
-import org.bukkit.inventory.ItemFlag;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -22,12 +13,19 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
+import org.bukkit.ChatColor;
+import org.bukkit.Material;
+import org.bukkit.enchantments.Enchantment;
+import org.bukkit.inventory.ItemFlag;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
 /**
  * Created by Ethan on 9/5/2016.
  */
 public class CustomIS {
-
-    private static final String CUSTOMIS_META_KEY = "CustomISMeta";
 
     private String name;
     private final ArrayList<String> lore;
@@ -52,12 +50,12 @@ public class CustomIS {
         this.material = is.getType();
         this.data = is.getDurability();
         this.size = is.getAmount();
-        this.enchantments = new HashMap();
+        this.enchantments = new HashMap<>();
         this.enchantments.putAll(is.getEnchantments());
-        this.flags = new ArrayList();
+        this.flags = new ArrayList<ItemFlag>();
         ItemMeta meta = is.getItemMeta();
         if (meta == null) {
-            this.lore = new ArrayList();
+            this.lore = new ArrayList<String>();
             return;
         }
         Iterator<ItemFlag> itim = meta.getItemFlags().iterator();
@@ -68,12 +66,13 @@ public class CustomIS {
             this.name = meta.getDisplayName();
         }
         if (meta.hasLore()) {
-            this.lore = (ArrayList) meta.getLore();
+            this.lore = (ArrayList<String>) meta.getLore();
         } else {
-            this.lore = new ArrayList();
+            this.lore = new ArrayList<String>();
         }
     }
 
+    @SuppressWarnings("deprecation")
     public CustomIS(final JSONObject dbo) throws IllegalArgumentException {
         this.name = "";
         this.lore = new ArrayList<String>();
@@ -102,10 +101,7 @@ public class CustomIS {
             }
             if (dbo.containsKey("enchantments")) {
                 for (Object edbo : (JSONArray) dbo.get("enchantments")) {
-                    addEnchantment(
-                            Enchantment.getByName(((String) ((JSONObject) edbo).get("name")).toUpperCase()),
-                            (Integer) ((JSONObject) edbo).get("level")
-                    );
+                    addEnchantment(Enchantment.getByName(((String) ((JSONObject) edbo).get("name")).toUpperCase()), (Integer) ((JSONObject) edbo).get("level"));
                 }
             }
             if (dbo.containsKey("flags")) {
@@ -118,35 +114,44 @@ public class CustomIS {
         }
     }
 
+    @SuppressWarnings({ "unchecked", "deprecation", "serial" })
     public JSONObject toJSON() {
-        return new JSONObject() {{
-            put("name", name);
-            put("lore", lore.stream().collect(Collectors.toCollection((Supplier<JSONArray>) new Supplier<JSONArray>() {
-                public JSONArray get() {
-                    return new JSONArray();
-                }
-            })));
-            put("typeid", material.getId());
-            put("data", data);
-            put("amount", size);
-            put("flags", new JSONArray() {{
-                addAll(flags.stream().map(new Function<ItemFlag, String>() {
-                    public String apply(ItemFlag itemFlag) {
-                        return itemFlag.name();
+        return new JSONObject() {
+            {
+                put("name", name);
+                put("lore", lore.stream().collect(Collectors.toCollection((Supplier<JSONArray>) new Supplier<JSONArray>() {
+                    public JSONArray get() {
+                        return new JSONArray();
                     }
-                }).collect(Collectors.toList()));
-            }});
-            put("enchantments", new JSONArray() {{
-                addAll(enchantments.keySet().stream().map(new Function<Enchantment, JSONObject>() {
-                    public JSONObject apply(final Enchantment enchantment) {
-                        return new JSONObject() {{
-                            put("name", enchantment.getName());
-                            put("level", enchantments.get(enchantment));
-                        }};
+                })));
+                put("typeid", material.getId());
+                put("data", data);
+                put("amount", size);
+                put("flags", new JSONArray() {
+                    {
+                        addAll(flags.stream().map(new Function<ItemFlag, String>() {
+                            public String apply(ItemFlag itemFlag) {
+                                return itemFlag.name();
+                            }
+                        }).collect(Collectors.toList()));
                     }
-                }).collect(Collectors.toList()));
-            }});
-        }};
+                });
+                put("enchantments", new JSONArray() {
+                    {
+                        addAll(enchantments.keySet().stream().map(new Function<Enchantment, JSONObject>() {
+                            public JSONObject apply(final Enchantment enchantment) {
+                                return new JSONObject() {
+                                    {
+                                        put("name", enchantment.getName());
+                                        put("level", enchantments.get(enchantment));
+                                    }
+                                };
+                            }
+                        }).collect(Collectors.toList()));
+                    }
+                });
+            }
+        };
     }
 
     public CustomIS clone() {
@@ -213,6 +218,7 @@ public class CustomIS {
         this.size = size;
         return this;
     }
+
     public String getName() {
         return name;
     }
@@ -241,6 +247,7 @@ public class CustomIS {
         return flags;
     }
 
+    @SuppressWarnings("unchecked")
     public ItemStack get() {
         ItemStack is = new ItemStack(material, size);
         is.setDurability((short) data);
