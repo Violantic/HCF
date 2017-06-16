@@ -1,10 +1,13 @@
 package me.borawski.koth;
 
-import com.massivecraft.factions.listeners.FactionsPlayerListener;
-import me.borawski.hcf.Core;
-import me.borawski.hcf.session.FSession;
-import me.borawski.hcf.util.BarUtil;
-import me.borawski.koth.util.LocationUtil;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.UUID;
+import java.util.concurrent.atomic.AtomicReference;
+import java.util.function.Consumer;
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -13,10 +16,12 @@ import org.bukkit.scoreboard.DisplaySlot;
 import org.bukkit.scoreboard.Objective;
 import org.bukkit.scoreboard.Scoreboard;
 
-import java.util.*;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.atomic.AtomicReference;
-import java.util.function.Consumer;
+import com.massivecraft.factions.entity.MPlayer;
+
+import me.borawski.hcf.Core;
+import me.borawski.hcf.session.FSession;
+import me.borawski.hcf.util.BarUtil;
+import me.borawski.koth.util.LocationUtil;
 
 /**
  * Created by Ethan on 4/26/2017.
@@ -25,7 +30,6 @@ public class KothManager {
 
     private Set<Koth> kothList;
     private List<Koth> scheduledKoth;
-    private Map<String, Integer> score;
     private Scoreboard scoreboard;
     private String holdingFaction = null;
     private Plugin instance;
@@ -36,7 +40,6 @@ public class KothManager {
         this.instance = instance;
         this.kothList = new HashSet<>();
         this.scheduledKoth = new ArrayList<>();
-        this.score = new ConcurrentHashMap<>();
         this.scoreboard = Bukkit.getScoreboardManager().getNewScoreboard();
         setupScoreboard();
     }
@@ -53,19 +56,18 @@ public class KothManager {
         final org.bukkit.scoreboard.Team team8 = scoreboard.registerNewTeam("team8");
         final org.bukkit.scoreboard.Team team9 = scoreboard.registerNewTeam("team9");
         final org.bukkit.scoreboard.Team team10 = scoreboard.registerNewTeam("team10");
-        final org.bukkit.scoreboard.Team team11 = scoreboard.registerNewTeam("team11");
 
         objective.setDisplaySlot(DisplaySlot.SIDEBAR);
-        team.addPlayer(Bukkit.getOfflinePlayer(ChatColor.AQUA.toString()));
-        team2.addPlayer(Bukkit.getOfflinePlayer(ChatColor.BLACK.toString()));
-        team3.addPlayer(Bukkit.getOfflinePlayer(ChatColor.BLUE.toString()));
-        team4.addPlayer(Bukkit.getOfflinePlayer(ChatColor.DARK_AQUA.toString()));
-        team5.addPlayer(Bukkit.getOfflinePlayer(ChatColor.DARK_BLUE.toString()));
-        team6.addPlayer(Bukkit.getOfflinePlayer(ChatColor.DARK_GRAY.toString()));
-        team7.addPlayer(Bukkit.getOfflinePlayer(ChatColor.DARK_GREEN.toString()));
-        team8.addPlayer(Bukkit.getOfflinePlayer(ChatColor.DARK_PURPLE.toString()));
-        team9.addPlayer(Bukkit.getOfflinePlayer(ChatColor.DARK_RED.toString()));
-        team10.addPlayer(Bukkit.getOfflinePlayer(ChatColor.GOLD.toString()));
+        team.addEntry(ChatColor.AQUA.toString());
+        team2.addEntry(ChatColor.BLACK.toString());
+        team3.addEntry(ChatColor.BLUE.toString());
+        team4.addEntry(ChatColor.DARK_AQUA.toString());
+        team5.addEntry(ChatColor.DARK_BLUE.toString());
+        team6.addEntry(ChatColor.DARK_GRAY.toString());
+        team7.addEntry(ChatColor.DARK_GREEN.toString());
+        team8.addEntry(ChatColor.DARK_PURPLE.toString());
+        team9.addEntry(ChatColor.DARK_RED.toString());
+        team10.addEntry(ChatColor.GOLD.toString());
 
         objective.getScore(ChatColor.GOLD.toString()).setScore(1);
         objective.getScore(ChatColor.DARK_RED.toString()).setScore(2);
@@ -81,16 +83,16 @@ public class KothManager {
         objective.setDisplayName(Core.getInstance().getPrefix());
 
         // Header
-        // 0.  ""
-        // 1.  "Rank:"
-        // 2.  "► [RANK]"
-        // 3.  "Faction"
-        // 4.  "► FactionName"
-        // 5.  "Koth"
-        // 6.  "► Id:"
-        // 7.  "► Captured:"
-        // 8.  "► Factions:"
-        // 9.  "► Players:"
+        // 0. ""
+        // 1. "Rank:"
+        // 2. "► [RANK]"
+        // 3. "Faction"
+        // 4. "► FactionName"
+        // 5. "Koth"
+        // 6. "► Id:"
+        // 7. "► Captured:"
+        // 8. "► Factions:"
+        // 9. "► Players:"
         // 10. "► Timer: "
 
         team.setPrefix("§e§lSeason");
@@ -111,16 +113,16 @@ public class KothManager {
         Plugin.getInternal().getPlayersAttending().stream().forEach(new Consumer<UUID>() {
             @Override
             public void accept(UUID uuid) {
-                if (!factions.contains(FactionsPlayerListener.factions.get(uuid))) {
-                    factions.add(FactionsPlayerListener.factions.get(uuid));
+                if (!factions.contains(MPlayer.get(uuid).getFaction().getName())) {
+                    factions.add(MPlayer.get(uuid).getFaction().getName());
                 }
             }
         });
 
         List<String> factionsO = new ArrayList<>();
         Bukkit.getOnlinePlayers().stream().forEach((Consumer<Player>) uuid -> {
-            if (!factionsO.contains(FactionsPlayerListener.factions.get(uuid.getUniqueId()))) {
-                factionsO.add(FactionsPlayerListener.factions.get(uuid.getUniqueId()));
+            if (!factionsO.contains(MPlayer.get(uuid).getFaction().getName())) {
+                factionsO.add(MPlayer.get(uuid).getFaction().getName());
             }
         });
 
@@ -205,13 +207,14 @@ public class KothManager {
 
                 @Override
                 public Runnable getHandler() {
-                    final int[] i = {0};
-                    final int[] currentScore = {0};
-                    final String[] lastFaction = {"N/A"};
+                    final int[] i = { 0 };
+                    final int[] currentScore = { 0 };
+                    final String[] lastFaction = { "N/A" };
                     return new Runnable() {
                         @Override
                         public void run() {
-                            if (paused) return;
+                            if (paused)
+                                return;
                             if (i[0] == 0) {
                                 onStart();
                             } else {
@@ -224,25 +227,27 @@ public class KothManager {
 
                                 try {
 
-                                    if(Plugin.getInternal().getPlayersAttending().size() == 0) {
+                                    if (Plugin.getInternal().getPlayersAttending().size() == 0) {
                                         return;
                                     }
-                                    if(FactionsPlayerListener.factions.get(Plugin.getInternal().getPlayersAttending().get(0)) == null) {
+                                    if (MPlayer.get(Plugin.getInternal().getPlayersAttending().get(0)) == null) {
                                         return;
                                     }
-                                    String name = FactionsPlayerListener.factions.get(Plugin.getInternal().getPlayersAttending().get(0));
+                                    String faction = MPlayer.get(Plugin.getInternal().getPlayersAttending().get(0)).getFactionName();
                                     if (lastFaction[0].equalsIgnoreCase("N/A")) {
                                         currentScore[0] = 0;
                                         holdingScore.set(currentScore[0]);
-                                        lastFaction[0] = name;
-                                        holdingFaction = name;
-                                        System.out.println(name + " has conquered the KOTH");
-                                        getLog().add(name + " has conquered the KOTH");
-                                    } else if (lastFaction[0].equalsIgnoreCase(name)) {
+                                        lastFaction[0] = faction;
+                                        holdingFaction = faction;
+                                        System.out.println(faction + " has conquered the KOTH");
+                                        getLog().add(faction + " has conquered the KOTH");
+                                    } else if (lastFaction[0].equalsIgnoreCase(faction)) {
                                         currentScore[0]++;
                                         holdingScore.set(currentScore[0]);
-                                        holdingFaction = name;
-                                        //System.out.println(name + " is currently holding the KOTH: " + currentScore[0]);
+                                        holdingFaction = faction;
+                                        // System.out.println(name + " is
+                                        // currently holding the KOTH: " +
+                                        // currentScore[0]);
                                     }
                                 } catch (Exception e) {
                                     e.printStackTrace();
@@ -250,19 +255,12 @@ public class KothManager {
 
                                 updateScoreboard();
 
-                                try {
-                                    Set<Map.Entry<UUID, String>> factionMembers = FactionsPlayerListener.factions.entrySet();
-                                    factionMembers.stream().forEach(new Consumer<Map.Entry<UUID, String>>() {
-                                        @Override
-                                        public void accept(Map.Entry<UUID, String> uuidStringEntry) {
-                                            if (uuidStringEntry.getValue().equalsIgnoreCase(name)) {
-                                                Player player = Bukkit.getPlayer(uuidStringEntry.getKey());
-                                                BarUtil.sendActionBar(player.getPlayer(), Plugin.PREFIX + "Your faction is holding " + ChatColor.YELLOW + "" + ChatColor.BOLD + "" + getName());
-                                            }
-                                        }
-                                    });
-                                } catch (Exception e) {
-
+                                // TODO Not sure if this works
+                                for (Player p : Bukkit.getOnlinePlayers()) {
+                                    String faction = MPlayer.get(p).getFactionName();
+                                    if (faction != null && getName().equalsIgnoreCase(faction)) {
+                                        BarUtil.sendActionBar(p, Plugin.PREFIX + "Your faction is holding §e§l" + getName());
+                                    }
                                 }
                             }
                             i[0]++;
@@ -288,7 +286,8 @@ public class KothManager {
                             Plugin.second.set(0);
                             Plugin.getInternal().setCurrentKoth(null);
                             new KothModel(null, getName(), holdingFaction, currentTime, finish, length(), Plugin.getInternal().getPlayersAttending(), getLog());
-                            //getPlugin().getFactionSession().addScore(holdingFaction, "points", 350);
+                            // getPlugin().getFactionSession().addScore(holdingFaction,
+                            // "points", 350);
                             FSession.getSession(holdingFaction).updateDocument("factions", "trophies", FSession.getSession(holdingFaction).getTrophies() + 350);
                             holdingFaction = null;
                         }
