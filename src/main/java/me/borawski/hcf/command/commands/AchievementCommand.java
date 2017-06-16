@@ -42,7 +42,7 @@ public class AchievementCommand extends CustomCommand {
     }
 
     public ItemGUI getAchievements(UUID uuid) {
-        return new ItemGUI(Core.getInstance(), null, Bukkit.getPlayer(uuid), 54) {
+        return new ItemGUI(null, Bukkit.getPlayer(uuid), 54) {
             @Override
             public String getName() {
                 return "Achievements";
@@ -73,7 +73,7 @@ public class AchievementCommand extends CustomCommand {
                 String title = ChatUtils.getNameWithRankColor(uuid, true);
                 int i = 0;
                 for (String s : achievements) {
-                    Achievement achievement = getInstance().getAchievementManager().getAchievement(s);
+                    Achievement achievement = Core.getInstance().getAchievementManager().getAchievement(s);
                     set(i, new MenuItem(new CustomIS().setMaterial(Material.PAPER).setName(ChatColor.YELLOW + "Achievement #" + (++i)).addLore(ChatColor.DARK_GRAY + "---------------------------").addLore(ChatColor.GRAY + "Name: " + ChatColor.YELLOW + achievement.getName()).addLore(ChatColor.GRAY + "Desc: " + ChatColor.YELLOW + achievement.getDesc())
                             .addLore(ChatColor.GRAY + "Reward: " + ChatColor.YELLOW + achievement.getReward() + " Tokens").addLore(ChatColor.DARK_GRAY + "---------------------------").addLore(ChatColor.GRAY + "This achievement was earned by: " + title), new Runnable() {
                                 @Override
