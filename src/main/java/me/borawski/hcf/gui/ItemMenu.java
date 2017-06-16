@@ -23,7 +23,6 @@ import java.util.Map;
  */
 public class ItemMenu implements Listener {
 
-    private Core owner;
     private ItemMenu parent;
     private String title;
     private HashMap<Integer, MenuItem> items;
@@ -36,12 +35,11 @@ public class ItemMenu implements Listener {
     private int cancel_task = -1;
     private Runnable closeAction;
 
-    public ItemMenu(Core plugin, String title, Player player, int size) {
-        this(plugin, null, title, player, size);
+    public ItemMenu(String title, Player player, int size) {
+        this(null, title, player, size);
     }
 
-    public ItemMenu(Core owner, ItemMenu parent, String title, Player player, int size) {
-        this.owner = owner;
+    public ItemMenu(ItemMenu parent, String title, Player player, int size) {
         this.player = player;
         this.title = title;
         this.parent = parent;
@@ -73,8 +71,8 @@ public class ItemMenu implements Listener {
 
     public void show() {
         player.closeInventory();
-        Bukkit.getPluginManager().registerEvents(this, this.owner);
-        taskid = Bukkit.getScheduler().scheduleSyncDelayedTask(this.owner, new Runnable() {
+        Bukkit.getPluginManager().registerEvents(this, Core.getInstance());
+        taskid = Bukkit.getScheduler().scheduleSyncDelayedTask(Core.getInstance(), new Runnable() {
             public void run() {
                 ItemMenu.this.close();
             }
@@ -106,9 +104,12 @@ public class ItemMenu implements Listener {
 
     public void close() {
         HandlerList.unregisterAll(this);
-        if (inv != null) player.closeInventory();
-        if (taskid != -1) Bukkit.getScheduler().cancelTask(taskid);
-        if (cancel_task != -1) Bukkit.getScheduler().cancelTask(cancel_task);
+        if (inv != null)
+            player.closeInventory();
+        if (taskid != -1)
+            Bukkit.getScheduler().cancelTask(taskid);
+        if (cancel_task != -1)
+            Bukkit.getScheduler().cancelTask(cancel_task);
         dead = true;
         if (this.closeAction != null) {
             this.closeAction.run();
@@ -136,7 +137,8 @@ public class ItemMenu implements Listener {
 
     @EventHandler
     public void onInventoryClose(InventoryCloseEvent event) {
-        if (event.getPlayer().equals(player)) close();
+        if (event.getPlayer().equals(player))
+            close();
     }
 
     @EventHandler
@@ -150,9 +152,10 @@ public class ItemMenu implements Listener {
             if (item != null) {
                 event.setCancelled(true);
                 item.getExec().run();
-                if (this.closeOnClick) close();
+                if (this.closeOnClick)
+                    close();
             }
         }
     }
-    
+
 }

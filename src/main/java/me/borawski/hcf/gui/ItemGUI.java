@@ -4,13 +4,12 @@
 
 package me.borawski.hcf.gui;
 
-import me.borawski.hcf.Core;
+import java.util.Arrays;
+
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-
-import java.util.Arrays;
 
 /**
  * Created by Ethan on 9/5/2016.
@@ -19,25 +18,18 @@ public abstract class ItemGUI {
 
     private ItemMenu itemMenu;
 
-    private Core instance;
-
-    public ItemGUI(Core instance, Player player) {
-        this(instance, null, player, 36);
+    public ItemGUI(Player player) {
+        this(null, player, 36);
     }
 
-    public Core getInstance() {
-        return instance;
-    }
-
-    public ItemGUI(Core instance, ItemGUI parent, Player p, int size) {
+    public ItemGUI(ItemGUI parent, Player p, int size) {
         if (parent == null) {
-            itemMenu = new ItemMenu(instance, getName(), p, size);
+            itemMenu = new ItemMenu(getName(), p, size);
         } else {
-            itemMenu = new ItemMenu(instance, parent.getItemMenu(), getName(), p, size);
+            itemMenu = new ItemMenu(parent.getItemMenu(), getName(), p, size);
         }
-        //this.onlineUser = user;
+        // this.onlineUser = user;
         itemMenu.setCloseOnClick(this.isCloseOnClick());
-        this.instance = instance;
         this.registerItems();
     }
 
