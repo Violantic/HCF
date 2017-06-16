@@ -1,15 +1,14 @@
 package me.borawski.hcf.gui.custom.edit;
 
-import me.borawski.hcf.Core;
+import org.bukkit.ChatColor;
+import org.bukkit.Material;
+import org.bukkit.entity.Player;
+
 import me.borawski.hcf.gui.CustomIS;
 import me.borawski.hcf.gui.ItemGUI;
 import me.borawski.hcf.gui.MenuItem;
 import me.borawski.hcf.session.Rank;
 import me.borawski.hcf.session.Session;
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.Material;
-import org.bukkit.entity.Player;
 
 /**
  * Created by Ethan on 3/8/2017.
@@ -18,8 +17,8 @@ public class RankChangeGUI extends ItemGUI {
 
     private Session target;
 
-    public RankChangeGUI(Core instance, Player p, Session target) {
-        super(instance, null, p, 18);
+    public RankChangeGUI(Player p, Session target) {
+        super(null, p, 18);
         this.target = target;
     }
 
@@ -40,16 +39,14 @@ public class RankChangeGUI extends ItemGUI {
     @Override
     public void registerItems() {
         int i = 0;
-        for(final Rank rank : Rank.values()) {
-            set(i, new MenuItem(new CustomIS().setMaterial(Material.FIREWORK_CHARGE).setName(ChatColor.GRAY + rank.getDisplayName())
-                    .addLore(ChatColor.GRAY + "> Prefix: " + rank.getPrefix())
-                    .addLore(ChatColor.GRAY + "> Chat Color: " + rank.getColor() + rank.getColor().name())
-                    .addLore(ChatColor.GRAY + "> Id: " + ChatColor.YELLOW + rank.getId()), new Runnable() {
-                @Override
-                public void run() {
-                    RankChangeGUI.this.getTarget().updateDocument("players", "rank", rank.name());
-                }
-            }));
+        for (final Rank rank : Rank.values()) {
+            set(i, new MenuItem(new CustomIS().setMaterial(Material.FIREWORK_CHARGE).setName(ChatColor.GRAY + rank.getDisplayName()).addLore(ChatColor.GRAY + "> Prefix: " + rank.getPrefix()).addLore(ChatColor.GRAY + "> Chat Color: " + rank.getColor() + rank.getColor().name()).addLore(ChatColor.GRAY + "> Id: " + ChatColor.YELLOW + rank.getId()),
+                    new Runnable() {
+                        @Override
+                        public void run() {
+                            RankChangeGUI.this.getTarget().updateDocument("players", "rank", rank.name());
+                        }
+                    }));
             i++;
         }
     }

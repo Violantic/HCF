@@ -1,19 +1,19 @@
 package me.borawski.hcf.gui.custom;
 
-import me.borawski.hcf.Core;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
+
+import org.bukkit.ChatColor;
+import org.bukkit.Material;
+import org.bukkit.entity.Player;
+
 import me.borawski.hcf.gui.CustomIS;
 import me.borawski.hcf.gui.ItemGUI;
 import me.borawski.hcf.gui.MenuItem;
 import me.borawski.hcf.gui.custom.edit.PlayerPunishmentsGUI;
 import me.borawski.hcf.gui.custom.edit.RankChangeGUI;
 import me.borawski.hcf.session.Session;
-import org.bukkit.ChatColor;
-import org.bukkit.Material;
-import org.bukkit.entity.Player;
-
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
 
 /**
  * Created by Ethan on 3/8/2017.
@@ -22,8 +22,8 @@ public class PlayerInfoGUI extends ItemGUI {
 
     public static Map<UUID, Session> crossTarget = new HashMap<>();
 
-    public PlayerInfoGUI(Core instance, Player player) {
-        super(instance, null, player, 9);
+    public PlayerInfoGUI(Player player) {
+        super(null, player, 9);
     }
 
     @Override
@@ -60,13 +60,13 @@ public class PlayerInfoGUI extends ItemGUI {
         set(4, new MenuItem(new CustomIS().setMaterial(Material.FIREWORK_CHARGE).setName(ChatColor.GRAY + "RANK: " + s1.getRank().getPrefix()).addLore(ChatColor.GRAY + "(Click to edit rank)"), new Runnable() {
             @Override
             public void run() {
-                new RankChangeGUI(getInstance(), getPlayer(), s1).show();
+                new RankChangeGUI(getPlayer(), s1).show();
             }
         }));
         set(5, new MenuItem(new CustomIS().setMaterial(Material.ANVIL).setName(ChatColor.GRAY + "PUNISHMENTS").addLore(ChatColor.GRAY + "(Click to manage their punishments)").addLore(ChatColor.GRAY + "(Coming Soon)"), new Runnable() {
             @Override
             public void run() {
-                new PlayerPunishmentsGUI(getInstance(), getPlayer(), s1).show();
+                new PlayerPunishmentsGUI(getPlayer(), s1).show();
             }
         }));
     }

@@ -1,5 +1,11 @@
 package me.borawski.hcf.gui.custom.edit;
 
+import org.bson.Document;
+import org.bukkit.ChatColor;
+import org.bukkit.DyeColor;
+import org.bukkit.Material;
+import org.bukkit.entity.Player;
+
 import me.borawski.hcf.Core;
 import me.borawski.hcf.connection.Mongo;
 import me.borawski.hcf.gui.CustomIS;
@@ -8,17 +14,6 @@ import me.borawski.hcf.gui.MenuItem;
 import me.borawski.hcf.gui.custom.PlayerInfoGUI;
 import me.borawski.hcf.punishment.Punishment;
 import me.borawski.hcf.session.Session;
-import org.bson.Document;
-import org.bukkit.ChatColor;
-import org.bukkit.DyeColor;
-import org.bukkit.Material;
-import org.bukkit.entity.Player;
-import org.ocpsoft.prettytime.PrettyTime;
-
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
-
 
 /**
  * Created by Ethan on 3/8/2017.
@@ -26,15 +21,14 @@ import java.util.UUID;
 public class PlayerPunishmentsGUI extends ItemGUI {
 
     private Session target;
-    private PrettyTime timeFormat;
-    public PlayerPunishmentsGUI(Core instance, Player p, Session target) {
-        super(instance, null, p, 9);
+
+    public PlayerPunishmentsGUI(Player p, Session target) {
+        super(null, p, 9);
         this.target = PlayerInfoGUI.crossTarget.get(p.getUniqueId());
-        this.timeFormat = new PrettyTime();
     }
 
     public ItemGUI issuePunishment(final Session session, final Punishment.Type type) {
-        return new ItemGUI(getInstance(), null, getPlayer(), 36) {
+        return new ItemGUI(null, getPlayer(), 36) {
             @Override
             public String getName() {
                 return "Punish";
@@ -45,55 +39,56 @@ public class PlayerPunishmentsGUI extends ItemGUI {
                 return false;
             }
 
+            @SuppressWarnings("deprecation")
             @Override
             public void registerItems() {
-                if(session.isBanned() && type == Punishment.Type.BAN) {
+                if (session.isBanned() && type == Punishment.Type.BAN) {
                     getPlayer().sendMessage(ChatColor.RED + "That player is already banned!");
                     return;
-                } else if(session.isMuted() && type == Punishment.Type.MUTE) {
+                } else if (session.isMuted() && type == Punishment.Type.MUTE) {
                     getPlayer().sendMessage(ChatColor.RED + "That player is already muted!");
                     return;
                 }
                 set(0, new MenuItem(new CustomIS().setMaterial(Material.STAINED_GLASS_PANE).setData(DyeColor.RED.getDyeData()).setName("30 Minutes"), new Runnable() {
                     @Override
                     public void run() {
-                        getInstance().getPunishmentManager().issue(type, session.getUUID(), getPlayer().getUniqueId(), 1800000l, "Staff issued punishment");
+                        Core.getInstance().getPunishmentManager().issue(type, session.getUUID(), getPlayer().getUniqueId(), 1800000l, "Staff issued punishment");
                     }
                 }));
                 set(1, new MenuItem(new CustomIS().setMaterial(Material.STAINED_GLASS_PANE).setData(DyeColor.RED.getDyeData()).setName("1 Hour"), new Runnable() {
                     @Override
                     public void run() {
-                        getInstance().getPunishmentManager().issue(type, session.getUUID(), getPlayer().getUniqueId(), 3600000l, "Staff issued punishment");
+                        Core.getInstance().getPunishmentManager().issue(type, session.getUUID(), getPlayer().getUniqueId(), 3600000l, "Staff issued punishment");
                     }
                 }));
                 set(2, new MenuItem(new CustomIS().setMaterial(Material.STAINED_GLASS_PANE).setData(DyeColor.RED.getDyeData()).setName("2 Hours"), new Runnable() {
                     @Override
                     public void run() {
-                        getInstance().getPunishmentManager().issue(type, session.getUUID(), getPlayer().getUniqueId(), 7200000l, "Staff issued punishment");
+                        Core.getInstance().getPunishmentManager().issue(type, session.getUUID(), getPlayer().getUniqueId(), 7200000l, "Staff issued punishment");
                     }
                 }));
                 set(3, new MenuItem(new CustomIS().setMaterial(Material.STAINED_GLASS_PANE).setData(DyeColor.RED.getDyeData()).setName("1 Day"), new Runnable() {
                     @Override
                     public void run() {
-                        getInstance().getPunishmentManager().issue(type, session.getUUID(), getPlayer().getUniqueId(), 86400000l, "Staff issued punishment");
+                        Core.getInstance().getPunishmentManager().issue(type, session.getUUID(), getPlayer().getUniqueId(), 86400000l, "Staff issued punishment");
                     }
                 }));
                 set(4, new MenuItem(new CustomIS().setMaterial(Material.STAINED_GLASS_PANE).setData(DyeColor.RED.getDyeData()).setName("2 Days"), new Runnable() {
                     @Override
                     public void run() {
-                        getInstance().getPunishmentManager().issue(type, session.getUUID(), getPlayer().getUniqueId(), 172800000l, "Staff issued punishment");
+                        Core.getInstance().getPunishmentManager().issue(type, session.getUUID(), getPlayer().getUniqueId(), 172800000l, "Staff issued punishment");
                     }
                 }));
                 set(5, new MenuItem(new CustomIS().setMaterial(Material.STAINED_GLASS_PANE).setData(DyeColor.RED.getDyeData()).setName("7 Days"), new Runnable() {
                     @Override
                     public void run() {
-                        getInstance().getPunishmentManager().issue(type, session.getUUID(), getPlayer().getUniqueId(), 604800000l, "Staff issued punishment");
+                        Core.getInstance().getPunishmentManager().issue(type, session.getUUID(), getPlayer().getUniqueId(), 604800000l, "Staff issued punishment");
                     }
                 }));
                 set(6, new MenuItem(new CustomIS().setMaterial(Material.LAVA_BUCKET).setName("Permanent"), new Runnable() {
                     @Override
                     public void run() {
-                        getInstance().getPunishmentManager().issue(type, session.getUUID(), getPlayer().getUniqueId(), -1, "Staff issued punishment");
+                        Core.getInstance().getPunishmentManager().issue(type, session.getUUID(), getPlayer().getUniqueId(), -1, "Staff issued punishment");
                     }
                 }));
             }
@@ -112,13 +107,13 @@ public class PlayerPunishmentsGUI extends ItemGUI {
 
     @Override
     public void registerItems() {
-        set(0, new MenuItem(new CustomIS().setMaterial(Material.BOOK).setName("BANNED: " + ((!PlayerInfoGUI.crossTarget.get(getPlayer().getUniqueId()).isBanned())?ChatColor.RED + "False":ChatColor.GREEN + "True")).addLore(ChatColor.GRAY + "(Click to see Ban history)"), new Runnable() {
+        set(0, new MenuItem(new CustomIS().setMaterial(Material.BOOK).setName("BANNED: " + ((!PlayerInfoGUI.crossTarget.get(getPlayer().getUniqueId()).isBanned()) ? ChatColor.RED + "False" : ChatColor.GREEN + "True")).addLore(ChatColor.GRAY + "(Click to see Ban history)"), new Runnable() {
             @Override
             public void run() {
                 PlayerInfoGUI.crossTarget.remove(getPlayer().getUniqueId());
             }
         }));
-        set(1, new MenuItem(new CustomIS().setMaterial(Material.BOOK).setName("MUTED: " + ((!PlayerInfoGUI.crossTarget.get(getPlayer().getUniqueId()).isMuted())?ChatColor.RED + "False":ChatColor.GREEN + "True")).addLore(ChatColor.GRAY + "(Click to see Mute history)"), new Runnable() {
+        set(1, new MenuItem(new CustomIS().setMaterial(Material.BOOK).setName("MUTED: " + ((!PlayerInfoGUI.crossTarget.get(getPlayer().getUniqueId()).isMuted()) ? ChatColor.RED + "False" : ChatColor.GREEN + "True")).addLore(ChatColor.GRAY + "(Click to see Mute history)"), new Runnable() {
             @Override
             public void run() {
                 PlayerInfoGUI.crossTarget.remove(getPlayer().getUniqueId());
@@ -127,7 +122,7 @@ public class PlayerPunishmentsGUI extends ItemGUI {
         set(4, new MenuItem(new CustomIS().setMaterial(Material.BOOK_AND_QUILL).setName("ISSUE PUNISHMENT").addLore(ChatColor.GRAY + "(Click to issue a punishment)"), new Runnable() {
             @Override
             public void run() {
-                new ItemGUI(PlayerPunishmentsGUI.this.getInstance(), null, PlayerPunishmentsGUI.this.getPlayer(), 36) {
+                new ItemGUI(null, PlayerPunishmentsGUI.this.getPlayer(), 36) {
                     @Override
                     public String getName() {
                         return "Select";
@@ -159,7 +154,7 @@ public class PlayerPunishmentsGUI extends ItemGUI {
         set(7, new MenuItem(new CustomIS().setMaterial(Material.BARRIER).setName("REVOKE BAN").addLore(ChatColor.GRAY + "(Click to remove current ban)"), new Runnable() {
             @Override
             public void run() {
-                if(!target.isBanned()) {
+                if (!target.isBanned()) {
                     getPlayer().sendMessage(ChatColor.RED + "That player isn't banned!");
                     return;
                 }
@@ -171,7 +166,7 @@ public class PlayerPunishmentsGUI extends ItemGUI {
         set(8, new MenuItem(new CustomIS().setMaterial(Material.BARRIER).setName("REVOKE MUTE").addLore(ChatColor.GRAY + "(Click to remove current mute)"), new Runnable() {
             @Override
             public void run() {
-                if(!target.isMuted()) {
+                if (!target.isMuted()) {
                     getPlayer().sendMessage(ChatColor.RED + "That player isn't muted!");
                     return;
                 }
