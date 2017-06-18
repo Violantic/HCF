@@ -7,6 +7,7 @@ import me.borawski.hcf.session.Rank;
 import me.borawski.hcf.session.Session;
 import me.borawski.hcf.util.KickUtil;
 import me.borawski.hcf.util.PlayerUtils;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -60,8 +61,9 @@ public class RankCommand implements Command {
                 s.updateDocument("players", "rank", rank);
                 sender.sendMessage(ChatColor.DARK_RED + "" + ChatColor.BOLD + "DesireHCF " + ChatColor.RESET + "" + ChatColor.GRAY + "You have set " + ChatColor.YELLOW + name + "" + ChatColor.GRAY + "'s rank to " + ChatColor.YELLOW + rank);
 
-                if(getInstance().getServer().getPlayer(name) != null) {
-                    getInstance().getServer().getPlayer(name).kickPlayer(KickUtil.getKick(KickUtil.Reason.DATA_CHANGE));
+                if(Bukkit.getPlayer(s.getUUID()) != null) {
+                    PlayerUtils.setPrefix(s.getRank().getPrefix(), Bukkit.getPlayer(s.getUUID()));
+                    s.sendMessage(ChatColor.GREEN + "You are now a " + s.getRank().name().toUpperCase());
                 }
             }
         } else {

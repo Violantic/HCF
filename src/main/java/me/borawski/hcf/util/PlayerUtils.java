@@ -3,6 +3,7 @@ package me.borawski.hcf.util;
 import me.borawski.hcf.connection.Mongo;
 import me.borawski.hcf.session.Session;
 import org.bson.Document;
+import org.bukkit.entity.Player;
 
 import java.util.UUID;
 
@@ -26,6 +27,10 @@ public class PlayerUtils {
 
     public static String getName(UUID uuid) {
         return Session.getSession(uuid).getName();
+    }
+
+    public static void setPrefix(String prefix, Player player) {
+        player.setPlayerListName(prefix + player.getName());
     }
 
 }
