@@ -8,6 +8,7 @@ import org.bukkit.entity.Player;
 import me.borawski.hcf.Core;
 import me.borawski.hcf.session.Rank;
 import me.borawski.hcf.session.Session;
+import me.borawski.hcf.util.SessionUtils;
 
 /**
  * @author Michael Ziluck
@@ -48,8 +49,11 @@ public abstract class CustomBaseCommand extends CustomCommand {
      */
     public void help(CommandSender sender, String label) {
         sender.sendMessage(Core.getLangHandler().getString("command-list-header"));
+        Rank rank = SessionUtils.getRank(sender);
         for (CustomCommand command : subCommands) {
-            sender.sendMessage(" §b/" + label + " " + command.getName() + ": §7" + command.getDescription());
+            if (command.getRequiredRank().getId() <= rank.getId()) {
+                sender.sendMessage(" §b/" + label + " " + command.getName() + ": §7" + command.getDescription());
+            }
         }
     }
 
