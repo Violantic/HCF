@@ -18,7 +18,7 @@ import java.util.UUID;
 public class FriendListGUI extends ItemGUI {
 
     public FriendListGUI(Core instance, Player p) {
-        super(instance, null, p, 54);
+        super(null, p, 54);
     }
 
     @Override
@@ -35,18 +35,17 @@ public class FriendListGUI extends ItemGUI {
     public void registerItems() {
         Session session = Session.getSession(getPlayer());
         int i = 0;
-        for(UUID uuid : session.getFriends()) {
+        for (UUID uuid : session.getFriends()) {
             String name = ChatUtils.getNameWithRankColor(uuid, true);
-            String status = getInstance().getServer().getPlayer(uuid)==null?ChatColor.RED + "[OFFLINE]": ChatColor.GREEN + "[ONLINE]";
-            String help = ChatColor.GRAY + "(Click to manage Friend)";
+            String status = Core.getInstance().getServer().getPlayer(uuid) == null ? ChatColor.RED + "[OFFLINE]" : ChatColor.GREEN + "[ONLINE]";
             set(i, new MenuItem(new CustomIS().setMaterial(Material.SKULL)
                     .setName(name)
                     .addLore(status), new Runnable() {
-                @Override
-                public void run() {
+                        @Override
+                        public void run() {
 
-                }
-            }));
+                        }
+                    }));
             i++;
         }
     }
