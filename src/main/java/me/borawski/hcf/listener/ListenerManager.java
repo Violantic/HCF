@@ -12,16 +12,10 @@ import java.util.function.Consumer;
  */
 public class ListenerManager {
 
-    private Core instance;
     private List<Listener> listenerList;
 
-    public ListenerManager(Core instance) {
-        this.instance = instance;
+    public ListenerManager() {
         listenerList = new ArrayList<Listener>();
-    }
-
-    public Core getInstance() {
-        return instance;
     }
 
     public List<Listener> getListenerList() {
@@ -36,7 +30,7 @@ public class ListenerManager {
         getListenerList().stream().forEach(new Consumer<Listener>() {
             @Override
             public void accept(Listener listener) {
-                getInstance().getServer().getPluginManager().registerEvents(listener, getInstance());
+                Core.getInstance().getServer().getPluginManager().registerEvents(listener, Core.getInstance());
             }
         });
     }

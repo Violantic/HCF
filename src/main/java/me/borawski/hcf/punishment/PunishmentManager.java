@@ -15,16 +15,6 @@ import java.util.concurrent.TimeUnit;
  */
 public class PunishmentManager {
 
-    private Core instance;
-
-    public PunishmentManager(Core instance) {
-        this.instance = instance;
-    }
-
-    public Core getInstance() {
-        return instance;
-    }
-
     public void issue(Punishment.Type type, UUID player, UUID issuer, long until, String reason) {
         long time = until;
         TimeUnit timeUnit = TimeUnit.DAYS;
@@ -39,9 +29,9 @@ public class PunishmentManager {
         Session.getSession(player).dump();
         if (Bukkit.getPlayer(player) != null) {
             if (type == Punishment.Type.BAN) {
-                Bukkit.getPlayer(player).kickPlayer(getInstance().getPrefix() + "\n&7You have been &eBANNED&7!".replace("&", ChatColor.COLOR_CHAR + ""));
+                Bukkit.getPlayer(player).kickPlayer(Core.getInstance().getPrefix() + "\n&7You have been &eBANNED&7!".replace("&", ChatColor.COLOR_CHAR + ""));
             } else if (type == Punishment.Type.MUTE) {
-                Bukkit.getPlayer(player).sendMessage(getInstance().getPrefix() + "You have been &eMUTED&7!".replace("&", ChatColor.COLOR_CHAR + ""));
+                Bukkit.getPlayer(player).sendMessage(Core.getInstance().getPrefix() + "You have been &eMUTED&7!".replace("&", ChatColor.COLOR_CHAR + ""));
             }
         }
     }

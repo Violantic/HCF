@@ -24,16 +24,6 @@ import me.borawski.hcf.util.TimeUtil;
  */
 public class PlayerListener implements Listener {
 
-    private Core instance;
-
-    public PlayerListener(Core instance) {
-        this.instance = instance;
-    }
-
-    public Core getInstance() {
-        return instance;
-    }
-
     @EventHandler
     public void onLogin(final PlayerLoginEvent event) {
         Session session = Session.getSession(event.getPlayer());
@@ -41,7 +31,7 @@ public class PlayerListener implements Listener {
             Document document = Mongo.getCollection("punishments").find(new Document("uuid", event.getPlayer().getUniqueId().toString())).first();
             assert document != null;
 
-            event.disallow(PlayerLoginEvent.Result.KICK_BANNED, (getInstance().getPrefix() + "\n" + "\n" + "&c&lYou are banned from the network!\n" + "\n" + "&cReason: &7{reason}\n" + "&cUntil: &7{until}\n" + "&cBanned By: &7{issuer}\n" + "\n" + "&7Visit &ehttps://desirehcf.net/rules&7 for our terms and rules")
+            event.disallow(PlayerLoginEvent.Result.KICK_BANNED, (Core.getInstance().getPrefix() + "\n" + "\n" + "&c&lYou are banned from the network!\n" + "\n" + "&cReason: &7{reason}\n" + "&cUntil: &7{until}\n" + "&cBanned By: &7{issuer}\n" + "\n" + "&7Visit &ehttps://desirehcf.net/rules&7 for our terms and rules")
                     .replace("{reason}", document.getString("reason")).replace("{until}", TimeUtil.getTime(document.getLong("end"))).replace("{issuer}", PlayerUtils.getName(UUID.fromString(document.getString("issuer")))).replace("&", ChatColor.COLOR_CHAR + ""));
             return;
         }
@@ -51,7 +41,7 @@ public class PlayerListener implements Listener {
                 boolean justColor = session.getRank().getId() == 2;
                 event.getPlayer().setPlayerListName(noColor ? ChatColor.GRAY + event.getPlayer().getName() : justColor ? session.getRank().getMain() + event.getPlayer().getName() : session.getRank().getPrefix() + " " + ChatColor.GRAY + event.getPlayer().getName());
             }
-        }.runTaskLaterAsynchronously(getInstance(), 20L);
+        }.runTaskLaterAsynchronously(Core.getInstance(), 20L);
     }
 
     @EventHandler
@@ -66,7 +56,7 @@ public class PlayerListener implements Listener {
         if (s.isMuted()) {
             s.sendMessage(ChatColor.DARK_GRAY + "-----------------------------------------------------");
             s.sendMessage("");
-            ChatUtils.sendCenteredMessage(event.getPlayer(), getInstance().getPrefix().replace(" ", ""));
+            ChatUtils.sendCenteredMessage(event.getPlayer(), Core.getInstance().getPrefix().replace(" ", ""));
             s.sendMessage("");
             ChatUtils.sendCenteredMessage(event.getPlayer(), ChatColor.GRAY + "You are muted and " + ChatColor.RED + "CANNOT " + ChatColor.GRAY + "speak!");
             ChatUtils.sendCenteredMessage(event.getPlayer(), ChatColor.GRAY + "Visit our rules @ " + ChatColor.YELLOW + "https://desirehcf.net/rules");
