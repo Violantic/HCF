@@ -60,12 +60,11 @@ public class FriendUtils {
     }
 
     private static void saveFriends(Session player) {
-        player.updateDocument("players", "friend_requests", new ArrayList<List<UUID>>() {
-            {
-                add(player.getOutgoingRequests());
-                add(player.getIncomingRequests());
-            }
-        });
+        ArrayList<List<UUID>> friendRequests = new ArrayList<>();
+        friendRequests.add(player.getOutgoingRequests());
+        friendRequests.add(player.getIncomingRequests());
+        player.updateDocument("players", "friend_requests", friendRequests);
+        
         player.updateDocument("players", "friends", player.getFriends());
         player.dump();
         Session.getSession(player.getUUID());

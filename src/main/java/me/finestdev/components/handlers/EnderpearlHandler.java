@@ -12,6 +12,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 
+import me.borawski.hcf.Core;
 import me.finestdev.components.Components;
 import me.finestdev.components.utils.Cooldown;
 import me.finestdev.components.utils.Cooldown.CooldownBase;
@@ -23,22 +24,23 @@ public class EnderpearlHandler implements Listener {
     private final Cooldown cooldown;
 
     public EnderpearlHandler() {
-        Bukkit.getPluginManager().registerEvents(this, Components.getInstance());
+        Bukkit.getPluginManager().registerEvents(this, Core.getInstance());
 
-        (cooldown = Components.getComponents().getCooldown(Components.ENDERP)).setOnEndSequece(new Consumer<UUID>() {
+        (cooldown = Components.getInstance().getCooldown(Components.ENDERP)).setOnEndSequece(new Consumer<UUID>() {
 
             @Override
             public void accept(UUID id) {
-                Bukkit.getScheduler().runTask(Components.getInstance(), new Runnable() {
+                Bukkit.getScheduler().runTask(Core.getInstance(), new Runnable() {
                     @Override
                     public void run() {
-                        Bukkit.getPlayer(id).sendMessage(Utils.chat(Components.getInstance().getConfig().getString("enderpearl_ended")));
+                        Bukkit.getPlayer(id).sendMessage(Utils.chat(Core.getInstance().getConfig().getString("enderpearl_ended")));
                     }
                 });
             }
         });
     }
 
+    @SuppressWarnings("deprecation")
     @EventHandler
     public void onInteract(PlayerInteractEvent e) {
         Player p = e.getPlayer();
@@ -51,19 +53,16 @@ public class EnderpearlHandler implements Listener {
             if (base == null || Cooldown.getAmountLeft(base) <= 0) {
                 e.setCancelled(false);
                 cooldown.startCooldown(p.getUniqueId(),
-                        Cooldown.timeToMillis(Components.getInstance().getConfig().getString("enderpearl_time")));
+                        Cooldown.timeToMillis(Core.getInstance().getConfig().getString("enderpearl_time")));
             } else {
                 e.setCancelled(true);
-                String message = Components.getInstance().getConfig().getString("enderpearl_message");
+                String message = Core.getInstance().getConfig().getString("enderpearl_message");
                 long left = Cooldown.getAmountLeft(base);
                 Map<Time, Long> times = Cooldown.timeFromMillis(left);
                 message = message.replace("<days>", (times.containsKey(Time.DAY) ? times.get(Time.DAY) : 0) + "d");
-                message = message.replace("<hours>",
-                        (times.containsKey(Time.HOUR) ? times.get(Time.HOUR) : 0) + "h");
-                message = message.replace("<minutes>",
-                        (times.containsKey(Time.MINUTE) ? times.get(Time.MINUTE) : 0) + "m");
-                message = message.replace("<seconds>",
-                        (times.containsKey(Time.SECOND) ? times.get(Time.SECOND) : 0) + "s");
+                message = message.replace("<hours>", (times.containsKey(Time.HOUR) ? times.get(Time.HOUR) : 0) + "h");
+                message = message.replace("<minutes>", (times.containsKey(Time.MINUTE) ? times.get(Time.MINUTE) : 0) + "m");
+                message = message.replace("<seconds>", (times.containsKey(Time.SECOND) ? times.get(Time.SECOND) : 0) + "s");
                 p.sendMessage(Utils.chat(message));
             }
         }

@@ -12,11 +12,11 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
-import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
+
+import me.borawski.hcf.Core;
 
 public class Cooldown {
 
@@ -56,13 +56,13 @@ public class Cooldown {
         return cooldowns.get(id);
     }
 
-    public void startRunning(JavaPlugin plugin) {
+    public void startRunning() {
         new BukkitRunnable() {
             @Override
             public void run() {
                 fixCounts();
             }
-        }.runTaskTimer(plugin, 20, 20);
+        }.runTaskTimer(Core.getInstance(), 20, 20);
         new BukkitRunnable() {
             @Override
             public void run() {
@@ -72,7 +72,7 @@ public class Cooldown {
                     e.printStackTrace();
                 }
             }
-        }.runTaskTimerAsynchronously(plugin, 60, 60);
+        }.runTaskTimerAsynchronously(Core.getInstance(), 60, 60);
     }
 
     public void save() throws IOException {

@@ -3,12 +3,6 @@ package me.finestdev.components.handlers;
 import java.util.HashMap;
 import java.util.Map;
 
-import me.borawski.hcf.backend.api.EconomyAPI;
-import me.borawski.hcf.backend.api.PlayerAPI;
-import me.borawski.hcf.backend.session.Rank;
-import me.borawski.hcf.backend.session.Session;
-import me.finestdev.components.Components;
-import me.finestdev.components.utils.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -23,10 +17,16 @@ import org.bukkit.event.block.SignChangeEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 
+import me.borawski.hcf.Core;
+import me.borawski.hcf.api.PlayerAPI;
+import me.borawski.hcf.session.Rank;
+import me.borawski.hcf.session.Session;
+import me.finestdev.components.utils.Utils;
+
 public class SellSignHandler implements Listener {
 
     public SellSignHandler() {
-        Bukkit.getPluginManager().registerEvents(this, Components.getInstance());
+        Bukkit.getPluginManager().registerEvents(this, Core.getInstance());
     }
 
     @EventHandler

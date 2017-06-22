@@ -2,8 +2,6 @@ package me.borawski.hcf.util;
 
 import org.bukkit.ChatColor;
 
-import java.util.Date;
-
 /**
  * Created by Ethan on 3/12/2017.
  */

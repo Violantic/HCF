@@ -1,7 +1,5 @@
 package me.borawski.hcf.session;
 
-import me.borawski.hcf.Core;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
@@ -14,17 +12,13 @@ public class AchievementManager {
     public static final Achievement FIRST_LOGIN = new Achievement("first_login", "First Login", "Login to DesireHCF for the first time", 100);
     public static final Achievement FIRST_FRIEND = new Achievement("first_friend", "First Friend", "Congratulations! You're making friends", 100);
 
-    private Core instance;
     private List<Achievement> achievements;
 
-    public AchievementManager(Core instance) {
-        this.instance = instance;
-        this.achievements = new ArrayList<Achievement>() {
-            {
-                add(FIRST_LOGIN);
-                add(FIRST_FRIEND);
-            }
-        };
+    public AchievementManager() {
+
+        this.achievements = new ArrayList<>();
+        this.achievements.add(FIRST_LOGIN);
+        this.achievements.add(FIRST_FRIEND);
     }
 
     public List<Achievement> getAchievements() {

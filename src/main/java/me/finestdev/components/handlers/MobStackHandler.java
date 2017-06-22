@@ -15,14 +15,14 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import me.finestdev.components.Components;
+import me.borawski.hcf.Core;
 
 public class MobStackHandler implements Listener {
 
     private List<EntityType> mobList;
 
     public MobStackHandler() {
-        Bukkit.getPluginManager().registerEvents(this, Components.getInstance());
+        Bukkit.getPluginManager().registerEvents(this, Core.getInstance());
         mobList = new ArrayList<EntityType>();
         loadEntityList();
         startStackTask();
@@ -32,7 +32,7 @@ public class MobStackHandler implements Listener {
         if (!this.mobList.isEmpty()) {
             this.mobList.clear();
         }
-        Iterator<String> iterator = Components.getInstance().getConfig().getStringList("stacking-entity").iterator();
+        Iterator<String> iterator = Core.getInstance().getConfig().getStringList("stacking-entity").iterator();
         while (iterator.hasNext()) {
             this.mobList.add(EntityType.valueOf(iterator.next().toUpperCase()));
         }
@@ -41,25 +41,22 @@ public class MobStackHandler implements Listener {
     public void startStackTask() {
         new BukkitRunnable() {
             public void run() {
-                int mobStackingRadius = Components.getInstance().getConfig().getInt("stacking-radius");
+                int mobStackingRadius = Core.getInstance().getConfig().getInt("stacking-radius");
                 List<EntityType> mobList = MobStackHandler.this.mobList;
                 Iterator<World> iterator = Bukkit.getServer().getWorlds().iterator();
                 while (iterator.hasNext()) {
                     for (LivingEntity livingEntity : iterator.next().getLivingEntities()) {
                         if (mobList.contains(livingEntity.getType()) && livingEntity.isValid()) {
-                            for (Entity entity : livingEntity.getNearbyEntities((double) mobStackingRadius,
-                                    (double) mobStackingRadius, (double) mobStackingRadius)) {
-                                if (entity instanceof LivingEntity && entity.isValid()
-                                        && mobList.contains(entity.getType())) {
-                                    MobStackHandler.this.stackOne(livingEntity, (LivingEntity) entity, ChatColor
-                                            .valueOf(Components.getInstance().getConfig().getString("stack-color")));
+                            for (Entity entity : livingEntity.getNearbyEntities((double) mobStackingRadius, (double) mobStackingRadius, (double) mobStackingRadius)) {
+                                if (entity instanceof LivingEntity && entity.isValid() && mobList.contains(entity.getType())) {
+                                    MobStackHandler.this.stackOne(livingEntity, (LivingEntity) entity, ChatColor.valueOf(Core.getInstance().getConfig().getString("stack-color")));
                                 }
                             }
                         }
                     }
                 }
             }
-        }.runTaskTimer(Components.getInstance(), 40L, 40L);
+        }.runTaskTimer(Core.getInstance(), 40L, 40L);
     }
 
     public void unstackOne(LivingEntity livingEntity, ChatColor chatColor) {
@@ -120,7 +117,7 @@ public class MobStackHandler implements Listener {
         if (entityDeathEvent.getEntity() instanceof LivingEntity) {
             LivingEntity entity = entityDeathEvent.getEntity();
             if (entity.getType() != EntityType.PLAYER && entity.getType() != EntityType.VILLAGER) {
-                this.unstackOne(entity, ChatColor.valueOf(Components.getInstance().getConfig().getString("stack-color")));
+                this.unstackOne(entity, ChatColor.valueOf(Core.getInstance().getConfig().getString("stack-color")));
             }
         }
     }

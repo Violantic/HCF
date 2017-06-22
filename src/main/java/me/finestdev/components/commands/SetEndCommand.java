@@ -5,7 +5,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import me.finestdev.components.Components;
+import me.borawski.hcf.Core;
 import me.finestdev.components.utils.Utils;
 
 public class SetEndCommand implements CommandExecutor {
@@ -15,8 +15,8 @@ public class SetEndCommand implements CommandExecutor {
             if (commandSender instanceof Player) {
                 Player player = (Player) commandSender;
                 if (player.hasPermission("hcf.setendspawn")) {
-                    Components.getInstance().getConfig().set("endspawn", Utils.toString(player.getLocation()));
-                    Components.getInstance().saveConfig();
+                    Core.getInstance().getConfig().set("endspawn", Utils.toString(player.getLocation()));
+                    Core.getInstance().saveConfig();
                     player.sendMessage(Utils.chat("&8[&c&l*&8]&7 You have set end spawn!"));
                 } else {
                     player.sendMessage("No permission!");
@@ -29,8 +29,8 @@ public class SetEndCommand implements CommandExecutor {
             if (commandSender instanceof Player) {
                 Player player = (Player) commandSender;
                 if (player.hasPermission("hcf.setendexit")) {
-                    Components.getInstance().getConfig().set("endexit", Utils.toString(player.getLocation()));
-                    Components.getInstance().saveConfig();
+                    Core.getInstance().getConfig().set("endexit", Utils.toString(player.getLocation()));
+                    Core.getInstance().saveConfig();
                     player.sendMessage(Utils.chat("&8[&c&l*&8]&7 You have set end exit!"));
                 } else {
                     player.sendMessage("No permission!");

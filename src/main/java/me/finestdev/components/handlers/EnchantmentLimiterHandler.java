@@ -22,7 +22,7 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.EnchantmentStorageMeta;
 
-import me.finestdev.components.Components;
+import me.borawski.hcf.Core;
 
 public class EnchantmentLimiterHandler implements Listener {
 
@@ -31,12 +31,11 @@ public class EnchantmentLimiterHandler implements Listener {
     public EnchantmentLimiterHandler() {
         this.enchantmentLimits = new ArrayList<EnchantmentLimit>();
         this.loadEnchantmentLimits();
-        Bukkit.getPluginManager().registerEvents(this, Components.getInstance());
+        Bukkit.getPluginManager().registerEvents(this, Core.getInstance());
     }
 
     public void loadEnchantmentLimits() {
-        ConfigurationSection configurationSection = Components.getInstance().getConfig()
-                .getConfigurationSection("enchantment-limiter");
+        ConfigurationSection configurationSection = Core.getInstance().getConfig().getConfigurationSection("enchantment-limiter");
         for (String s : configurationSection.getKeys(false)) {
             if (configurationSection.getInt(s) == -1) {
                 continue;
@@ -56,8 +55,7 @@ public class EnchantmentLimiterHandler implements Listener {
     public void onEnchantItem(EnchantItemEvent enchantItemEvent) {
         Map<Enchantment, Integer> enchantsToAdd = enchantItemEvent.getEnchantsToAdd();
         for (EnchantmentLimit enchantmentLimit : this.enchantmentLimits) {
-            if (enchantsToAdd.containsKey(enchantmentLimit.getEnchantment())
-                    && enchantsToAdd.get(enchantmentLimit.getEnchantment()) > enchantmentLimit.getLevel()) {
+            if (enchantsToAdd.containsKey(enchantmentLimit.getEnchantment()) && enchantsToAdd.get(enchantmentLimit.getEnchantment()) > enchantmentLimit.getLevel()) {
                 enchantsToAdd.remove(enchantmentLimit.getEnchantment());
                 if (enchantmentLimit.getLevel() <= 0) {
                     continue;
@@ -72,33 +70,27 @@ public class EnchantmentLimiterHandler implements Listener {
         Player player = (Player) inventoryClickEvent.getWhoClicked();
         Inventory inventory = inventoryClickEvent.getInventory();
         InventoryType.SlotType slotType = inventoryClickEvent.getSlotType();
-        if (inventory.getType().equals((Object) InventoryType.ANVIL)
-                && slotType.equals((Object) InventoryType.SlotType.RESULT)) {
+        if (inventory.getType().equals((Object) InventoryType.ANVIL) && slotType.equals((Object) InventoryType.SlotType.RESULT)) {
             ItemStack currentItem = inventoryClickEvent.getCurrentItem();
             for (EnchantmentLimit enchantmentLimit : this.enchantmentLimits) {
                 if (currentItem.getItemMeta().hasLore()) {
                     Iterator<String> iterator2 = currentItem.getItemMeta().getLore().iterator();
                     while (iterator2.hasNext()) {
-                        if (iterator2.next().equals(Components.getInstance().getConfig().getString("unrepairable-lore-line"))) {
+                        if (iterator2.next().equals(Core.getInstance().getConfig().getString("unrepairable-lore-line"))) {
                             inventoryClickEvent.setCancelled(true);
                             player.sendMessage("This item is not Repairable!");
                         }
                     }
                 } else {
                     if (currentItem.getType().equals((Object) Material.ENCHANTED_BOOK)) {
-                        EnchantmentStorageMeta enchantmentStorageMeta = (EnchantmentStorageMeta) currentItem
-                                .getItemMeta();
-                        if (enchantmentStorageMeta.getStoredEnchants().containsKey(enchantmentLimit.getEnchantment())
-                                && enchantmentStorageMeta.getStoredEnchants()
-                                        .get(enchantmentLimit.getEnchantment()) > enchantmentLimit.getLevel()) {
+                        EnchantmentStorageMeta enchantmentStorageMeta = (EnchantmentStorageMeta) currentItem.getItemMeta();
+                        if (enchantmentStorageMeta.getStoredEnchants().containsKey(enchantmentLimit.getEnchantment()) && enchantmentStorageMeta.getStoredEnchants().get(enchantmentLimit.getEnchantment()) > enchantmentLimit.getLevel()) {
                             inventoryClickEvent.setCancelled(true);
                             player.sendMessage("You can't merge those Items!");
                             return;
                         }
                     }
-                    if (currentItem.getEnchantments().containsKey(enchantmentLimit.getEnchantment())
-                            && currentItem.getEnchantments()
-                                    .get(enchantmentLimit.getEnchantment()) > enchantmentLimit.getLevel()) {
+                    if (currentItem.getEnchantments().containsKey(enchantmentLimit.getEnchantment()) && currentItem.getEnchantments().get(enchantmentLimit.getEnchantment()) > enchantmentLimit.getLevel()) {
                         inventoryClickEvent.setCancelled(true);
                         player.sendMessage("You can't merge those Items!");
                         return;
@@ -117,8 +109,7 @@ public class EnchantmentLimiterHandler implements Listener {
             if (itemStack.getEnchantments() != null && !itemStack.getEnchantments().isEmpty()) {
                 HashMap<Enchantment, Integer> hashMap = new HashMap<Enchantment, Integer>(itemStack.getEnchantments());
                 for (EnchantmentLimit enchantmentLimit : this.enchantmentLimits) {
-                    if (hashMap.containsKey(enchantmentLimit.getEnchantment())
-                            && hashMap.get(enchantmentLimit.getEnchantment()) > enchantmentLimit.getLevel()) {
+                    if (hashMap.containsKey(enchantmentLimit.getEnchantment()) && hashMap.get(enchantmentLimit.getEnchantment()) > enchantmentLimit.getLevel()) {
                         hashMap.remove(enchantmentLimit.getEnchantment());
                         if (enchantmentLimit.getLevel() <= 0) {
                             continue;
@@ -133,12 +124,10 @@ public class EnchantmentLimiterHandler implements Listener {
     @EventHandler
     public void onEntityDeath(EntityDeathEvent entityDeathEvent) {
         for (ItemStack itemStack : entityDeathEvent.getDrops()) {
-            if (itemStack != null && !itemStack.getType().equals((Object) Material.AIR)
-                    && itemStack.getEnchantments() != null && !itemStack.getEnchantments().isEmpty()) {
+            if (itemStack != null && !itemStack.getType().equals((Object) Material.AIR) && itemStack.getEnchantments() != null && !itemStack.getEnchantments().isEmpty()) {
                 HashMap<Enchantment, Integer> hashMap = new HashMap<Enchantment, Integer>(itemStack.getEnchantments());
                 for (EnchantmentLimit enchantmentLimit : this.enchantmentLimits) {
-                    if (hashMap.containsKey(enchantmentLimit.getEnchantment())
-                            && hashMap.get(enchantmentLimit.getEnchantment()) > enchantmentLimit.getLevel()) {
+                    if (hashMap.containsKey(enchantmentLimit.getEnchantment()) && hashMap.get(enchantmentLimit.getEnchantment()) > enchantmentLimit.getLevel()) {
                         hashMap.remove(enchantmentLimit.getEnchantment());
                         if (enchantmentLimit.getLevel() <= 0) {
                             continue;

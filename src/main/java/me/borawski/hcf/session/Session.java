@@ -32,6 +32,7 @@ public class Session {
     private List<List<UUID>> friendRequests;
     private Map<String, String> settings;
 
+    @SuppressWarnings("unchecked")
     public Session(UUID uuid, Document playerDocument, String name) {
         this.uuid = uuid;
         if (playerDocument == null && name != null) {
@@ -47,21 +48,17 @@ public class Session {
             playerDocument.append("ip", "10.0.0.1");
             playerDocument.append("achievements", new ArrayList<String>());
             playerDocument.append("friends", new ArrayList<UUID>());
-            playerDocument.append("friend_requests", new ArrayList<List<UUID>>() {
-                {
-                    // Outgoing Requests //
-                    add(new ArrayList<UUID>());
-                    // Incoming Requests //
-                    add(new ArrayList<UUID>());
-                }
-            });
-            playerDocument.append("settings", new HashMap<String, Object>() {
-                {
-                    put("friend_requests", "true");
-                    put("private_messaging", "false");
 
-                }
-            });
+            ArrayList<List<UUID>> friendRequests = new ArrayList<>();
+            friendRequests.add(new ArrayList<UUID>());
+            friendRequests.add(new ArrayList<UUID>());
+            playerDocument.append("friend_requests", friendRequests);
+
+            HashMap<String, Object> settings = new HashMap<>();
+            settings.put("friend_requests", "true");
+            settings.put("private_messaging", "false");
+            playerDocument.append("settings", settings);
+
             Mongo.getCollection("players").insertOne(playerDocument);
             this.name = name;
             getSession(uuid);
@@ -255,6 +252,7 @@ public class Session {
         }
     }
 
+    @SuppressWarnings("unchecked")
     public void updateDocument(String collection, String key, Object value) {
         Core.getInstance().getServer().getScheduler().runTaskAsynchronously(Core.getInstance(), new Runnable() {
             @Override

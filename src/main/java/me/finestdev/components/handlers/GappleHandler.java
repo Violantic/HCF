@@ -4,9 +4,6 @@ import java.util.Map;
 import java.util.UUID;
 import java.util.function.Consumer;
 
-import me.borawski.hcf.backend.api.PlayerAPI;
-import me.borawski.hcf.backend.session.Session;
-import me.finestdev.components.MscAchievements;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -14,7 +11,11 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerItemConsumeEvent;
 
+import me.borawski.hcf.Core;
+import me.borawski.hcf.api.PlayerAPI;
+import me.borawski.hcf.session.Session;
 import me.finestdev.components.Components;
+import me.finestdev.components.MscAchievements;
 import me.finestdev.components.utils.Cooldown;
 import me.finestdev.components.utils.Cooldown.CooldownBase;
 import me.finestdev.components.utils.Cooldown.Time;
@@ -25,16 +26,16 @@ public class GappleHandler implements Listener {
     private final Cooldown cooldown;
 
     public GappleHandler() {
-        Bukkit.getPluginManager().registerEvents(this, Components.getInstance());
+        Bukkit.getPluginManager().registerEvents(this, Core.getInstance());
 
-        (cooldown = Components.getComponents().getCooldown(Components.GAPPLE)).setOnEndSequece(new Consumer<UUID>() {
+        (cooldown = Components.getInstance().getCooldown(Components.GAPPLE)).setOnEndSequece(new Consumer<UUID>() {
 
             @Override
             public void accept(UUID id) {
-                Bukkit.getScheduler().runTask(Components.getInstance(), new Runnable() {
+                Bukkit.getScheduler().runTask(Core.getInstance(), new Runnable() {
                     @Override
                     public void run() {
-                        Bukkit.getPlayer(id).sendMessage(Utils.chat(Components.getInstance().getConfig().getString("gapple_ended")));
+                        Bukkit.getPlayer(id).sendMessage(Utils.chat(Core.getInstance().getConfig().getString("gapple_ended")));
                     }
                 });
             }
@@ -51,10 +52,10 @@ public class GappleHandler implements Listener {
                 if (!s.hasAchievement("first_gapple")) {
                     s.awardAchievement(MscAchievements.FIRST_GAPPLE, true);
                 }
-                cooldown.startCooldown(p.getUniqueId(), Cooldown.timeToMillis(Components.getInstance().getConfig().getString("gapple_time")));
+                cooldown.startCooldown(p.getUniqueId(), Cooldown.timeToMillis(Core.getInstance().getConfig().getString("gapple_time")));
             } else {
                 e.setCancelled(true);
-                String message = Components.getInstance().getConfig().getString("gapple_message");
+                String message = Core.getInstance().getConfig().getString("gapple_message");
                 long left = Cooldown.getAmountLeft(base);
                 Map<Time, Long> times = Cooldown.timeFromMillis(left);
                 message = message.replace("<days>", (times.containsKey(Time.DAY) ? times.get(Time.DAY) : 0) + "d");

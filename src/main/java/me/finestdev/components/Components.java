@@ -7,25 +7,32 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
+import org.bukkit.Bukkit;
+
 import me.borawski.hcf.Core;
 import me.finestdev.components.commands.CrowbarCommand;
 import me.finestdev.components.commands.EnderchestCommand;
-import me.finestdev.components.commands.SetEndCommand;
 import me.finestdev.components.commands.LivesCommand;
+import me.finestdev.components.commands.SetEndCommand;
+import me.finestdev.components.handlers.BrewingSpeedHandler;
+import me.finestdev.components.handlers.CombatHandler;
+import me.finestdev.components.handlers.CreatureSpawnListener;
+import me.finestdev.components.handlers.CrowbarHandler;
+import me.finestdev.components.handlers.DeathBanHandler;
+import me.finestdev.components.handlers.EnchantmentLimiterHandler;
+import me.finestdev.components.handlers.EnderchestHandler;
+import me.finestdev.components.handlers.EnderpearlHandler;
+import me.finestdev.components.handlers.FurnaceSpeedHandler;
+import me.finestdev.components.handlers.GappleHandler;
+import me.finestdev.components.handlers.LootingBuffHandler;
+import me.finestdev.components.handlers.MobStackHandler;
+import me.finestdev.components.handlers.PotionLimiterHandler;
+import me.finestdev.components.handlers.PvPTimer;
+import me.finestdev.components.handlers.RegionHandler;
+import me.finestdev.components.handlers.SellSignHandler;
 import me.finestdev.components.utils.Cooldown;
-import me.finestdev.components.handlers.*;
 
 public class Components {
-
-    private static Core plugin;
-
-    public Components(Core plugin) {
-        this.plugin = plugin;
-    }
-
-    public Core getPlugin() {
-        return plugin;
-    }
 
     private static Components instance;
 
@@ -70,27 +77,23 @@ public class Components {
         new SellSignHandler();
         new EnchantmentLimiterHandler();
         new PotionLimiterHandler();
-        new PvPTimer(instance);
+        new PvPTimer();
     }
 
     public void registerCommands() {
-        getPlugin().getCommand("crowbar").setExecutor(new CrowbarCommand());
-        getPlugin().getCommand("enderchest").setExecutor(new EnderchestCommand());
-        getPlugin().getCommand("lives").setExecutor(new LivesCommand());
-        getPlugin().getCommand("setendspawn").setExecutor(new SetEndCommand());
-        getPlugin().getCommand("setendexit").setExecutor(new SetEndCommand());
+        Core.getInstance().getCommand("crowbar").setExecutor(new CrowbarCommand());
+        Core.getInstance().getCommand("enderchest").setExecutor(new EnderchestCommand());
+        Core.getInstance().getCommand("lives").setExecutor(new LivesCommand());
+        Core.getInstance().getCommand("setendspawn").setExecutor(new SetEndCommand());
+        Core.getInstance().getCommand("setendexit").setExecutor(new SetEndCommand());
     }
 
-    public static Core getInstance() {
-        return plugin;
-    }
-
-    public static Components getComponents() {
+    public static Components getInstance() {
         return instance;
     }
 
     public void registerCooldowns() {
-        File cooldownFolder = new File(getPlugin().getDataFolder() + File.separator + "cooldowns");
+        File cooldownFolder = new File(Core.getInstance().getDataFolder() + File.separator + "cooldowns");
         if (!cooldownFolder.exists())
             cooldownFolder.mkdirs();
         File gapFile = new File(cooldownFolder, "gapple.cooldown");
@@ -103,12 +106,12 @@ public class Components {
         cooldowns.put(ENDERP, new Cooldown(enderPFile));
         File dbanFile = new File(cooldownFolder, "dban.cooldown");
         cooldowns.put(DEATHBAN, new Cooldown(dbanFile));
-        cooldowns.values().forEach(cooldown -> cooldown.startRunning(getPlugin()));
+        cooldowns.values().forEach(cooldown -> cooldown.startRunning());
     }
 
     public void checkDependencies() {
         try {
-            Scanner scan = new Scanner(new File(getPlugin().getDataFolder(), "items.csv"));
+            Scanner scan = new Scanner(new File(Core.getInstance().getDataFolder(), "items.csv"));
             while (scan.hasNextLine()) {
                 String line = scan.nextLine();
                 String[] values = line.split(",");
@@ -116,7 +119,7 @@ public class Components {
                     SellSignHandler.namesToIds.put(values[0].toLowerCase(), values[1] + ":" + values[2]);
                 }
             }
-            getPlugin().getLogger().info("Successfully loaded items.csv!");
+            Bukkit.getLogger().info("Successfully loaded items.csv!");
             scan.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();

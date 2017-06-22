@@ -2,7 +2,6 @@ package me.finestdev.components.handlers;
 
 import java.util.ArrayList;
 
-import me.finestdev.components.utils.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
@@ -20,7 +19,9 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import me.borawski.hcf.Core;
 import me.finestdev.components.Components;
+import me.finestdev.components.utils.Utils;
 
 public class PotionLimiterHandler implements Listener {
 
@@ -29,12 +30,11 @@ public class PotionLimiterHandler implements Listener {
     public PotionLimiterHandler() {
         this.potionLimits = new ArrayList<PotionLimit>();
         this.loadPotionLimits();
-        Bukkit.getPluginManager().registerEvents(this, Components.getInstance());
+        Bukkit.getPluginManager().registerEvents(this, Core.getInstance());
     }
 
     public void loadPotionLimits() {
-        ConfigurationSection configurationSection = Components.getInstance().getConfig()
-                .getConfigurationSection("potion-limiter");
+        ConfigurationSection configurationSection = Core.getInstance().getConfig().getConfigurationSection("potion-limiter");
         for (String s : configurationSection.getKeys(false)) {
             if (configurationSection.getInt(String.valueOf(s) + ".level") == -1) {
                 continue;
@@ -92,7 +92,7 @@ public class PotionLimiterHandler implements Listener {
                     }
                 }
             }
-        }.runTaskLater(Components.getInstance(), 1L);
+        }.runTaskLater(Core.getInstance(), 1L);
     }
 
     @EventHandler

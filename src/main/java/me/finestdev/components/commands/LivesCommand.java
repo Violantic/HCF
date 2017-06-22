@@ -1,15 +1,15 @@
 package me.finestdev.components.commands;
 
-import me.borawski.hcf.backend.api.PlayerAPI;
-import me.borawski.hcf.backend.session.Rank;
-import me.borawski.hcf.backend.session.Session;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import me.finestdev.components.Components;
+import me.borawski.hcf.Core;
+import me.borawski.hcf.api.PlayerAPI;
+import me.borawski.hcf.session.Rank;
+import me.borawski.hcf.session.Session;
 import me.finestdev.components.handlers.DeathBanHandler;
 import me.finestdev.components.utils.Utils;
 
@@ -23,13 +23,14 @@ public class LivesCommand implements CommandExecutor {
                 sender.sendMessage(Utils.chat("&4&lLIVES&r &7/lives <player> <add:remove> <int>"));
                 return true;
             } else if (args.length == 1) {
+                @SuppressWarnings("deprecation")
                 Player target = Bukkit.getPlayer(args[0]);
                 if (target != null) {
                     sender.sendMessage(Utils.chat(Utils.chat("&4&lLIVES&r &7The player " + target.getDisplayName()
                             + " &7currently has &c" + DeathBanHandler.getLives(target) + " lives")));
                     return true;
                 } else {
-                    sender.sendMessage(Utils.chat(Components.getInstance().getConfig().getString("player_not_found").replace("<target>", args[0])));
+                    sender.sendMessage(Utils.chat(Core.getInstance().getConfig().getString("player_not_found").replace("<target>", args[0])));
                 }
             } else if (args.length == 2) {
                 if (args[1].equalsIgnoreCase("add")) {
@@ -39,6 +40,7 @@ public class LivesCommand implements CommandExecutor {
                 }
             } else if (args.length == 3) {
                 int lives = Integer.parseInt(args[2]);
+                @SuppressWarnings("deprecation")
                 Player target = Bukkit.getPlayer(args[0]);
                 if (args[1].equalsIgnoreCase("add")) {
                     if (!args[2].startsWith("-")) {

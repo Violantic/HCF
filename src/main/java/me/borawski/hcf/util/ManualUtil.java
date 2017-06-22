@@ -1,24 +1,24 @@
 package me.borawski.hcf.util;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import org.bukkit.Bukkit;
+import org.bukkit.Material;
+import org.bukkit.craftbukkit.v1_11_R1.entity.CraftPlayer;
+import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.BookMeta;
+
 import io.netty.buffer.Unpooled;
 import me.borawski.hcf.Core;
 import me.borawski.hcf.manual.Manual;
 import me.borawski.hcf.manual.ManualPage;
 import me.borawski.hcf.manual.server.YouTuberManual;
 import me.borawski.hcf.session.Rank;
-import net.minecraft.server.v1_11_R1.*;
-import org.bukkit.Bukkit;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.craftbukkit.v1_11_R1.entity.CraftPlayer;
-import org.bukkit.craftbukkit.v1_11_R1.inventory.CraftItemStack;
-import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.BookMeta;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import net.minecraft.server.v1_11_R1.PacketDataSerializer;
+import net.minecraft.server.v1_11_R1.PacketPlayOutCustomPayload;
 
 /**
  * Created by Ethan on 5/16/2017.
@@ -50,7 +50,6 @@ public class ManualUtil {
 
     public static void openManual(Rank rank, Player p) {
         int slot = p.getInventory().getHeldItemSlot();
-        ItemStack old = p.getInventory().getItem(slot);
         p.getInventory().setItem(slot, newBook(rank));
         PacketPlayOutCustomPayload packet = new PacketPlayOutCustomPayload("MC|BOpen", new PacketDataSerializer(Unpooled.EMPTY_BUFFER));
         ((CraftPlayer) p).getHandle().playerConnection.sendPacket(packet);

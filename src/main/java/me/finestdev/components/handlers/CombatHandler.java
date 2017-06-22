@@ -4,9 +4,6 @@ import java.util.ArrayList;
 import java.util.UUID;
 import java.util.function.Consumer;
 
-import me.borawski.hcf.backend.api.PlayerAPI;
-import me.borawski.hcf.backend.session.Session;
-import me.finestdev.components.MscAchievements;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
@@ -17,7 +14,11 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
+import me.borawski.hcf.Core;
+import me.borawski.hcf.api.PlayerAPI;
+import me.borawski.hcf.session.Session;
 import me.finestdev.components.Components;
+import me.finestdev.components.MscAchievements;
 import me.finestdev.components.utils.Cooldown;
 import me.finestdev.components.utils.Utils;
 
@@ -28,19 +29,19 @@ public class CombatHandler implements Listener {
     private final Cooldown cooldown;
 
     public CombatHandler() {
-        Bukkit.getPluginManager().registerEvents(this, Components.getInstance());
+        Bukkit.getPluginManager().registerEvents(this, Core.getInstance());
 
-        (cooldown = Components.getComponents().getCooldown(Components.CBTLOG)).setOnEndSequece(new Consumer<UUID>() {
+        (cooldown = Components.getInstance().getCooldown(Components.CBTLOG)).setOnEndSequece(new Consumer<UUID>() {
 
             @Override
             public void accept(UUID id) {
-                Bukkit.getScheduler().runTask(Components.getInstance(), new Runnable() {
+                Bukkit.getScheduler().runTask(Core.getInstance(), new Runnable() {
                     @Override
                     public void run() {
                         tagged.remove(id);
                         try {
                             System.out.println(id.toString() + " has been removed from combat");
-                            Bukkit.getPlayer(id).sendMessage(Utils.chat(Components.getInstance().getConfig().getString("combattag_removed_message")));
+                            Bukkit.getPlayer(id).sendMessage(Utils.chat(Core.getInstance().getConfig().getString("combattag_removed_message")));
                         } catch (Exception ignored) {
                         }
                     }
@@ -66,13 +67,13 @@ public class CombatHandler implements Listener {
                     s.awardAchievement(MscAchievements.FIRST_COMBAT, true);
                 }
                 cooldown.startCooldown(victim.getUniqueId(),
-                        Cooldown.timeToMillis(Components.getInstance().getConfig().getString("combattag_time")));
+                        Cooldown.timeToMillis(Core.getInstance().getConfig().getString("combattag_time")));
                 tagged.add(victim.getUniqueId());
                 victim.sendMessage(Utils
-                        .chat(Components.getInstance().getConfig().getString("combattag_victim_message").replace("<attacker>", attacker.getName())));
+                        .chat(Core.getInstance().getConfig().getString("combattag_victim_message").replace("<attacker>", attacker.getName())));
             } else {
                 cooldown.startCooldown(victim.getUniqueId(),
-                        Cooldown.timeToMillis(Components.getInstance().getConfig().getString("combattag_time")));
+                        Cooldown.timeToMillis(Core.getInstance().getConfig().getString("combattag_time")));
             }
         }
     }

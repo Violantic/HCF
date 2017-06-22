@@ -1,6 +1,6 @@
 package me.finestdev.components;
 
-import me.borawski.hcf.backend.session.Achievement;
+import me.borawski.hcf.session.Achievement;
 
 /**
  * Created by Ethan on 4/23/2017.

@@ -20,6 +20,7 @@ import org.bukkit.event.player.PlayerLoginEvent;
 import org.bukkit.event.player.PlayerLoginEvent.Result;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import me.borawski.hcf.Core;
 import me.finestdev.components.Components;
 import me.finestdev.components.utils.Cooldown;
 import me.finestdev.components.utils.Cooldown.CooldownBase;
@@ -32,7 +33,7 @@ public class DeathBanHandler implements Listener {
     private final static Map<UUID, Integer> lives = new HashMap<>();
 
     public DeathBanHandler() {
-        File dataFile = new File(Components.getInstance().getDataFolder(), "lives.data");
+        File dataFile = new File(Core.getInstance().getDataFolder(), "lives.data");
         try {
             if (!dataFile.exists())
                 dataFile.createNewFile();
@@ -51,7 +52,7 @@ public class DeathBanHandler implements Listener {
             public void run() {
                 saveLives();
             }
-        }.runTaskTimerAsynchronously(Components.getInstance(), 1200, 1200);
+        }.runTaskTimerAsynchronously(Core.getInstance(), 1200, 1200);
     }
 
     @EventHandler
@@ -59,17 +60,17 @@ public class DeathBanHandler implements Listener {
         e.setDeathMessage(null);
         Player p = e.getEntity().getPlayer();
         Player killer = e.getEntity().getKiller();
-        Cooldown cooldown = Components.getComponents().getCooldown(Components.DEATHBAN);
+        Cooldown cooldown = Components.getInstance().getCooldown(Components.DEATHBAN);
         p.getWorld().strikeLightningEffect(p.getLocation());
-        cooldown.startCooldown(p.getUniqueId(), Cooldown.timeToMillis(Components.getInstance().getConfig().getString("deathban_time")));
+        cooldown.startCooldown(p.getUniqueId(), Cooldown.timeToMillis(Core.getInstance().getConfig().getString("deathban_time")));
         if (killer != p) {
-            p.kickPlayer(Utils.chat(Components.getInstance().getConfig().getString("deathban_player_message").replace("<killer>", killer.getName())
+            p.kickPlayer(Utils.chat(Core.getInstance().getConfig().getString("deathban_player_message").replace("<killer>", killer.getName())
                     + (getLives(p) > 0 ? "\n\n&cLogin in 10 seconds to use a life." : "")));
         } else {
-            p.kickPlayer(Utils.chat(Components.getInstance().getConfig().getString("deathban_player_message")
+            p.kickPlayer(Utils.chat(Core.getInstance().getConfig().getString("deathban_player_message")
                     + (getLives(p) > 0 ? "\n\n&cLogin in 10 seconds to use a life." : "")));
         }
-        Bukkit.broadcastMessage(Utils.chat(Components.getInstance().getConfig().getString("deathban_broadcast")
+        Bukkit.broadcastMessage(Utils.chat(Core.getInstance().getConfig().getString("deathban_broadcast")
                 .replace("<victim>", p.getDisplayName()).replace("<killer>", killer.getDisplayName())));
         startCounting(p);
     }
@@ -77,7 +78,7 @@ public class DeathBanHandler implements Listener {
     @EventHandler
     public void onLogin(PlayerLoginEvent e) {
         Player p = e.getPlayer();
-        CooldownBase banBase = Components.getComponents().getCooldown(Components.DEATHBAN).get(p.getUniqueId());
+        CooldownBase banBase = Components.getInstance().getCooldown(Components.DEATHBAN).get(p.getUniqueId());
         if (banBase == null) {
             return;
         }
@@ -86,12 +87,12 @@ public class DeathBanHandler implements Listener {
             return;
         }
         if (acceptLife(p)) {
-            Components.getComponents().getCooldown(Components.DEATHBAN).endCooldown(p.getUniqueId());
+            Components.getInstance().getCooldown(Components.DEATHBAN).endCooldown(p.getUniqueId());
             return;
         }
         Map<Time, Long> times = Cooldown.timeFromMillis(left);
         e.setResult(Result.KICK_OTHER);
-        String message = Components.getInstance().getConfig().getString("deathban_message");
+        String message = Core.getInstance().getConfig().getString("deathban_message");
         message = message.replace("<days>", (times.containsKey(Time.DAY) ? times.get(Time.DAY) : 0) + "d");
         message = message.replace("<hours>", (times.containsKey(Time.HOUR) ? times.get(Time.HOUR) : 0) + "m");
         message = message.replace("<minutes>", (times.containsKey(Time.MINUTE) ? times.get(Time.MINUTE) : 0) + "m");
@@ -118,11 +119,11 @@ public class DeathBanHandler implements Listener {
             public void run() {
                 counting.remove(player.getUniqueId());
             }
-        }.runTaskLater(Components.getInstance(), 10 * 20);
+        }.runTaskLater(Core.getInstance(), 10 * 20);
     }
 
     public void saveLives() {
-        File dataFile = new File(Components.getInstance().getDataFolder(), "lives.data");
+        File dataFile = new File(Core.getInstance().getDataFolder(), "lives.data");
         try {
             if (!dataFile.exists())
                 dataFile.createNewFile();

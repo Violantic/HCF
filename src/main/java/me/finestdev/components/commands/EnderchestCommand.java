@@ -1,14 +1,14 @@
 package me.finestdev.components.commands;
 
-import me.borawski.hcf.backend.api.PlayerAPI;
-import me.borawski.hcf.backend.session.Rank;
-import me.borawski.hcf.backend.session.Session;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import me.finestdev.components.Components;
+import me.borawski.hcf.Core;
+import me.borawski.hcf.api.PlayerAPI;
+import me.borawski.hcf.session.Rank;
+import me.borawski.hcf.session.Session;
 import me.finestdev.components.utils.Utils;
 
 public class EnderchestCommand implements CommandExecutor {
@@ -21,13 +21,13 @@ public class EnderchestCommand implements CommandExecutor {
                 if (s.getRank().getId() >= Rank.MODERATOR.getId()) {
                     if (Utils.enderchestDisabled == true) {
                         Utils.enderchestDisabled = false;
-                        Components.getInstance().getConfig().set("enderchest-disabled", false);
-                        Components.getInstance().saveConfig();
+                        Core.getInstance().getConfig().set("enderchest-disabled", false);
+                        Core.getInstance().saveConfig();
                         player.sendMessage("Enderchest Enabled!");
                     } else {
                         player.sendMessage("Enderchest Disabled!");
-                        Components.getInstance().getConfig().set("enderchest-disabled", true);
-                        Components.getInstance().saveConfig();
+                        Core.getInstance().getConfig().set("enderchest-disabled", true);
+                        Core.getInstance().saveConfig();
                         Utils.enderchestDisabled = true;
                     }
                 } else {

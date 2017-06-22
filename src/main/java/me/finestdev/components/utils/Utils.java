@@ -1,13 +1,14 @@
 package me.finestdev.components.utils;
 
-import me.finestdev.components.Components;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 
+import me.borawski.hcf.Core;
+
 public class Utils {
 
-    public static boolean enderchestDisabled = Components.getInstance().getConfig().getBoolean("enderchest-disabled");
+    public static boolean enderchestDisabled = Core.getInstance().getConfig().getBoolean("enderchest-disabled");
 
     public static String chat(String s) {
         return ChatColor.translateAlternateColorCodes('&', s);

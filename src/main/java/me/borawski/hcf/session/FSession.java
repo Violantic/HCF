@@ -22,6 +22,7 @@ public class FSession {
     private List<UUID> members;
     private Map<String, String> settings;
 
+    @SuppressWarnings("unchecked")
     public FSession(String name, Document playerDocument) {
         this.name = name;
         if (playerDocument == null && name != null) {
@@ -105,6 +106,7 @@ public class FSession {
         cache.remove(this);
     }
 
+    @SuppressWarnings("unchecked")
     public void updateDocument(String collection, String key, Object value) {
         Core.getInstance().getServer().getScheduler().runTaskAsynchronously(Core.getInstance(), new Runnable() {
             @Override

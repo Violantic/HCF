@@ -11,12 +11,12 @@ import org.bukkit.event.inventory.FurnaceBurnEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import me.finestdev.components.Components;
+import me.borawski.hcf.Core;
 
 public class FurnaceSpeedHandler implements Listener {
 
     public FurnaceSpeedHandler() {
-        Bukkit.getPluginManager().registerEvents(this, Components.getInstance());
+        Bukkit.getPluginManager().registerEvents(this, Core.getInstance());
     }
 
     @EventHandler(priority = EventPriority.MONITOR)
@@ -25,7 +25,7 @@ public class FurnaceSpeedHandler implements Listener {
             BlockState state = playerInteractEvent.getClickedBlock().getState();
             if (state instanceof Furnace) {
                 Furnace furnace = (Furnace) state;
-                furnace.setCookTime((short) (furnace.getCookTime() + Components.getInstance().getConfig().getInt("furnace.speed")));
+                furnace.setCookTime((short) (furnace.getCookTime() + Core.getInstance().getConfig().getInt("furnace.speed")));
                 furnace.setBurnTime((short) Math.max(1, furnace.getBurnTime() - 1));
             }
         }
@@ -36,8 +36,8 @@ public class FurnaceSpeedHandler implements Listener {
         BlockState state = furnaceBurnEvent.getBlock().getState();
         if (state instanceof Furnace) {
             Furnace furnace = (Furnace) state;
-            if (Components.getInstance().getConfig().getInt("furnace.speed") > 1) {
-                new FurnaceUpdateTask(furnace).runTaskTimer(Components.getInstance(), 1L, 1L);
+            if (Core.getInstance().getConfig().getInt("furnace.speed") > 1) {
+                new FurnaceUpdateTask(furnace).runTaskTimer(Core.getInstance(), 1L, 1L);
             }
         }
     }
@@ -50,7 +50,7 @@ public class FurnaceSpeedHandler implements Listener {
         }
 
         public void run() {
-            this.furnace.setCookTime((short) (this.furnace.getCookTime() + Components.getInstance().getConfig().getInt("furnace.speed")));
+            this.furnace.setCookTime((short) (this.furnace.getCookTime() + Core.getInstance().getConfig().getInt("furnace.speed")));
             this.furnace.setBurnTime((short) Math.max(1, this.furnace.getBurnTime() - 1));
             this.furnace.update();
             if (this.furnace.getBurnTime() <= 1) {
