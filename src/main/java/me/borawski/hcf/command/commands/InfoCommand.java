@@ -16,7 +16,7 @@ import me.borawski.hcf.util.PlayerUtils;
  */
 public class InfoCommand extends CustomCommand {
 
-    public InfoCommand(String name, String description, Rank requiredRank, String[] aliases) {
+    public InfoCommand() {
         super("info", "Get a user's information.", Rank.ADMIN);
     }
 
