@@ -42,8 +42,6 @@ public class PlayerAPI {
         return PlayerUtils.hasPlayed(name);
     }
 
-
-
     public static void issueTempConsolePunishment(Punishment.Type type, UUID uuid, long until, String reason) {
         Core.getInstance().getPunishmentManager().issue(type, uuid, new UUID(0, 16), until, reason);
     }

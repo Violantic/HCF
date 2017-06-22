@@ -32,5 +32,4 @@ public class Mongo {
         return getMongoDatabase().getCollection(collection);
     }
 
-
 }

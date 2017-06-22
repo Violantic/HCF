@@ -22,7 +22,7 @@ public class CustomCommandHandler implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         CustomCommand command = getCustomCommand(label);
         if (command != null) {
-            Session s = sender instanceof Player ? Session.getSession(((Player)sender).getUniqueId()) : null;
+            Session s = sender instanceof Player ? Session.getSession(((Player) sender).getUniqueId()) : null;
             if (s == null || s.getRank().getId() >= command.getRequiredRank().getId()) {
                 command.run(sender, label, args);
             } else {

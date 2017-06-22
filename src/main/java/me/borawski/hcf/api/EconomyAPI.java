@@ -18,16 +18,16 @@ public class EconomyAPI {
 
     public static void takeTokens(UUID uuid, int amount, boolean inform) {
         Session session = Session.getSession(uuid);
-        setTokens(uuid, session.getTokens()-amount);
-        if(inform) {
+        setTokens(uuid, session.getTokens() - amount);
+        if (inform) {
             session.sendMessage(Core.getInstance().getPrefix() + "Your token amount is now " + ChatColor.YELLOW + session.getTokens());
         }
     }
 
     public static void giveTokens(UUID uuid, int amount, boolean inform) {
         Session session = Session.getSession(uuid);
-        setTokens(uuid, session.getTokens()+amount);
-        if(inform) {
+        setTokens(uuid, session.getTokens() + amount);
+        if (inform) {
             session.sendMessage(Core.getInstance().getPrefix() + "You have gained " + ChatColor.YELLOW + session.getTokens() + ChatColor.GRAY + " tokens");
         }
     }
