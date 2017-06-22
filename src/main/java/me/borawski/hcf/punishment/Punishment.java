@@ -1,13 +1,10 @@
 package me.borawski.hcf.punishment;
 
-import me.borawski.hcf.connection.Mongo;
-import org.bson.Document;
-import org.jongo.marshall.jackson.oid.MongoId;
-
-import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
-import java.util.function.Consumer;
+
+import org.bson.Document;
+
+import me.borawski.hcf.connection.Mongo;
 
 /**
  * Created by Ethan on 3/8/2017.
@@ -26,10 +23,10 @@ public class Punishment {
         this.player = player;
         this.type = type;
         this.issuer = UUID.fromString(punishDoc.getString("issuer"));
-        //this.issued = punishDoc.getLong("issued");
-        //this.until = punishDoc.getLong("until");
-        //this.undone = punishDoc.getBoolean("undone");
-        //this.reason = punishDoc.getString("reason");
+        // this.issued = punishDoc.getLong("issued");
+        // this.until = punishDoc.getLong("until");
+        // this.undone = punishDoc.getBoolean("undone");
+        // this.reason = punishDoc.getString("reason");
     }
 
     public UUID getPlayer() {
@@ -69,8 +66,7 @@ public class Punishment {
     }
 
     public enum Type {
-        MUTE,
-        BAN
+        MUTE, BAN
     }
 
 }
