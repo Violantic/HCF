@@ -42,6 +42,7 @@ public class CustomCommandHandler implements CommandExecutor {
         if (commands == null) {
             commands = new LinkedList<>();
         }
+        Core.getInstance().getCommand(command.name).setExecutor(this);
         commands.add(command);
     }
 
