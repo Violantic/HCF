@@ -36,7 +36,11 @@ public class PvPTimer implements CommandExecutor, Listener {
                 Bukkit.getScheduler().runTask(getInstance().getPlugin(), new Runnable() {
                     @Override
                     public void run() {
-                        Bukkit.getPlayer(id).sendMessage(Utils.chat(/*COnfigurable Ended Message*/""));
+                        Bukkit.getPlayer(id).sendMessage(Utils.chat(/*
+                                                                     * COnfigurable
+                                                                     * Ended
+                                                                     * Message
+                                                                     */""));
                     }
                 });
             }
@@ -99,7 +103,7 @@ public class PvPTimer implements CommandExecutor, Listener {
         CooldownBase base = cooldown.get(p.getUniqueId());
 
         if (base != null) {
-            if(Cooldown.getAmountLeft(base) > 0) {
+            if (Cooldown.getAmountLeft(base) > 0) {
                 e.setCancelled(true);
                 if (e.getDamager() instanceof Player) {
                     a.sendMessage(Utils

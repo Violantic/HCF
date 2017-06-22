@@ -14,48 +14,48 @@ import org.bukkit.scheduler.BukkitRunnable;
 import me.finestdev.components.Components;
 
 public class FurnaceSpeedHandler implements Listener {
-	
-	public FurnaceSpeedHandler(){
-		Bukkit.getPluginManager().registerEvents(this, Components.getInstance());
-	}
-	
-	@EventHandler(priority = EventPriority.MONITOR)
-	public void onPlayerInteract(PlayerInteractEvent playerInteractEvent) {
-		if (playerInteractEvent.getAction() == Action.RIGHT_CLICK_BLOCK) {
-			BlockState state = playerInteractEvent.getClickedBlock().getState();
-			if (state instanceof Furnace) {
-				Furnace furnace = (Furnace) state;
-				furnace.setCookTime((short) (furnace.getCookTime() + Components.getInstance().getConfig().getInt("furnace.speed")));
-				furnace.setBurnTime((short) Math.max(1, furnace.getBurnTime() - 1));
-			}
-		}
-	}
 
-	@EventHandler
-	public void onFurnaceBurn(FurnaceBurnEvent furnaceBurnEvent) {
-		BlockState state = furnaceBurnEvent.getBlock().getState();
-		if (state instanceof Furnace) {
-			Furnace furnace = (Furnace) state;
-			if (Components.getInstance().getConfig().getInt("furnace.speed") > 1) {
-				new FurnaceUpdateTask(furnace).runTaskTimer(Components.getInstance(), 1L, 1L);
-			}
-		}
-	}
+    public FurnaceSpeedHandler() {
+        Bukkit.getPluginManager().registerEvents(this, Components.getInstance());
+    }
 
-	public class FurnaceUpdateTask extends BukkitRunnable {
-		private Furnace furnace;
+    @EventHandler(priority = EventPriority.MONITOR)
+    public void onPlayerInteract(PlayerInteractEvent playerInteractEvent) {
+        if (playerInteractEvent.getAction() == Action.RIGHT_CLICK_BLOCK) {
+            BlockState state = playerInteractEvent.getClickedBlock().getState();
+            if (state instanceof Furnace) {
+                Furnace furnace = (Furnace) state;
+                furnace.setCookTime((short) (furnace.getCookTime() + Components.getInstance().getConfig().getInt("furnace.speed")));
+                furnace.setBurnTime((short) Math.max(1, furnace.getBurnTime() - 1));
+            }
+        }
+    }
 
-		public FurnaceUpdateTask(Furnace furnace) {
-			this.furnace = furnace;
-		}
+    @EventHandler
+    public void onFurnaceBurn(FurnaceBurnEvent furnaceBurnEvent) {
+        BlockState state = furnaceBurnEvent.getBlock().getState();
+        if (state instanceof Furnace) {
+            Furnace furnace = (Furnace) state;
+            if (Components.getInstance().getConfig().getInt("furnace.speed") > 1) {
+                new FurnaceUpdateTask(furnace).runTaskTimer(Components.getInstance(), 1L, 1L);
+            }
+        }
+    }
 
-		public void run() {
-			this.furnace.setCookTime((short) (this.furnace.getCookTime() + Components.getInstance().getConfig().getInt("furnace.speed")));
-			this.furnace.setBurnTime((short) Math.max(1, this.furnace.getBurnTime() - 1));
-			this.furnace.update();
-			if (this.furnace.getBurnTime() <= 1) {
-				this.cancel();
-			}
-		}
-	}
+    public class FurnaceUpdateTask extends BukkitRunnable {
+        private Furnace furnace;
+
+        public FurnaceUpdateTask(Furnace furnace) {
+            this.furnace = furnace;
+        }
+
+        public void run() {
+            this.furnace.setCookTime((short) (this.furnace.getCookTime() + Components.getInstance().getConfig().getInt("furnace.speed")));
+            this.furnace.setBurnTime((short) Math.max(1, this.furnace.getBurnTime() - 1));
+            this.furnace.update();
+            if (this.furnace.getBurnTime() <= 1) {
+                this.cancel();
+            }
+        }
+    }
 }

@@ -1,10 +1,11 @@
 package me.borawski.hcf.util;
 
-import me.borawski.hcf.backend.session.Session;
+import java.util.UUID;
+
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
-import java.util.UUID;
+import me.borawski.hcf.session.Session;
 
 /**
  * Created by Ethan on 3/12/2017.
@@ -38,7 +39,8 @@ public class ChatUtils {
                 if (c == 'l' || c == 'L') {
                     isBold = true;
                     continue;
-                } else isBold = false;
+                } else
+                    isBold = false;
             } else {
                 DefaultFontInfo dFI = DefaultFontInfo.getDefaultFontInfo(c);
                 messagePxSize += isBold ? dFI.getBoldLength() : dFI.getLength();
@@ -77,6 +79,5 @@ public class ChatUtils {
             return Session.getSession(uuid).getRank().getMain() + Session.getSession(uuid).getName() + ChatColor.RESET;
         }
     }
-
 
 }

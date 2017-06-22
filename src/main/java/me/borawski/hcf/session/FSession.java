@@ -44,7 +44,8 @@ public class FSession {
             this.koth = playerDocument.getInteger("koth");
             this.members = playerDocument.get("members", ArrayList.class);
             this.settings = playerDocument.get("settings", Map.class);
-            //updateDocument("factions", "last_login", System.currentTimeMillis());
+            // updateDocument("factions", "last_login",
+            // System.currentTimeMillis());
             cache.add(this);
         }
     }

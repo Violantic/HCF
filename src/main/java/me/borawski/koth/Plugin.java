@@ -32,7 +32,9 @@ public class Plugin {
     public Plugin(Core instance) {
         this.instance = instance;
         internal = this;
-        //setFactionSession(new FactionSession(Mongo.getCollection("seasons").find(new Document("season", SEASON)).first()));
+        // setFactionSession(new
+        // FactionSession(Mongo.getCollection("seasons").find(new
+        // Document("season", SEASON)).first()));
     }
 
     public static Core getInstance() {
@@ -46,7 +48,7 @@ public class Plugin {
     public void onEnable() {
         Factions factions = Factions.getInstance();
         if (factions == null) {
-            //Factions is not on this server/isn't a supported version
+            // Factions is not on this server/isn't a supported version
             System.out.println("FACTIONS NOT FOUND");
         } else {
             System.out.println("Total Factions: " + factions.getAllFactions().size());
@@ -77,7 +79,7 @@ public class Plugin {
                         // Ignored. //
                     }
 
-                    if(currentKoth == null) {
+                    if (currentKoth == null) {
                         Random random = new Random();
                         int index = random.nextInt(getKothManager().getScheduledKoth().size());
                         currentKoth = getKothManager().getScheduledKoth().get(index);

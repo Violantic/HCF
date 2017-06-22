@@ -16,6 +16,7 @@ public class AchievementManager {
 
     private Core instance;
     private List<Achievement> achievements;
+
     public AchievementManager(Core instance) {
         this.instance = instance;
         this.achievements = new ArrayList<Achievement>() {
@@ -35,7 +36,7 @@ public class AchievementManager {
         getAchievements().stream().forEach(new Consumer<Achievement>() {
             @Override
             public void accept(Achievement achievement) {
-                if(achievement.getId().equalsIgnoreCase(id)) {
+                if (achievement.getId().equalsIgnoreCase(id)) {
                     a[0] = achievement;
                 }
             }

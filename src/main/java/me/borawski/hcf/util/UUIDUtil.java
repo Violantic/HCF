@@ -11,7 +11,8 @@ import java.util.UUID;
  */
 public class UUIDUtil {
 
-    private UUIDUtil() {}
+    private UUIDUtil() {
+    }
 
     public static String strip(UUID uniqueId) {
         return uniqueId.toString().replace("-", "");
@@ -30,7 +31,7 @@ public class UUIDUtil {
     }
 
     public static UUID amplify(String shortened) {
-        if(shortened.isEmpty()) {
+        if (shortened.isEmpty()) {
             return null;
         }
 
@@ -41,7 +42,7 @@ public class UUIDUtil {
         byte[] bytes = new byte[(Long.SIZE / Byte.SIZE) * 2];
         LongBuffer longBuffer = ByteBuffer.wrap(bytes).asLongBuffer();
 
-        longBuffer.put(new long[] {uniqueId.getMostSignificantBits(), uniqueId.getLeastSignificantBits()});
+        longBuffer.put(new long[] { uniqueId.getMostSignificantBits(), uniqueId.getLeastSignificantBits() });
         return bytes;
     }
 

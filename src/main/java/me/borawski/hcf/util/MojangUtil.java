@@ -12,21 +12,22 @@ import java.net.URL;
 import java.util.UUID;
 
 /**
- * Created by Ethan on 3/8/2017.
- * Credit to my friend Julian for helping me write this utility
+ * Created by Ethan on 3/8/2017. Credit to my friend Julian for helping me write
+ * this utility
  */
 public class MojangUtil {
 
     private static final String BASE_URL = "https://mcapi.ca/";
     private static final JSONParser PARSER = new JSONParser();
 
-    private MojangUtil() {}
+    private MojangUtil() {
+    }
 
     public static UUID getUniqueId(String name) throws IOException, ParseException {
         HttpURLConnection connection = ((HttpURLConnection) new URL(BASE_URL + "uuid/player/" + name).openConnection());
         JSONObject result = ((JSONObject) ((JSONArray) PARSER.parse(new InputStreamReader(connection.getInputStream()))).get(0));
 
-        if(result.get("uuid_formatted") == null) {
+        if (result.get("uuid_formatted") == null) {
             return null;
         }
 

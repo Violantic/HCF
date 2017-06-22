@@ -37,5 +37,4 @@ public class Achievement {
         return this.reward;
     }
 
-
 }

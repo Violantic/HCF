@@ -11,14 +11,14 @@ import java.util.UUID;
  * Created by Ethan on 3/12/2017.
  */
 public class FriendUtils {
-    
+
     /*
      * Methods
      */
 
     public static void addFriend(Session player, UUID target) {
         player.getFriends().add(target);
-        if(!player.hasAchievement("first_friend")) {
+        if (!player.hasAchievement("first_friend")) {
             player.awardAchievement(AchievementManager.FIRST_FRIEND, true);
         }
     }

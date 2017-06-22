@@ -55,7 +55,7 @@ public class Session {
                     add(new ArrayList<UUID>());
                 }
             });
-            playerDocument.append("settings", new HashMap<String, Object>(){
+            playerDocument.append("settings", new HashMap<String, Object>() {
                 {
                     put("friend_requests", "true");
                     put("private_messaging", "false");
@@ -83,7 +83,7 @@ public class Session {
                 System.out.println("[DesireHCF] Punishment Type: " + document.getString("type"));
                 if (document.getString("type").equalsIgnoreCase("MUTE")) {
                     this.muted = true;
-                } else if(document.getString("type").equalsIgnoreCase("BAN")){
+                } else if (document.getString("type").equalsIgnoreCase("BAN")) {
                     this.banned = true;
                 }
             } else {

@@ -14,7 +14,7 @@ import java.util.function.Consumer;
 /**
  * Created by Ethan on 4/26/2017.
  */
-public class PrizeExample extends JavaPlugin implements Listener{
+public class PrizeExample extends JavaPlugin implements Listener {
 
     /**
      * Variables
@@ -66,22 +66,22 @@ public class PrizeExample extends JavaPlugin implements Listener{
     }
 
     /**
-     * Listener event for when the player
-     * logs into the server
+     * Listener event for when the player logs into the server
+     * 
      * @param event
      */
     @EventHandler
     public void onLogin(PlayerLoginEvent event) {
         final Prize[] prizes = new Prize[1];
-        final boolean[] finished = {false};
+        final boolean[] finished = { false };
         getPrizes().stream().forEach(new Consumer<Prize>() {
             @Override
             public void accept(Prize prize) {
-                if(finished[0]) {
+                if (finished[0]) {
                     return;
                 }
-                int percent = new Random().nextInt(100)+1;
-                if(percent >= prize.percent()) {
+                int percent = new Random().nextInt(100) + 1;
+                if (percent >= prize.percent()) {
                     prizes[0] = prize;
                     finished[0] = true;
                 }
@@ -101,6 +101,7 @@ public class PrizeExample extends JavaPlugin implements Listener{
 
     /**
      * Getters
+     * 
      * @return
      */
     public List<Prize> getPrizes() {
@@ -112,7 +113,9 @@ public class PrizeExample extends JavaPlugin implements Listener{
      */
     public interface Prize {
         String getName();
+
         List<String> getCommands();
+
         int percent();
     }
 

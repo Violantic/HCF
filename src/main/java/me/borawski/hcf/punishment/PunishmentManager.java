@@ -37,10 +37,10 @@ public class PunishmentManager {
         document.append("type", type.name());
         Mongo.getCollection("punishments").insertOne(document);
         Session.getSession(player).dump();
-        if(Bukkit.getPlayer(player) != null) {
-            if(type == Punishment.Type.BAN) {
+        if (Bukkit.getPlayer(player) != null) {
+            if (type == Punishment.Type.BAN) {
                 Bukkit.getPlayer(player).kickPlayer(getInstance().getPrefix() + "\n&7You have been &eBANNED&7!".replace("&", ChatColor.COLOR_CHAR + ""));
-            } else if(type == Punishment.Type.MUTE) {
+            } else if (type == Punishment.Type.MUTE) {
                 Bukkit.getPlayer(player).sendMessage(getInstance().getPrefix() + "You have been &eMUTED&7!".replace("&", ChatColor.COLOR_CHAR + ""));
             }
         }

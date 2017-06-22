@@ -17,7 +17,7 @@ import java.util.function.Consumer;
  */
 public class MsgUtil {
 
-    public static void sendMessage(Player player, String...msg) {
+    public static void sendMessage(Player player, String... msg) {
         new FancyMessage(msg[0]);
     }
 
@@ -29,15 +29,15 @@ public class MsgUtil {
                 Faction f = Factions.getInstance().getByTag(FactionsPlayerListener.factions.get(player.getUniqueId()));
                 FSession fSession = FSession.getSession(f.getTag());
 
-                if(fSession == null) {
-                    new FancyMessage(s.getRank().getPrefix() + " " + player.getName() + ": " + s.getRank().getColor() + msg).tooltip(new String[]{
+                if (fSession == null) {
+                    new FancyMessage(s.getRank().getPrefix() + " " + player.getName() + ": " + s.getRank().getColor() + msg).tooltip(new String[] {
                             ChatColor.RED + "User is not in a faction"
                     }).send(players);
                     return;
                 }
 
-                new FancyMessage(s.getRank().getPrefix() + " " + player.getName() + ": " + s.getRank().getColor() + msg).tooltip(new String[]{
-                    ChatColor.DARK_RED + "" + ChatColor.BOLD + "FACTION INFO",
+                new FancyMessage(s.getRank().getPrefix() + " " + player.getName() + ": " + s.getRank().getColor() + msg).tooltip(new String[] {
+                        ChatColor.DARK_RED + "" + ChatColor.BOLD + "FACTION INFO",
                         ChatColor.GRAY + "Name: " + ChatColor.YELLOW + "" + fSession.getName(),
                         ChatColor.GRAY + "Members: " + ChatColor.YELLOW + "" + f.getFPlayers().size(),
                         ChatColor.GRAY + "Trophy Points: " + ChatColor.YELLOW + "" + fSession.getTrophies()

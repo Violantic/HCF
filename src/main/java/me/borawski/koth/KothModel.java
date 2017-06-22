@@ -23,7 +23,7 @@ public class KothModel {
     private List<String> combatLog;
 
     public KothModel(Document kothDocument, String name, String winner, long start, long finish, int length, List<UUID> players, List<String> combatLog) {
-        if(kothDocument == null && name != null && finish > 0 && finish > 0) {
+        if (kothDocument == null && name != null && finish > 0 && finish > 0) {
             this.kothDocument = new Document("name", name);
             getKothDocument().append("name", name);
             getKothDocument().append("winner", winner);
@@ -33,7 +33,7 @@ public class KothModel {
             getKothDocument().append("players", players);
             getKothDocument().append("combat_log", combatLog);
             Mongo.getCollection("seasons").insertOne(this.kothDocument);
-        } else if(kothDocument != null) {
+        } else if (kothDocument != null) {
             this.kothDocument = kothDocument;
             this.name = name;
             this.winner = kothDocument.getString("winner");

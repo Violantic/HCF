@@ -13,7 +13,7 @@ public class TimeUtil {
     }
 
     public static String getTime(long time) {
-        if(time == -1) {
+        if (time == -1) {
             return "Permanent";
         }
         return new SimpleDateFormat("MM.dd HH:mm").format(new Date(time)).replace(".", " ");

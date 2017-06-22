@@ -35,8 +35,9 @@ public class ManualUtil {
         meta.setAuthor("DesireHCF");
 
         List<String> stringList = new ArrayList<>();
-        //stringList.add(getCover(rank).getContents().toString().replace("[", "").replace("]", "").replace(",", ""));
-        for(ManualPage s : Core.getInstance().getManualManager().getManualMap().get(rank).getPages()) {
+        // stringList.add(getCover(rank).getContents().toString().replace("[",
+        // "").replace("]", "").replace(",", ""));
+        for (ManualPage s : Core.getInstance().getManualManager().getManualMap().get(rank).getPages()) {
             String page = s.getContents().toString().replace("[", "").replace("]", "").replace(",", "");
             stringList.add(page);
         }
@@ -52,7 +53,7 @@ public class ManualUtil {
         ItemStack old = p.getInventory().getItem(slot);
         p.getInventory().setItem(slot, newBook(rank));
         PacketPlayOutCustomPayload packet = new PacketPlayOutCustomPayload("MC|BOpen", new PacketDataSerializer(Unpooled.EMPTY_BUFFER));
-        ((CraftPlayer)p).getHandle().playerConnection.sendPacket(packet);
+        ((CraftPlayer) p).getHandle().playerConnection.sendPacket(packet);
     }
 
     public static ManualPage getCover(Rank rank) {

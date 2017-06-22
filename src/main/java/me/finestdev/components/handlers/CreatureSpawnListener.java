@@ -11,17 +11,17 @@ import me.finestdev.components.Components;
 
 public class CreatureSpawnListener implements Listener {
 
-	public CreatureSpawnListener() {
-		Bukkit.getPluginManager().registerEvents(this, Components.getInstance());
-	}
+    public CreatureSpawnListener() {
+        Bukkit.getPluginManager().registerEvents(this, Components.getInstance());
+    }
 
-	@EventHandler
-	public void onSpawn(CreatureSpawnEvent e) {
-		if (e.getSpawnReason() == SpawnReason.NATURAL) {
-			if (e.getEntity().getType() == EntityType.CREEPER || e.getEntity().getType() == EntityType.ENDERMAN)
-				if (!Components.getInstance().getConfig().getBoolean("spawn-mobs") == false) {
-					e.getEntity().remove();
-				}
-		}
-	}
+    @EventHandler
+    public void onSpawn(CreatureSpawnEvent e) {
+        if (e.getSpawnReason() == SpawnReason.NATURAL) {
+            if (e.getEntity().getType() == EntityType.CREEPER || e.getEntity().getType() == EntityType.ENDERMAN)
+                if (!Components.getInstance().getConfig().getBoolean("spawn-mobs") == false) {
+                e.getEntity().remove();
+                }
+        }
+    }
 }

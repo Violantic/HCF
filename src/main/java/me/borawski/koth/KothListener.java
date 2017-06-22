@@ -49,7 +49,8 @@ public class KothListener implements Listener {
         if (getInstance().getCurrentKoth() == null) return;
 
         Location center = getInstance().getCurrentKoth().getCenter();
-        double modulus = Math.sqrt(Math.pow(center.getX() - event.getTo().getX(), 2) + Math.pow(center.getZ() - event.getTo().getZ(), 2));         //if(!getInstance().getCurrentKoth().getPlayers().contains(event.getPlayer().getUniqueId())) return;
+        double modulus = Math.sqrt(Math.pow(center.getX() - event.getTo().getX(), 2) + Math.pow(center.getZ() - event.getTo().getZ(), 2)); // if(!getInstance().getCurrentKoth().getPlayers().contains(event.getPlayer().getUniqueId()))
+                                                                                                                                           // return;
         if (modulus <= getInstance().getCurrentKoth().radius() && insideKoth.contains(event.getPlayer().getUniqueId())) {
             // Player is inside zone. //
         } else if (modulus >= getInstance().getCurrentKoth().radius() && insideKoth.contains(event.getPlayer().getUniqueId())) {
@@ -71,15 +72,15 @@ public class KothListener implements Listener {
             getInstance().getPlayersAttending().stream().forEach(new Consumer<UUID>() {
                 @Override
                 public void accept(UUID uuid) {
-                    if(FactionsPlayerListener.factions.get(uuid).equalsIgnoreCase(FactionsPlayerListener.factions.get(player.getUniqueId()))) {
+                    if (FactionsPlayerListener.factions.get(uuid).equalsIgnoreCase(FactionsPlayerListener.factions.get(player.getUniqueId()))) {
                         otherFactionMembers.add(uuid);
                     }
                 }
             });
 
-            if(otherFactionMembers.size() == 0) {
+            if (otherFactionMembers.size() == 0) {
                 // Next Faction in line. //
-                if(getInstance().getPlayersAttending().size() == 0) {
+                if (getInstance().getPlayersAttending().size() == 0) {
                     getInstance().getKothManager().setHoldingFaction(null);
                     KothManager.holdingScore.set(0);
                     Bukkit.broadcastMessage(Plugin.PREFIX + ChatColor.GRAY + "Nobody is capturing " + ChatColor.BOLD + "" + ChatColor.YELLOW + getInstance().getCurrentKoth().getName());
@@ -93,7 +94,7 @@ public class KothListener implements Listener {
     }
 
     public void onEnter(Player player) {
-        if(getInstance().getKothManager().getHoldingFaction() == null) {
+        if (getInstance().getKothManager().getHoldingFaction() == null) {
             getInstance().getKothManager().setHoldingFaction(FactionsPlayerListener.factions.get(player.getUniqueId()));
         }
         Plugin.getInternal().getPlayersAttending().add(player.getUniqueId());

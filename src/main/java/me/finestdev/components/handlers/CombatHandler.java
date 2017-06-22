@@ -23,68 +23,69 @@ import me.finestdev.components.utils.Utils;
 
 public class CombatHandler implements Listener {
 
-	public static ArrayList<UUID> tagged = new ArrayList<UUID>();
+    public static ArrayList<UUID> tagged = new ArrayList<UUID>();
 
-	private final Cooldown cooldown;
+    private final Cooldown cooldown;
 
-	public CombatHandler() {
-		Bukkit.getPluginManager().registerEvents(this, Components.getInstance());
+    public CombatHandler() {
+        Bukkit.getPluginManager().registerEvents(this, Components.getInstance());
 
-		(cooldown = Components.getComponents().getCooldown(Components.CBTLOG)).setOnEndSequece(new Consumer<UUID>() {
+        (cooldown = Components.getComponents().getCooldown(Components.CBTLOG)).setOnEndSequece(new Consumer<UUID>() {
 
-			@Override
-			public void accept(UUID id) {
-				Bukkit.getScheduler().runTask(Components.getInstance(), new Runnable() {
-					@Override
-					public void run() {
-						tagged.remove(id);
-						try {
-							System.out.println(id.toString() + " has been removed from combat");
-							Bukkit.getPlayer(id).sendMessage(Utils.chat(Components.getInstance().getConfig().getString("combattag_removed_message")));
-						} catch (Exception ignored) {}
-					}
-				});
-			}
-		});
-	}
+            @Override
+            public void accept(UUID id) {
+                Bukkit.getScheduler().runTask(Components.getInstance(), new Runnable() {
+                    @Override
+                    public void run() {
+                        tagged.remove(id);
+                        try {
+                            System.out.println(id.toString() + " has been removed from combat");
+                            Bukkit.getPlayer(id).sendMessage(Utils.chat(Components.getInstance().getConfig().getString("combattag_removed_message")));
+                        } catch (Exception ignored) {
+                        }
+                    }
+                });
+            }
+        });
+    }
 
-	@EventHandler
-	public void onEntityDmgByEntity(EntityDamageByEntityEvent e) {
+    @EventHandler
+    public void onEntityDmgByEntity(EntityDamageByEntityEvent e) {
 
-		if (!(e.getDamager() instanceof Player)) {
-			return;
-		}
+        if (!(e.getDamager() instanceof Player)) {
+            return;
+        }
 
-		Entity victim = e.getEntity();
-		Player attacker = (Player) e.getDamager();
+        Entity victim = e.getEntity();
+        Player attacker = (Player) e.getDamager();
 
-		if (attacker != victim) {
-			if (!tagged.contains(victim.getUniqueId())) {
-				Session s = PlayerAPI.getSession(attacker);
-				if(!s.hasAchievement("first_combat")) {
-					s.awardAchievement(MscAchievements.FIRST_COMBAT, true);
-				}
-				cooldown.startCooldown(victim.getUniqueId(),
-						Cooldown.timeToMillis(Components.getInstance().getConfig().getString("combattag_time")));
-				tagged.add(victim.getUniqueId());
-				victim.sendMessage(Utils
-						.chat(Components.getInstance().getConfig().getString("combattag_victim_message").replace("<attacker>", attacker.getName())));
-			} else {
-				cooldown.startCooldown(victim.getUniqueId(),
-						Cooldown.timeToMillis(Components.getInstance().getConfig().getString("combattag_time")));
-			}
-		}
-	}
+        if (attacker != victim) {
+            if (!tagged.contains(victim.getUniqueId())) {
+                Session s = PlayerAPI.getSession(attacker);
+                if (!s.hasAchievement("first_combat")) {
+                    s.awardAchievement(MscAchievements.FIRST_COMBAT, true);
+                }
+                cooldown.startCooldown(victim.getUniqueId(),
+                        Cooldown.timeToMillis(Components.getInstance().getConfig().getString("combattag_time")));
+                tagged.add(victim.getUniqueId());
+                victim.sendMessage(Utils
+                        .chat(Components.getInstance().getConfig().getString("combattag_victim_message").replace("<attacker>", attacker.getName())));
+            } else {
+                cooldown.startCooldown(victim.getUniqueId(),
+                        Cooldown.timeToMillis(Components.getInstance().getConfig().getString("combattag_time")));
+            }
+        }
+    }
 
-	@EventHandler
-	public void onQuit(PlayerQuitEvent e) {
-		Player p = e.getPlayer();
+    @EventHandler
+    public void onQuit(PlayerQuitEvent e) {
+        Player p = e.getPlayer();
 
-		if (tagged.contains(p.getUniqueId())) {
-			LivingEntity npc = (LivingEntity) p.getWorld().spawnEntity(p.getLocation(), EntityType.PLAYER);
-			npc.setCustomName(Utils.chat("&f" + p.getName()));
-			tagged.remove(p.getUniqueId());
-			cooldown.endCooldown(p.getUniqueId());
-		}
-	}
+        if (tagged.contains(p.getUniqueId())) {
+            LivingEntity npc = (LivingEntity) p.getWorld().spawnEntity(p.getLocation(), EntityType.PLAYER);
+            npc.setCustomName(Utils.chat("&f" + p.getName()));
+            tagged.remove(p.getUniqueId());
+            cooldown.endCooldown(p.getUniqueId());
+        }
+    }
 }
