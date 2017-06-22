@@ -1,29 +1,25 @@
 package me.borawski.hcf.command.commands;
 
-import me.borawski.hcf.Core;
-import me.borawski.hcf.command.Command;
-import me.borawski.hcf.gui.custom.season.FactionsLeadGUI;
-import me.borawski.hcf.session.Rank;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+
+import me.borawski.hcf.Core;
+import me.borawski.hcf.command.CustomCommand;
+import me.borawski.hcf.gui.custom.season.FactionsLeadGUI;
+import me.borawski.hcf.session.Rank;
 
 /**
  * Created by Ethan on 4/26/2017.
  */
-public class SeasonCommand implements Command {
+public class SeasonCommand extends CustomCommand {
 
-    @Override
-    public String getName() {
-        return "season";
+    public SeasonCommand() {
+        super("Season", "View information on the current season.", Rank.GUEST);
     }
 
-    @Override
-    public Rank requiredRank() {
-        return Rank.GUEST;
-    }
 
     @Override
-    public void execute(CommandSender sender, String[] args) {
+    public void run(CommandSender sender, String label, String[] args) {
         new FactionsLeadGUI(Core.getInstance(), (Player) sender).show();
     }
 }
