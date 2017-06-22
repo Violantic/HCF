@@ -1,6 +1,10 @@
 package me.borawski.hcf.connection;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 /**
  * Created by Ethan on 3/16/2017.
@@ -9,7 +13,6 @@ public class MySQL {
 
     private Connection connection;
     private String host;
-    private int port;
     private String database;
     private String username;
     private String password;
@@ -18,9 +21,8 @@ public class MySQL {
      * Methods
      */
 
-    public MySQL(String host, int port, String database, String username, String password) {
+    public MySQL(String host, String database, String username, String password) {
         this.host = host;
-        this.port = port;
         this.database = database;
         this.username = username;
         this.password = password;
@@ -71,8 +73,8 @@ public class MySQL {
         return set;
     }
 
-    public static MySQL newInstance(String host, int port, String database, String username, String password) {
-        return new MySQL(host, port, database, username, password);
+    public static MySQL newInstance(String host, String database, String username, String password) {
+        return new MySQL(host, database, username, password);
     }
 
 }
