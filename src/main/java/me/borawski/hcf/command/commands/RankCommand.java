@@ -5,6 +5,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import me.borawski.hcf.command.CustomBaseCommand;
+import me.borawski.hcf.command.commands.rank.RankSetCommand;
 import me.borawski.hcf.session.Rank;
 import me.borawski.hcf.session.Session;
 
@@ -15,6 +16,7 @@ public class RankCommand extends CustomBaseCommand {
 
     public RankCommand() {
         super("rank", "View your rank or manage others.", Rank.ADMIN);
+        addSubCommand(new RankSetCommand());
     }
 
     public void run(CommandSender sender, String label, String[] args) {
