@@ -2,7 +2,6 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-
 	<groupId>me.borawski</groupId>
 	<artifactId>HCF</artifactId>
 	<version>0.1</version>
@@ -96,22 +95,8 @@
 			<version>1.3.2</version>
 		</dependency>
 	</dependencies>
-
 	<build>
 		<defaultGoal>clean install</defaultGoal>
-
-		<resources>
-			<resource>
-				<directory>${basedir}/src/main/resources</directory>
-				<filtering>true</filtering>
-
-				<includes>
-					<include>plugin.yml</include>
-					<include>bungee.yml</include>
-					<include>config.yml</include>
-				</includes>
-			</resource>
-		</resources>
 
 		<plugins>
 			<plugin>
@@ -143,18 +128,15 @@
 							<createDependencyReducedPom>false</createDependencyReducedPom>
 							<artifactSet>
 								<includes>
-									<include>org.mongodb:mongo-java-driver</include>
-									<include>org.ocpsoft.prettytime:prettytime</include>
-									<include>com.googlecode.json-simple:json-simple</include>
-									<include>org.apache.commons:commons-pool2</include>
+									<include>org.mongodb</include>
+									<include>org.mongodb.morphia</include>
 								</includes>
 							</artifactSet>
+							<createDependencyReducedPom>false</createDependencyReducedPom>
 						</configuration>
 					</execution>
 				</executions>
 			</plugin>
 		</plugins>
 	</build>
-
-
 </project>
