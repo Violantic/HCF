@@ -8,6 +8,7 @@ import org.bukkit.entity.Player;
 import me.borawski.hcf.Core;
 import me.borawski.hcf.session.Rank;
 import me.borawski.hcf.session.Session;
+import me.borawski.hcf.session.SessionHandler;
 import me.borawski.hcf.util.SessionUtils;
 
 /**
@@ -32,7 +33,7 @@ public abstract class CustomBaseCommand extends CustomCommand {
         if (args.length == 0 || (sub = getSubCommand(args[0])) == null) {
             help(sender, label);
         } else {
-            Session s = sender instanceof Player ? Session.getSession(((Player) sender).getUniqueId()) : null;
+            Session s = sender instanceof Player ? SessionHandler.getSession(sender) : null;
             if (s == null || s.getRank().getId() >= requiredRank.getId()) {
                 sub.run(sender, args[0], Arrays.copyOfRange(args, 1, args.length));
             } else {

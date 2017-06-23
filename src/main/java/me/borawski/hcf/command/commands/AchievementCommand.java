@@ -17,7 +17,7 @@ import me.borawski.hcf.gui.ItemGUI;
 import me.borawski.hcf.gui.MenuItem;
 import me.borawski.hcf.session.Achievement;
 import me.borawski.hcf.session.Rank;
-import me.borawski.hcf.session.Session;
+import me.borawski.hcf.session.SessionHandler;
 import me.borawski.hcf.util.ChatUtils;
 
 /**
@@ -56,7 +56,7 @@ public class AchievementCommand extends CustomCommand {
             @SuppressWarnings("deprecation")
             @Override
             public void registerItems() {
-                List<String> achievements = Session.getSession(uuid).getAchievements();
+                List<String> achievements = SessionHandler.getSession(uuid).getAchievements();
 
                 if (achievements.size() == 0) {
                     for (int i = 0; i < 54; i++) {
