@@ -9,6 +9,7 @@ import me.borawski.hcf.command.CustomCommand;
 import me.borawski.hcf.gui.custom.PlayerInfoGUI;
 import me.borawski.hcf.session.Rank;
 import me.borawski.hcf.session.Session;
+import me.borawski.hcf.session.SessionHandler;
 import me.borawski.hcf.util.PlayerUtils;
 
 /**
@@ -31,7 +32,7 @@ public class InfoCommand extends CustomCommand {
 
             Player player = (Player) sender;
             String name = args[0];
-            Session s = Session.getSession(PlayerUtils.getUUIDFromName(name));
+            Session s = SessionHandler.getSession(PlayerUtils.getUUIDFromName(name));
             if (s == null) {
                 System.out.println("[Core] [ERROR] : Could not retrieve " + name);
                 sender.sendMessage(ChatColor.RED + "Could not retrieve " + ChatColor.YELLOW + name);

@@ -56,4 +56,5 @@ public class PunishmentHandler extends BasicDAO<Punishment, Integer> {
         return instance;
     }
 
+
 }

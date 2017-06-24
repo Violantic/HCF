@@ -8,6 +8,7 @@ import me.borawski.hcf.Core;
 import me.borawski.hcf.command.CustomCommand;
 import me.borawski.hcf.session.Rank;
 import me.borawski.hcf.session.Session;
+import me.borawski.hcf.session.SessionHandler;
 
 public class RankCheckCommand extends CustomCommand {
 
@@ -24,7 +25,7 @@ public class RankCheckCommand extends CustomCommand {
 
         Session s = null;
         try {
-            s = Session.getSession(((Player) sender).getUniqueId());
+            s = SessionHandler.getSession(((Player) sender).getUniqueId());
         } catch (Exception e) {
             e.printStackTrace();
         }

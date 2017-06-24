@@ -40,6 +40,7 @@ public class PlayerListener implements Listener {
         boolean noColor = session.getRank().getId() == 1;
         boolean justColor = session.getRank().getId() == 2;
         event.getPlayer().setPlayerListName(noColor ? ChatColor.GRAY + event.getPlayer().getName() : justColor ? session.getRank().getMain() + event.getPlayer().getName() : session.getRank().getPrefix() + " " + ChatColor.GRAY + event.getPlayer().getName());
+        SessionHandler.initializeSession(event.getPlayer(), true);
     }
 
     @EventHandler

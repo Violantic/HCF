@@ -5,15 +5,19 @@ import java.util.Map;
 import java.util.UUID;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Id;
 import org.mongodb.morphia.annotations.Indexed;
 import org.mongodb.morphia.annotations.Property;
+import org.mongodb.morphia.annotations.Reference;
 import org.mongodb.morphia.annotations.Transient;
 
+import me.borawski.hcf.Core;
 import me.borawski.hcf.punishment.Punishment;
 import me.borawski.hcf.punishment.Punishment.Type;
+import me.borawski.hcf.util.ChatUtils;
 
 @Entity(value = "players", noClassnameStored = true)
 public class Session {
@@ -44,7 +48,12 @@ public class Session {
 
     private List<String> achievements;
 
+    @Reference(idOnly = true)
     private List<UUID> friends;
+
+    private List<UUID> incomingFriendRequests;
+
+    private List<UUID> outgoingFriendRequests;
 
     private Map<String, String> settings;
 
@@ -77,6 +86,14 @@ public class Session {
 
     public int getTokens() {
         return tokens;
+    }
+
+    public void addTokens(int tokens, boolean notify) {
+        this.tokens += tokens;
+        if (notify) {
+            sendMessage(Core.getInstance().getPrefix() + ChatColor.GRAY + "You have been awarded " + ChatColor.YELLOW + tokens + ChatColor.GRAY + " tokens!");
+        }
+        SessionHandler.getInstance().save(this);
     }
 
     public void setTokens(int tokens) {
@@ -147,6 +164,22 @@ public class Session {
         this.friends = friends;
     }
 
+    public List<UUID> getIncomingFriendRequests() {
+        return incomingFriendRequests;
+    }
+
+    public void setIncomingFriendRequests(List<UUID> incomingFriendRequests) {
+        this.incomingFriendRequests = incomingFriendRequests;
+    }
+
+    public List<UUID> getOutgoingFriendRequests() {
+        return outgoingFriendRequests;
+    }
+
+    public void setOutgoingFriendRequests(List<UUID> outgoingFriendRequests) {
+        this.outgoingFriendRequests = outgoingFriendRequests;
+    }
+
     public Map<String, String> getSettings() {
         return settings;
     }
@@ -186,6 +219,37 @@ public class Session {
         if (p != null) {
             p.sendMessage(message);
         }
+    }
+
+    public boolean hasAchievement(String string) {
+        for (String achievement : achievements) {
+            if (achievement.equalsIgnoreCase(string)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void awardAchievement(Achievement achievement, boolean inform) {
+        if (hasAchievement(achievement.getId())) return;
+
+        getAchievements().add(achievement.getId());
+
+        if (inform) {
+            Player player = Core.getInstance().getServer().getPlayer(uuid);
+            sendMessage(ChatColor.DARK_GRAY + "----------------------------------------------------");
+            ChatUtils.sendCenteredMessage(player, Core.getInstance().getPrefix() + ChatColor.GRAY + "Achievement unlocked!");
+            ChatUtils.sendCenteredMessage(player, ChatColor.GRAY + "Name: " + ChatColor.YELLOW + achievement.getName());
+            ChatUtils.sendCenteredMessage(player, ChatColor.GRAY + "Desc: " + ChatColor.YELLOW + achievement.getDesc());
+            if (achievement.getReward() > 0) {
+                ChatUtils.sendCenteredMessage(player, ChatColor.GRAY + "Reward: " + ChatColor.YELLOW + achievement.getReward() + " Tokens!");
+            }
+            sendMessage(ChatColor.DARK_GRAY + "----------------------------------------------------");
+        }
+        if (achievement.getReward() > 0) {
+            tokens += achievement.getReward();
+        }
+        SessionHandler.getInstance().save(this);
     }
 
 }

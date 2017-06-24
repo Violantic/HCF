@@ -2,6 +2,8 @@ package me.borawski.hcf.session;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.UUID;
 
 import org.bukkit.Bukkit;
@@ -18,26 +20,50 @@ public class SessionHandler extends BasicDAO<Session, Integer> {
 
     private Session console;
 
+    private List<Session> sessions;
+
     public SessionHandler() {
         super(Session.class, Core.getInstance().getMongoWrapper().getDatastore());
         instance = this;
+
+        // create a dummy console session
         console = new Session();
         console.setRank(Rank.OWNER);
+
+        sessions = new LinkedList<>();
     }
 
+    /**
+     * Gets the session of a user and initializes it if it does not yet exist.
+     * 
+     * @param o
+     * @return
+     */
     public static Session getSession(Object o) {
         Session session;
-
         if (o instanceof OfflinePlayer || o instanceof UUID) {
-            session = instance.findOne("uuid", o instanceof OfflinePlayer ? ((OfflinePlayer) o).getUniqueId() : o);
-            if (session == null) {
-                session = createSession(o);
+            for (Session s : instance.sessions) {
+                if (s.getUniqueId().equals(o instanceof OfflinePlayer ? ((OfflinePlayer) o).getUniqueId() : o)) {
+                    return s;
+                }
             }
+            session = initializeSession(o, false);
             session.setActivePunishments(PunishmentHandler.getInstance().createQuery().field("punished").equal(session.getUniqueId()).field("expirationTime").greaterThan(Long.valueOf(System.currentTimeMillis())).asList());
         } else if (o instanceof ConsoleCommandSender) {
             session = instance.console;
         } else {
             session = null;
+        }
+        return session;
+    }
+
+    public static Session initializeSession(Object o, boolean cache) {
+        Session session = instance.findOne("uuid", o instanceof OfflinePlayer ? ((OfflinePlayer) o).getUniqueId() : o);
+        if (session == null) {
+            session = createSession(o);
+        }
+        if (cache) {
+            instance.sessions.add(session);
         }
         return session;
     }

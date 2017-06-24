@@ -12,6 +12,7 @@ import me.borawski.hcf.command.CustomBaseCommand;
 import me.borawski.hcf.session.FSession;
 import me.borawski.hcf.session.Rank;
 import me.borawski.hcf.session.Session;
+import me.borawski.hcf.session.SessionHandler;
 
 /**
  * Created by Ethan on 5/7/2017.
@@ -35,7 +36,7 @@ public class FStatCommand extends CustomBaseCommand {
             sender.sendMessage(getPrefix() + "Trophy Points: " + ChatColor.YELLOW + session.getTrophies());
             sender.sendMessage(getPrefix() + "KOTH Wins: " + ChatColor.YELLOW + session.getKoth());
         } else {
-            Session s = Session.getSession((Player) sender);
+            Session s = SessionHandler.getSession((Player) sender);
             if (s.getRank().getId() >= Rank.MODERATOR.getId()) {
                 String faction = args[0];
                 try {

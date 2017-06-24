@@ -8,7 +8,8 @@ import org.bukkit.entity.Player;
 import me.borawski.hcf.command.CustomCommand;
 import me.borawski.hcf.session.Rank;
 import me.borawski.hcf.session.Session;
-import me.borawski.hcf.util.TimeUtil;
+import me.borawski.hcf.session.SessionHandler;
+import me.borawski.hcf.util.DateUtils;
 import me.borawski.koth.Koth;
 import me.borawski.koth.KothManager;
 import me.borawski.koth.Plugin;
@@ -29,20 +30,20 @@ public class KothCommand extends CustomCommand {
         sender.sendMessage(Plugin.PREFIX + "Current KOTH: " + ChatColor.YELLOW + "" + ChatColor.BOLD + "" + Plugin.getInternal().getCurrentKoth().getName());
         sender.sendMessage(Plugin.PREFIX + "Location: " + ChatColor.YELLOW + "" + ChatColor.BOLD + "X: " + l.getBlockX() + ", Y: " + l.getBlockY() + ", Z: " + l.getBlockZ());
         sender.sendMessage(Plugin.PREFIX + "Players: " + ChatColor.YELLOW + "" + ChatColor.BOLD + Plugin.getInternal().getPlayersAttending().size());
-        sender.sendMessage(Plugin.PREFIX + "Ends: " + ChatColor.YELLOW + "" + ChatColor.BOLD + TimeUtil.getTime((System.currentTimeMillis()+(1000*k.length()))-(System.currentTimeMillis())));
+        sender.sendMessage(Plugin.PREFIX + "Ends: " + ChatColor.YELLOW + "" + ChatColor.BOLD + DateUtils.formatDateDiff((System.currentTimeMillis() + (1000 * k.length()))));
 
-        Session s = Session.getSession(((Player) sender).getUniqueId());
-        if(args.length == 1) {
-            if(s.getRank().getId() >= Rank.ADMIN.getId()) {
-                if(args[0].equalsIgnoreCase("pause")) {
-                    if(!KothManager.paused) {
+        Session s = SessionHandler.getSession(((Player) sender).getUniqueId());
+        if (args.length == 1) {
+            if (s.getRank().getId() >= Rank.ADMIN.getId()) {
+                if (args[0].equalsIgnoreCase("pause")) {
+                    if (!KothManager.paused) {
                         KothManager.paused = true;
                         sender.sendMessage(Plugin.PREFIX + "You have paused the current Koth");
                     } else {
                         KothManager.paused = false;
                         sender.sendMessage(Plugin.PREFIX + "You have resumed the current Koth");
                     }
-                } else if(args[0].equalsIgnoreCase("finish")) {
+                } else if (args[0].equalsIgnoreCase("finish")) {
                     KothManager.paused = true;
                     Plugin.second.set(1199);
                     sender.sendMessage(Plugin.PREFIX + "Ending current Koth, starting the next");
