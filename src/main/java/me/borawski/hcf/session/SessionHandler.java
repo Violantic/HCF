@@ -24,7 +24,6 @@ public class SessionHandler extends BasicDAO<Session, Integer> {
 
     public SessionHandler() {
         super(Session.class, Core.getInstance().getMongoWrapper().getDatastore());
-        instance = this;
 
         // create a dummy console session
         console = new Session();
@@ -33,6 +32,10 @@ public class SessionHandler extends BasicDAO<Session, Integer> {
         sessions = new LinkedList<>();
     }
 
+    public static void initialize() {
+        instance = new SessionHandler();
+    }
+    
     /**
      * Gets the session of a user and initializes it if it does not yet exist.
      * 

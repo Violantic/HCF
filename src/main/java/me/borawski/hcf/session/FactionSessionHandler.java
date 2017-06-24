@@ -14,9 +14,12 @@ public class FactionSessionHandler extends BasicDAO<FactionSession, String> {
 
     public FactionSessionHandler() {
         super(FactionSession.class, Core.getInstance().getMongoWrapper().getDatastore());
-        instance = this;
 
         cache = find().asList();
+    }
+    
+    public static void initialize() {
+        instance = new FactionSessionHandler();
     }
 
     public static FactionSession getFactionSession(String name) {

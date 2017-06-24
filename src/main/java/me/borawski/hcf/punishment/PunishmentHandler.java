@@ -18,7 +18,10 @@ public class PunishmentHandler extends BasicDAO<Punishment, Integer> {
 
     public PunishmentHandler() {
         super(Punishment.class, Core.getInstance().getMongoWrapper().getDatastore());
-        instance = this;
+    }
+    
+    public static void initialize() {
+        instance = new PunishmentHandler();
     }
 
     public void issuePunishment(Type type, UUID punished, UUID issuer, long time, String reason) {
