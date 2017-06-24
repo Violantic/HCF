@@ -1,16 +1,18 @@
 package me.borawski.hcf.gui.custom.settings;
 
-import me.borawski.hcf.Core;
-import me.borawski.hcf.gui.CustomIS;
-import me.borawski.hcf.gui.ItemGUI;
-import me.borawski.hcf.gui.MenuItem;
-import me.borawski.hcf.session.Session;
-import me.borawski.hcf.util.SettingsUtil;
 import org.bukkit.ChatColor;
 import org.bukkit.DyeColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+
+import me.borawski.hcf.Core;
+import me.borawski.hcf.gui.CustomIS;
+import me.borawski.hcf.gui.ItemGUI;
+import me.borawski.hcf.gui.MenuItem;
+import me.borawski.hcf.session.Session;
+import me.borawski.hcf.session.SessionHandler;
+import me.borawski.hcf.util.SettingsUtil;
 
 /**
  * Created by Ethan on 3/20/2017.
@@ -43,7 +45,7 @@ public class PlayerSettingsGUI extends ItemGUI {
     @SuppressWarnings("deprecation")
     @Override
     public void registerItems() {
-        Session s = Session.getSession(getPlayer());
+        Session s = SessionHandler.getSession(getPlayer());
         int i = 0;
         for (int x = 0; x < 6; x++) {
             for (int y = 0; y < 9; y++) {

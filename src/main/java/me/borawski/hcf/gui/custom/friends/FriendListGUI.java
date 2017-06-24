@@ -1,16 +1,18 @@
 package me.borawski.hcf.gui.custom.friends;
 
+import java.util.UUID;
+
+import org.bukkit.ChatColor;
+import org.bukkit.Material;
+import org.bukkit.entity.Player;
+
 import me.borawski.hcf.Core;
 import me.borawski.hcf.gui.CustomIS;
 import me.borawski.hcf.gui.ItemGUI;
 import me.borawski.hcf.gui.MenuItem;
 import me.borawski.hcf.session.Session;
+import me.borawski.hcf.session.SessionHandler;
 import me.borawski.hcf.util.ChatUtils;
-import org.bukkit.ChatColor;
-import org.bukkit.Material;
-import org.bukkit.entity.Player;
-
-import java.util.UUID;
 
 /**
  * Created by Ethan on 3/14/2017.
@@ -33,7 +35,7 @@ public class FriendListGUI extends ItemGUI {
 
     @Override
     public void registerItems() {
-        Session session = Session.getSession(getPlayer());
+        Session session = SessionHandler.getSession(getPlayer());
         int i = 0;
         for (UUID uuid : session.getFriends()) {
             String name = ChatUtils.getNameWithRankColor(uuid, true);

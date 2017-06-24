@@ -1,13 +1,11 @@
 package me.borawski.hcf.gui.custom.edit;
 
-import org.bson.Document;
 import org.bukkit.ChatColor;
 import org.bukkit.DyeColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 
 import me.borawski.hcf.Core;
-import me.borawski.hcf.connection.Mongo;
 import me.borawski.hcf.gui.CustomIS;
 import me.borawski.hcf.gui.ItemGUI;
 import me.borawski.hcf.gui.MenuItem;
@@ -158,9 +156,8 @@ public class PlayerPunishmentsGUI extends ItemGUI {
                     getPlayer().sendMessage(ChatColor.RED + "That player isn't banned!");
                     return;
                 }
-                Mongo.getCollection("punishments").deleteOne(new Document("uuid", target.getUniqueId().toString()));
+                // TODO Use API to mark bans as repealed.
                 getPlayer().sendMessage(Core.getInstance().getPrefix() + ChatColor.GRAY + "You unbanned " + ChatColor.YELLOW + target.getName() + ChatColor.GRAY + "!");
-                target.dump();
             }
         }));
         set(8, new MenuItem(new CustomIS().setMaterial(Material.BARRIER).setName("REVOKE MUTE").addLore(ChatColor.GRAY + "(Click to remove current mute)"), new Runnable() {
@@ -170,9 +167,8 @@ public class PlayerPunishmentsGUI extends ItemGUI {
                     getPlayer().sendMessage(ChatColor.RED + "That player isn't muted!");
                     return;
                 }
-                Mongo.getCollection("punishments").deleteOne(new Document("uuid", target.getUniqueId().toString()));
+                // TODO Use API to mark mutes as repealed.
                 getPlayer().sendMessage(Core.getInstance().getPrefix() + ChatColor.GRAY + "You un-muted " + ChatColor.YELLOW + target.getName() + ChatColor.GRAY + "!");
-                target.dump();
             }
         }));
     }

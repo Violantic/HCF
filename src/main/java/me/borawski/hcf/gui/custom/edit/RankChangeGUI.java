@@ -9,6 +9,7 @@ import me.borawski.hcf.gui.ItemGUI;
 import me.borawski.hcf.gui.MenuItem;
 import me.borawski.hcf.session.Rank;
 import me.borawski.hcf.session.Session;
+import me.borawski.hcf.session.SessionHandler;
 
 /**
  * Created by Ethan on 3/8/2017.
@@ -44,7 +45,8 @@ public class RankChangeGUI extends ItemGUI {
                     new Runnable() {
                         @Override
                         public void run() {
-                            RankChangeGUI.this.getTarget().updateDocument("players", "rank", rank.name());
+                            target.setRank(rank);
+                            SessionHandler.getInstance().save(target);
                         }
                     }));
             i++;

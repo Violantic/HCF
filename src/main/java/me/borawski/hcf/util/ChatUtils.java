@@ -1,11 +1,10 @@
 package me.borawski.hcf.util;
 
-import java.util.UUID;
-
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
 import me.borawski.hcf.session.Session;
+import me.borawski.hcf.session.SessionHandler;
 
 /**
  * Created by Ethan on 3/12/2017.
@@ -64,19 +63,12 @@ public class ChatUtils {
      * Getters
      */
 
-    public static String getNameWithRankColor(Player player, boolean prefix) {
+    public static String getNameWithRankColor(Object o, boolean prefix) {
+        Session session = SessionHandler.getSession(o);
         if (prefix) {
-            return Session.getSession(player).getRank().getMain() + Session.getSession(player).getRank().getPrefix() + " " + ChatColor.GRAY + player.getName() + ChatColor.RESET;
+            return session.getRank().getMain() + session.getRank().getPrefix() + " " + ChatColor.GRAY + session.getName() + ChatColor.RESET;
         } else {
-            return Session.getSession(player).getRank().getMain() + player.getName() + ChatColor.RESET;
-        }
-    }
-
-    public static String getNameWithRankColor(UUID uuid, boolean prefix) {
-        if (prefix) {
-            return Session.getSession(uuid).getRank().getMain() + Session.getSession(uuid).getRank().getPrefix() + " " + ChatColor.GRAY + Session.getSession(uuid).getName() + ChatColor.RESET;
-        } else {
-            return Session.getSession(uuid).getRank().getMain() + Session.getSession(uuid).getName() + ChatColor.RESET;
+            return session.getRank().getMain() + session.getName() + ChatColor.RESET;
         }
     }
 

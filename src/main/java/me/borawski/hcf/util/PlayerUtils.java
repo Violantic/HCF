@@ -2,30 +2,32 @@ package me.borawski.hcf.util;
 
 import java.util.UUID;
 
-import org.bson.Document;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 
-import me.borawski.hcf.connection.Mongo;
+import me.borawski.hcf.session.Session;
+import me.borawski.hcf.session.SessionHandler;
 
 /**
  * Created by Ethan on 3/12/2017.
  */
 public class PlayerUtils {
 
+    @SuppressWarnings("deprecation")
     public static boolean hasPlayed(String name) {
-        Document document = Mongo.getCollection("players").find(new Document("name", name)).first();
-
-        return document != null;
+        return Bukkit.getOfflinePlayer(name) != null;
     }
 
     public static UUID getUUIDFromName(String name) {
-        if (!hasPlayed(name))
+        if (!hasPlayed(name)) {
             return null;
-
-        Document document = Mongo.getCollection("players").find(new Document("name", name)).first();
-        return UUID.fromString(document.getString("uuid"));
+        }
+        Session s = SessionHandler.getInstance().findOne("name", name);
+        if (s == null) {
+            return null;
+        }
+        return s.getUniqueId();
     }
 
     /**
