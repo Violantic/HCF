@@ -6,7 +6,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
 
-import com.sk89q.worldguard.protection.regions.ProtectedRegion;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
@@ -15,9 +14,11 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
 
-import com.massivecraft.factions.Board;
 import com.massivecraft.factions.FLocation;
+import com.massivecraft.factions.entity.Board;
+import com.sk89q.worldguard.protection.regions.ProtectedRegion;
 
+import me.borawski.hcf.Core;
 import me.finestdev.components.Components;
 import me.finestdev.components.utils.WorldGuard;
 
@@ -29,7 +30,7 @@ public class RegionHandler implements Listener {
     public RegionHandler() {
         this.locationsWorldGuard = new HashMap<UUID, List<Location>>();
         this.locationsFaction = new HashMap<UUID, List<Location>>();
-        Bukkit.getPluginManager().registerEvents(this, Components.getInstance());
+        Bukkit.getPluginManager().registerEvents(this, Core.getInstance());
     }
 
     @EventHandler

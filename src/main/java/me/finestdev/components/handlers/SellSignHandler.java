@@ -18,9 +18,9 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 
 import me.borawski.hcf.Core;
-import me.borawski.hcf.api.PlayerAPI;
 import me.borawski.hcf.session.Rank;
 import me.borawski.hcf.session.Session;
+import me.borawski.hcf.session.SessionHandler;
 import me.finestdev.components.utils.Utils;
 
 public class SellSignHandler implements Listener {
@@ -79,8 +79,8 @@ public class SellSignHandler implements Listener {
                         p.getInventory().addItem(new ItemStack(i.getTypeId(), s2, i.getDurability()));
                         p.updateInventory();
                     }
-                    Session session = PlayerAPI.getSession(event.getPlayer());
-                    session.awardTokens((int) Math.round(Double.valueOf(s.getLine(3).replace("$", ""))), true);
+                    Session session = SessionHandler.getSession(event.getPlayer());
+                    session.addTokens((int) Math.round(Double.valueOf(s.getLine(3).replace("$", ""))), true);
                     // Components.getEcon().depositPlayer(p.getName(),
                     // Double.valueOf(s.getLine(3).replace("$", "")));
                     p.sendMessage(Utils.chat("&4&lSHOP&r&7 Item sold"));
@@ -111,7 +111,7 @@ public class SellSignHandler implements Listener {
         }
         Sign s = (Sign) event.getBlock().getState();
         if (blockIsValidEcoSign(s)) {
-            Session session = PlayerAPI.getSession(event.getPlayer());
+            Session session = SessionHandler.getSession(event.getPlayer());
             if (session.getRank().getId() < Rank.ADMIN.getId()) {
                 event.setCancelled(true);
             }

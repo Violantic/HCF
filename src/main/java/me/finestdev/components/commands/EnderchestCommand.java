@@ -6,9 +6,9 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import me.borawski.hcf.Core;
-import me.borawski.hcf.api.PlayerAPI;
 import me.borawski.hcf.session.Rank;
 import me.borawski.hcf.session.Session;
+import me.borawski.hcf.session.SessionHandler;
 import me.finestdev.components.utils.Utils;
 
 public class EnderchestCommand implements CommandExecutor {
@@ -17,7 +17,7 @@ public class EnderchestCommand implements CommandExecutor {
         if (command.getName().equalsIgnoreCase("enderchest")) {
             if (commandSender instanceof Player) {
                 Player player = (Player) commandSender;
-                Session s = PlayerAPI.getSession(player);
+                Session s = SessionHandler.getSession(player);
                 if (s.getRank().getId() >= Rank.MODERATOR.getId()) {
                     if (Utils.enderchestDisabled == true) {
                         Utils.enderchestDisabled = false;
