@@ -7,16 +7,16 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import me.borawski.hcf.Core;
-import me.borawski.hcf.api.PlayerAPI;
 import me.borawski.hcf.session.Rank;
 import me.borawski.hcf.session.Session;
+import me.borawski.hcf.session.SessionHandler;
 import me.finestdev.components.handlers.DeathBanHandler;
 import me.finestdev.components.utils.Utils;
 
 public class LivesCommand implements CommandExecutor {
 
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-        Session s = PlayerAPI.getSession((Player) sender);
+        Session s = SessionHandler.getSession((Player) sender);
         if (s.getRank().getId() >= Rank.MODERATOR.getId()) {
 
             if (args.length == 0) {

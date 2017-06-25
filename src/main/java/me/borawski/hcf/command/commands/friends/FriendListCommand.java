@@ -12,6 +12,7 @@ import me.borawski.hcf.command.CustomBaseCommand;
 import me.borawski.hcf.command.CustomCommand;
 import me.borawski.hcf.session.Rank;
 import me.borawski.hcf.session.Session;
+import me.borawski.hcf.session.SessionHandler;
 import me.borawski.hcf.util.ChatUtils;
 
 public class FriendListCommand extends CustomBaseCommand {
@@ -28,7 +29,7 @@ public class FriendListCommand extends CustomBaseCommand {
         }
         CustomCommand sub;
         if (args.length == 0) {
-            Session session = Session.getSession((Player) sender);
+            Session session = SessionHandler.getSession((Player) sender);
             if (session.getFriends().size() == 0) {
                 sender.sendMessage(Core.getInstance().getPrefix() + "You have no friends");
                 return;
@@ -43,7 +44,7 @@ public class FriendListCommand extends CustomBaseCommand {
         } else if ((sub = getSubCommand(args[0])) == null) {
             help(sender, label);
         } else {
-            Session s = sender instanceof Player ? Session.getSession(((Player) sender).getUniqueId()) : null;
+            Session s = sender instanceof Player ? SessionHandler.getSession(((Player) sender).getUniqueId()) : null;
             if (s == null || s.getRank().getId() >= requiredRank.getId()) {
                 sub.run(sender, args[0], Arrays.copyOfRange(args, 1, args.length));
             } else {

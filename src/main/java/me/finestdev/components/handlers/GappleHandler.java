@@ -12,8 +12,8 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerItemConsumeEvent;
 
 import me.borawski.hcf.Core;
-import me.borawski.hcf.api.PlayerAPI;
 import me.borawski.hcf.session.Session;
+import me.borawski.hcf.session.SessionHandler;
 import me.finestdev.components.Components;
 import me.finestdev.components.MscAchievements;
 import me.finestdev.components.utils.Cooldown;
@@ -48,7 +48,7 @@ public class GappleHandler implements Listener {
         if (e.getItem().getType() == Material.GOLDEN_APPLE && e.getItem().getDurability() == 1) {
             CooldownBase base = cooldown.get(p.getUniqueId());
             if (base == null || Cooldown.getAmountLeft(base) <= 0) {
-                Session s = PlayerAPI.getSession(e.getPlayer());
+                Session s = SessionHandler.getSession(e.getPlayer());
                 if (!s.hasAchievement("first_gapple")) {
                     s.awardAchievement(MscAchievements.FIRST_GAPPLE, true);
                 }

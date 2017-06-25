@@ -15,8 +15,8 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
 import me.borawski.hcf.Core;
-import me.borawski.hcf.api.PlayerAPI;
 import me.borawski.hcf.session.Session;
+import me.borawski.hcf.session.SessionHandler;
 import me.finestdev.components.Components;
 import me.finestdev.components.MscAchievements;
 import me.finestdev.components.utils.Cooldown;
@@ -62,7 +62,7 @@ public class CombatHandler implements Listener {
 
         if (attacker != victim) {
             if (!tagged.contains(victim.getUniqueId())) {
-                Session s = PlayerAPI.getSession(attacker);
+                Session s = SessionHandler.getSession(attacker);
                 if (!s.hasAchievement("first_combat")) {
                     s.awardAchievement(MscAchievements.FIRST_COMBAT, true);
                 }

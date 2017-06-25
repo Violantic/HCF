@@ -2,71 +2,92 @@ package me.borawski.hcf.punishment;
 
 import java.util.UUID;
 
-import org.bson.Document;
-
-import me.borawski.hcf.connection.Mongo;
+import org.mongodb.morphia.annotations.Id;
+import org.mongodb.morphia.annotations.Indexed;
 
 /**
  * Created by Ethan on 3/8/2017.
  */
 public class Punishment {
 
-    private UUID player;
+    @Id
+    private int id;
+
+    @Indexed
+    private UUID punished;
+
+    @Indexed
     private UUID issuer;
+
     private Type type;
+
     private long issued;
-    private long until;
-    private boolean undone;
+
+    private long expirationTime;
+
+    private boolean repealed;
+
     private String reason;
 
-    public Punishment(UUID player, Type type, Document punishDoc) {
-        this.player = player;
-        this.type = type;
-        this.issuer = UUID.fromString(punishDoc.getString("issuer"));
-        // this.issued = punishDoc.getLong("issued");
-        // this.until = punishDoc.getLong("until");
-        // this.undone = punishDoc.getBoolean("undone");
-        // this.reason = punishDoc.getString("reason");
+    public UUID getPunished() {
+        return punished;
     }
 
-    public UUID getPlayer() {
-        return player;
+    public void setPunished(UUID punished) {
+        this.punished = punished;
     }
 
     public UUID getIssuer() {
         return issuer;
     }
 
+    public void setIssuer(UUID issuer) {
+        this.issuer = issuer;
+    }
+
     public Type getType() {
         return type;
+    }
+    
+    public void setType(Type type) {
+        this.type = type;
     }
 
     public long getIssued() {
         return issued;
     }
 
-    public long getUntil() {
-        return until;
+    public void setIssued(long issued) {
+        this.issued = issued;
     }
 
-    public boolean isUndone() {
-        return undone;
+    public long getExpirationTime() {
+        return expirationTime;
+    }
+
+    public void setExpirationTime(long expires) {
+        this.expirationTime = expires;
+    }
+
+    public boolean isRepealed() {
+        return repealed;
+    }
+
+    public void setRepealed(boolean repealed) {
+        this.repealed = repealed;
     }
 
     public String getReason() {
         return reason;
     }
 
-    /**
-     * Universal Getters
-     */
-
-    public static Punishment getPunishment(UUID uuid, Type type) {
-        return new Punishment(uuid, type, Mongo.getCollection("punishments").find(new Document("uuid", uuid)).first());
+    public void setReason(String reason) {
+        this.reason = reason;
     }
 
-    public enum Type {
-        MUTE, BAN
+    public static enum Type {
+        MUTE,
+        BAN
     }
 
 }

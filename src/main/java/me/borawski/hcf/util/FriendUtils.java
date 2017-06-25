@@ -1,11 +1,10 @@
 package me.borawski.hcf.util;
 
+import java.util.UUID;
+
 import me.borawski.hcf.session.AchievementManager;
 import me.borawski.hcf.session.Session;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import me.borawski.hcf.session.SessionHandler;
 
 /**
  * Created by Ethan on 3/12/2017.
@@ -30,9 +29,9 @@ public class FriendUtils {
 
     public static void addFriendRequest(Session player, UUID target, boolean incoming) {
         if (incoming) {
-            player.getIncomingRequests().add(target);
+            player.getIncomingFriendRequests().add(target);
         } else {
-            player.getOutgoingRequests().add(target);
+            player.getOutgoingFriendRequests().add(target);
         }
         saveFriends(player);
     }
@@ -45,14 +44,14 @@ public class FriendUtils {
 
     public static void denyFriendRequest(Session player, UUID target, boolean incoming) {
         if (incoming) {
-            player.getIncomingRequests().remove(target);
+            player.getIncomingFriendRequests().remove(target);
         } else {
-            player.getOutgoingRequests().remove(target);
+            player.getOutgoingFriendRequests().remove(target);
         }
     }
 
     public static boolean hasRequest(Session player, UUID target) {
-        return (player.getIncomingRequests().contains(target));
+        return (player.getIncomingFriendRequests().contains(target));
     }
 
     public static boolean isFriends(Session player, UUID target) {
@@ -60,14 +59,7 @@ public class FriendUtils {
     }
 
     private static void saveFriends(Session player) {
-        ArrayList<List<UUID>> friendRequests = new ArrayList<>();
-        friendRequests.add(player.getOutgoingRequests());
-        friendRequests.add(player.getIncomingRequests());
-        player.updateDocument("players", "friend_requests", friendRequests);
-        
-        player.updateDocument("players", "friends", player.getFriends());
-        player.dump();
-        Session.getSession(player.getUUID());
+        SessionHandler.getInstance().save(player);
     }
 
 }

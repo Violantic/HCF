@@ -8,8 +8,8 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 
 import me.borawski.hcf.Core;
-import me.borawski.hcf.api.PlayerAPI;
 import me.borawski.hcf.session.Session;
+import me.borawski.hcf.session.SessionHandler;
 import me.finestdev.components.MscAchievements;
 import me.finestdev.components.utils.Utils;
 
@@ -27,7 +27,7 @@ public class EnderchestHandler implements Listener {
                     event.setCancelled(true);
                     event.getPlayer().sendMessage("EnderChest are disabled!");
                 } else {
-                    Session s = PlayerAPI.getSession(event.getPlayer());
+                    Session s = SessionHandler.getSession(event.getPlayer());
                     if (!s.hasAchievement(MscAchievements.FIRST_ENDERCHEST_OPEN.getId())) {
                         s.awardAchievement(MscAchievements.FIRST_ENDERCHEST_OPEN, true);
                     }

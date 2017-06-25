@@ -39,7 +39,7 @@ public class PlayerInfoGUI extends ItemGUI {
     @Override
     public void registerItems() {
         Session s1 = crossTarget.get(getPlayer().getUniqueId());
-        set(0, new MenuItem(new CustomIS().setMaterial(Material.NAME_TAG).setName(ChatColor.GRAY + "UUID: " + s1.getUUID()), new Runnable() {
+        set(0, new MenuItem(new CustomIS().setMaterial(Material.NAME_TAG).setName(ChatColor.GRAY + "UUID: " + s1.getUniqueId()), new Runnable() {
             @Override
             public void run() {
 

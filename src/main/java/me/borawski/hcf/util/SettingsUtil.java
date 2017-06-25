@@ -19,7 +19,6 @@ public class SettingsUtil {
         } else if (s.getSettings().get(setting).equals("false")) {
             s.getSettings().put(setting, "true");
         }
-        s.updateDocument("players", "settings", s.getSettings());
     }
 
 }

@@ -9,6 +9,7 @@ import org.bukkit.entity.Player;
 
 import me.borawski.hcf.Core;
 import me.borawski.hcf.session.Session;
+import me.borawski.hcf.session.SessionHandler;
 
 /**
  * @author Michael Ziluck
@@ -22,7 +23,7 @@ public class CustomCommandHandler implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         CustomCommand command = getCustomCommand(label);
         if (command != null) {
-            Session s = sender instanceof Player ? Session.getSession(((Player) sender).getUniqueId()) : null;
+            Session s = sender instanceof Player ? SessionHandler.getSession(sender) : null;
             if (s == null || s.getRank().getId() >= command.getRequiredRank().getId()) {
                 command.run(sender, label, args);
             } else {

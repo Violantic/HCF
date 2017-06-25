@@ -8,6 +8,7 @@ import me.borawski.hcf.Core;
 import me.borawski.hcf.command.CustomCommand;
 import me.borawski.hcf.session.Rank;
 import me.borawski.hcf.session.Session;
+import me.borawski.hcf.session.SessionHandler;
 import me.borawski.hcf.util.ChatUtils;
 import me.borawski.hcf.util.FriendUtils;
 import me.borawski.hcf.util.PlayerUtils;
@@ -29,25 +30,25 @@ public class FriendAcceptCommand extends CustomCommand {
                 sender.sendMessage(Core.getInstance().getPrefix() + ChatColor.GRAY + "Player not found!");
                 return;
             }
-            Session session = Session.getSession((Player) sender);
-            Session target = Session.getSession(PlayerUtils.getUUIDFromName(args[0]));
-            if (FriendUtils.isFriends(session, target.getUUID())) {
-                sender.sendMessage(Core.getInstance().getPrefix() + ChatColor.GRAY + "You're already friends with " + ChatUtils.getNameWithRankColor(target.getUUID(), false) + ChatColor.GRAY + "!");
+            Session session = SessionHandler.getSession((Player) sender);
+            Session target = SessionHandler.getSession(PlayerUtils.getUUIDFromName(args[0]));
+            if (FriendUtils.isFriends(session, target.getUniqueId())) {
+                sender.sendMessage(Core.getInstance().getPrefix() + ChatColor.GRAY + "You're already friends with " + ChatUtils.getNameWithRankColor(target.getUniqueId(), false) + ChatColor.GRAY + "!");
                 return;
             }
 
-            if (!FriendUtils.hasRequest(session, target.getUUID())) {
+            if (!FriendUtils.hasRequest(session, target.getUniqueId())) {
                 // Sender has not already sent a friend request to this
                 // player. //
-                sender.sendMessage(Core.getInstance().getPrefix() + ChatColor.GRAY + "You don't have a request from " + ChatUtils.getNameWithRankColor(target.getUUID(), false));
+                sender.sendMessage(Core.getInstance().getPrefix() + ChatColor.GRAY + "You don't have a request from " + ChatUtils.getNameWithRankColor(target.getUniqueId(), false));
                 return;
             }
 
-            sender.sendMessage(Core.getInstance().getPrefix() + ChatColor.GRAY + "You accepted a request from " + ChatUtils.getNameWithRankColor(target.getUUID(), false));
-            sender.sendMessage(Core.getInstance().getPrefix() + ChatColor.GRAY + "You are now friends with " + ChatUtils.getNameWithRankColor(target.getUUID(), false) + ChatColor.GRAY + "!");
+            sender.sendMessage(Core.getInstance().getPrefix() + ChatColor.GRAY + "You accepted a request from " + ChatUtils.getNameWithRankColor(target.getUniqueId(), false));
+            sender.sendMessage(Core.getInstance().getPrefix() + ChatColor.GRAY + "You are now friends with " + ChatUtils.getNameWithRankColor(target.getUniqueId(), false) + ChatColor.GRAY + "!");
 
-            FriendUtils.acceptFriendRequest(session, target.getUUID(), true);
-            FriendUtils.acceptFriendRequest(target, session.getUUID(), false);
+            FriendUtils.acceptFriendRequest(session, target.getUniqueId(), true);
+            FriendUtils.acceptFriendRequest(target, session.getUniqueId(), false);
         } else {
             sender.sendMessage(Core.getLangHandler().getString("usage-header") + "§7/friend " + label + " [player]");
         }

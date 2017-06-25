@@ -1,5 +1,9 @@
-dbhost: localhost
-dbport: 27017
+database:
+    host: localhost
+    port: 27017
+    username: root
+    password: password
+    database: database
 
 koth_enabled: true
 koth_random_enabled: false
